@@ -19,7 +19,6 @@ export default function Navbar() {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Speakers', href: '#speakers' },
-    { name: 'Events', href: '#events' },
     { name: 'Sponsors', href: '#sponsors' },
     { name: 'Contact', href: '#contact' },
   ]
@@ -33,11 +32,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold">
-              <span className="text-white">TEDx</span>
-              <span className="text-tedx-red">NITHamirpur</span>
-            </span>
+          <Link href="/" className="flex flex-col items-start leading-none group">
+            <span className="text-3xl font-black tracking-tighter text-white">TEDx</span>
+            <span className="text-xs font-bold text-tedx-red tracking-widest group-hover:text-white transition-colors duration-300">NITHamirpur</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -51,7 +48,7 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <button className="bg-tedx-red hover:bg-tedx-red-dark text-white px-6 py-2 rounded-full transition-colors duration-200 font-medium">
+            <button className="px-6 py-2 rounded-full font-bold text-white bg-tedx-red border-2 border-tedx-red hover:bg-transparent hover:text-tedx-red transition-all duration-300 shadow-[0_4px_14px_0_rgba(235,0,40,0.39)] hover:shadow-[0_6px_20px_rgba(235,0,40,0.23)] hover:-translate-y-0.5">
               Get Tickets
             </button>
           </div>
@@ -94,7 +91,7 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <button className="w-full bg-tedx-red hover:bg-tedx-red-dark text-white px-6 py-2 rounded-full transition-colors duration-200 font-medium mt-4">
+            <button className="w-full px-6 py-2 rounded-full font-bold text-white bg-tedx-red border-2 border-tedx-red hover:bg-transparent hover:text-tedx-red transition-all duration-300 shadow-[0_4px_14px_0_rgba(235,0,40,0.39)] hover:shadow-[0_6px_20px_rgba(235,0,40,0.23)] mt-4">
               Get Tickets
             </button>
           </div>
