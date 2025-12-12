@@ -6,77 +6,48 @@ import { useInView } from './hooks/useInView'
 const events = [
   {
     id: 1,
-    time: '09:00 AM',
     title: 'Registration & Welcome Coffee',
     description: 'Meet fellow attendees and grab some refreshments',
-    type: 'general',
   },
   {
     id: 2,
-    time: '10:00 AM',
     title: 'Opening Ceremony',
     description: 'Welcome address and introduction to the theme',
-    type: 'ceremony',
   },
   {
     id: 3,
-    time: '10:30 AM',
     title: 'Session 1: Technology & Innovation',
     description: 'Three speakers sharing groundbreaking tech ideas',
-    type: 'talk',
   },
   {
     id: 4,
-    time: '12:00 PM',
     title: 'Networking Lunch',
     description: 'Connect with speakers and attendees over lunch',
-    type: 'break',
   },
   {
     id: 5,
-    time: '01:30 PM',
     title: 'Session 2: Social Impact',
     description: 'Stories of change-makers and social entrepreneurs',
-    type: 'talk',
   },
   {
     id: 6,
-    time: '03:00 PM',
     title: 'Coffee Break & Interactive Activities',
     description: 'Refreshments and engaging activities',
-    type: 'break',
   },
   {
     id: 7,
-    time: '03:30 PM',
     title: 'Session 3: Science & Future',
     description: 'Exploring the frontiers of science and innovation',
-    type: 'talk',
   },
   {
     id: 8,
-    time: '05:00 PM',
     title: 'Closing Ceremony & Performance',
     description: 'Final thoughts and special cultural performance',
-    type: 'ceremony',
   },
 ]
 
 export default function Events() {
   const { ref, isInView } = useInView()
-
-  const getEventIcon = (type: string) => {
-    switch (type) {
-      case 'talk':
-        return '🎤'
-      case 'break':
-        return '☕'
-      case 'ceremony':
-        return '🎭'
-      default:
-        return '📋'
-    }
-  }
 
   return (
     <section id="events" className="py-20 md:py-32 bg-black text-white">
@@ -97,85 +68,77 @@ export default function Events() {
         </motion.div>
 
         {/* Timeline Container */}
-        <div className="relative max-w-6xl mx-auto">
-          {/* Center Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-tedx-red via-tedx-red to-transparent" />
+        <div className="relative max-w-5xl mx-auto">
+          {/* Center Line - subtle glowing effect */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-tedx-red/80 via-tedx-red/40 to-transparent" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-4 bg-gradient-to-b from-tedx-red/10 via-tedx-red/5 to-transparent blur-sm" />
 
           {/* Events */}
-          <div className="space-y-20">
+          <div className="space-y-8 md:space-y-0">
             {events.map((event, index) => {
               const isLeft = index % 2 === 0
-              
+
               return (
                 <motion.div
                   key={event.id}
-                  initial={{ opacity: 0, x: isLeft ? -100 : 100, scale: 0.8 }}
-                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className={`relative flex items-center ${isLeft ? 'justify-start' : 'justify-end'}`}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  className={`relative flex items-center py-4 md:py-8 ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}
                 >
                   {/* Content Card */}
-                  <div className={`w-full md:w-5/12 ${isLeft ? 'md:pr-16' : 'md:pl-16'}`}>
+                  <div className={`w-full md:w-[45%] ${isLeft ? 'md:pr-12' : 'md:pl-12'}`}>
                     <motion.div
-                      whileHover={{ scale: 1.03, translateY: -8 }}
-                      transition={{ duration: 0.3 }}
-                      className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-2xl p-8 border-2 border-gray-700 hover:border-gray-600 transition-all duration-300 shadow-xl hover:shadow-2xl cursor-pointer overflow-hidden group"
+                      whileHover={{ x: isLeft ? -8 : 8 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="relative group cursor-pointer"
                     >
-                      {/* Animated gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-tedx-red/5 via-transparent to-tedx-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      
-                      {/* Accent bar */}
-                      <div className={`absolute ${isLeft ? 'right-0' : 'left-0'} top-0 bottom-0 w-1 bg-gradient-to-b from-tedx-red via-tedx-red/50 to-transparent`} />
-                      
-                      <div className="relative z-10">
-                        {/* Time Badge */}
-                        <div className="inline-flex items-center gap-3 bg-tedx-red/20 px-5 py-2 rounded-full mb-4 border border-tedx-red/30">
-                          <span className="text-2xl">{getEventIcon(event.type)}</span>
-                          <span className="text-tedx-red font-bold text-lg">{event.time}</span>
+                      {/* Card Background with layered effect */}
+                      <div className="absolute inset-0 bg-tedx-red/5 rounded-xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300" />
+                      <div className="relative bg-gradient-to-br from-zinc-900/90 to-zinc-950/90 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-zinc-800/50 group-hover:border-tedx-red/30 transition-all duration-300">
+
+                        {/* Event number indicator */}
+                        <div className={`absolute top-0 ${isLeft ? '-right-3 md:-right-6' : '-left-3 md:-left-6'} transform -translate-y-1/2`}>
+                          <span className="text-tedx-red/20 text-5xl md:text-6xl font-black select-none">
+                            {String(event.id).padStart(2, '0')}
+                          </span>
                         </div>
-                        
+
                         {/* Title */}
-                        <h3 className="text-3xl font-bold mb-4 text-white group-hover:text-tedx-red transition-colors duration-300">
+                        <h3 className="text-xl md:text-2xl font-bold mb-3 text-white/90 group-hover:text-white transition-colors duration-300 leading-tight">
                           {event.title}
                         </h3>
-                        
+
                         {/* Description */}
-                        <p className="text-gray-400 leading-relaxed text-base mb-4">
+                        <p className="text-gray-500 group-hover:text-gray-400 text-sm md:text-base leading-relaxed transition-colors duration-300">
                           {event.description}
                         </p>
-                        
-                        {/* Bottom decoration */}
-                        <div className="flex items-center gap-2 mt-6 opacity-50 group-hover:opacity-100 transition-opacity">
-                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-tedx-red to-transparent" />
-                        </div>
+
+                        {/* Subtle bottom accent */}
+                        <div className="mt-5 h-px bg-gradient-to-r from-tedx-red/0 via-tedx-red/40 to-tedx-red/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center" />
                       </div>
                     </motion.div>
                   </div>
 
-                  {/* Dot on Event Side */}
+                  {/* Timeline Node */}
                   <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.08 + 0.2 }}
                     viewport={{ once: true }}
-                    className={`absolute ${isLeft ? 'left-[41.666%]' : 'right-[41.666%]'} z-10 hidden md:block`}
+                    className="absolute left-1/2 transform -translate-x-1/2 z-10 hidden md:flex items-center justify-center"
                   >
-                    <div className="relative">
-                      <div className="w-8 h-8 bg-tedx-red rounded-full border-4 border-black shadow-lg shadow-tedx-red/50" />
-                      <div className="absolute inset-0 w-8 h-8 bg-tedx-red rounded-full animate-ping opacity-75" />
-                    </div>
+                    <div className="w-3 h-3 bg-tedx-red rounded-full shadow-lg shadow-tedx-red/40" />
+                    <div className="absolute w-6 h-6 border border-tedx-red/30 rounded-full animate-pulse" />
                   </motion.div>
 
-                  {/* Connector Line from center to dot */}
-                  <div className={`hidden md:block absolute top-1/2 ${isLeft ? 'left-1/2 right-[58.333%]' : 'right-1/2 left-[58.333%]'} h-0.5 bg-gradient-to-${isLeft ? 'r' : 'l'} from-tedx-red to-tedx-red`} />
+                  {/* Connector Line */}
+                  <div className={`hidden md:block absolute top-1/2 h-px w-[4%] bg-tedx-red/30 ${isLeft ? 'left-[46%]' : 'right-[46%]'}`} />
                 </motion.div>
               )
             })}
           </div>
-
-          {/* Bottom Glow Effect */}
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-tedx-red/20 blur-3xl rounded-full" />
         </div>
 
         <motion.div
@@ -183,21 +146,20 @@ export default function Events() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-24 text-center bg-gradient-to-r from-tedx-red/10 via-tedx-red/20 to-tedx-red/10 border-2 border-tedx-red rounded-2xl p-10 relative overflow-hidden"
+          className="mt-24 text-center bg-gradient-to-br from-zinc-900/80 to-black border border-tedx-red/20 rounded-2xl p-10 relative overflow-hidden"
         >
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-              backgroundSize: '30px 30px'
-            }} />
-          </div>
-          
+          {/* Subtle corner accents */}
+          <div className="absolute top-0 left-0 w-20 h-20 border-l-2 border-t-2 border-tedx-red/30 rounded-tl-2xl" />
+          <div className="absolute bottom-0 right-0 w-20 h-20 border-r-2 border-b-2 border-tedx-red/30 rounded-br-2xl" />
+
+          {/* Ambient glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-tedx-red/10 rounded-full blur-3xl" />
+
           <div className="relative z-10">
-            <h3 className="text-3xl font-bold mb-4 uppercase">Save the Date</h3>
-            <p className="text-5xl md:text-6xl font-bold text-tedx-red mb-2">February 13, 2026</p>
-            <p className="text-xl text-gray-300 mb-8">NIT Hamirpur Campus | 9:00 AM - 6:00 PM</p>
-            <button className="bg-tedx-red hover:bg-tedx-red-dark text-white px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-tedx-red/50">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 uppercase tracking-wider text-white/90">Save the Date</h3>
+            <p className="text-4xl md:text-6xl font-bold text-tedx-red mb-2">February 14, 2026</p>
+            <p className="text-lg md:text-xl text-gray-400 mb-8">NIT Hamirpur Campus | 9:00 AM - 6:00 PM</p>
+            <button className="bg-tedx-red hover:bg-tedx-red/90 text-white px-8 md:px-10 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-tedx-red/30">
               Add to Calendar
             </button>
           </div>

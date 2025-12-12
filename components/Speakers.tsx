@@ -1,9 +1,9 @@
 'use client'
 
-import { motion, useMotionValue, useAnimation } from 'framer-motion'
+import { motion, useMotionValue, useAnimation, PanInfo } from 'framer-motion'
 import Image from 'next/image'
 import { useInView } from './hooks/useInView'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 const speakers = [
   {
@@ -53,52 +53,49 @@ const speakers = [
 export default function Speakers() {
   const { ref, isInView } = useInView()
   const [isPaused, setIsPaused] = useState(false)
+  const [scrollDirection, setScrollDirection] = useState<'left' | 'right'>('left')
   const containerRef = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
-  const controls = useAnimation()
-  const [dragVelocity, setDragVelocity] = useState(0)
-  
-  // Duplicate speakers array for seamless infinite scroll
-  const allSpeakers = [...speakers, ...speakers, ...speakers]
-  const cardWidth = 320 + 24 // card width + gap
 
-  useEffect(() => {
-    if (!isPaused) {
-      const currentX = x.get()
-      const targetX = currentX - cardWidth * speakers.length
-      
-      controls.start({
-        x: [currentX, targetX],
-        transition: {
-          duration: 30,
-          ease: "linear",
-          repeat: Infinity,
-          repeatType: "loop",
-        },
-      })
-    } else {
-      controls.stop()
-    }
-  }, [isPaused, controls, x, cardWidth, speakers.length])
+  // Duplicate speakers for seamless infinite scroll
+  const allSpeakers = [...speakers, ...speakers]
 
-  const handleDragEnd = (_: any, info: any) => {
-    setIsPaused(false)
-    
-    // Check drag direction and velocity
-    if (Math.abs(info.velocity.x) > 50) {
-      setDragVelocity(info.velocity.x)
-    }
+  // Handle drag to change scroll direction
+  const handleDrag = (e: React.MouseEvent | React.TouchEvent) => {
+    setIsPaused(true)
   }
 
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault()
-    const currentX = x.get()
-    // Scroll left/right based on wheel direction
-    x.set(currentX - e.deltaY * 0.5)
+  const handleDragEnd = (e: React.MouseEvent | React.TouchEvent, startX: number) => {
+    const endX = 'touches' in e ? e.changedTouches[0].clientX : e.clientX
+    const diff = endX - startX
+
+    if (Math.abs(diff) > 50) {
+      setScrollDirection(diff > 0 ? 'right' : 'left')
+    }
+    setIsPaused(false)
   }
 
   return (
     <section id="speakers" className="py-20 md:py-32 bg-black text-white overflow-hidden">
+      <style jsx>{`
+        @keyframes scroll-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes scroll-right {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .scroll-left {
+          animation: scroll-left 30s linear infinite;
+        }
+        .scroll-right {
+          animation: scroll-right 30s linear infinite;
+        }
+        .paused {
+          animation-play-state: paused;
+        }
+      `}</style>
+
       <div ref={ref} className="mb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -112,74 +109,101 @@ export default function Speakers() {
         </motion.div>
 
         {/* Infinite Scrolling Container */}
-        <div 
+        <div
           className="relative mt-16"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          onWheel={handleWheel}
         >
-          <motion.div
+          <div
             ref={containerRef}
-            className="flex gap-6 cursor-grab active:cursor-grabbing"
-            style={{ x }}
-            animate={controls}
-            drag="x"
-            dragConstraints={{ left: -cardWidth * speakers.length * 2, right: cardWidth * speakers.length }}
-            dragElastic={0.1}
-            onDragStart={() => setIsPaused(true)}
-            onDragEnd={handleDragEnd}
+            className={`flex gap-5 cursor-grab active:cursor-grabbing ${scrollDirection === 'left' ? 'scroll-left' : 'scroll-right'
+              } ${isPaused ? 'paused' : ''}`}
+            onMouseDown={(e) => {
+              const startX = e.clientX
+              const handleUp = (upEvent: MouseEvent) => {
+                handleDragEnd(upEvent as unknown as React.MouseEvent, startX)
+                window.removeEventListener('mouseup', handleUp)
+              }
+              window.addEventListener('mouseup', handleUp)
+            }}
+            onTouchStart={(e) => {
+              const startX = e.touches[0].clientX
+              const handleEnd = (endEvent: TouchEvent) => {
+                handleDragEnd(endEvent as unknown as React.TouchEvent, startX)
+                containerRef.current?.removeEventListener('touchend', handleEnd)
+              }
+              containerRef.current?.addEventListener('touchend', handleEnd)
+            }}
           >
             {allSpeakers.map((speaker, index) => (
               <div
                 key={`${speaker.id}-${index}`}
-                className="flex-shrink-0 w-[320px] group cursor-pointer"
+                className="flex-shrink-0 w-[300px] group transition-transform duration-300 hover:-translate-y-2"
               >
-                <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-tedx-red transition-all duration-500 hover:shadow-2xl hover:shadow-tedx-red/20 hover:-translate-y-2">
+                <div className="relative bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800/60 hover:border-tedx-red/40 transition-all duration-400">
                   {/* Image Container */}
-                  <div className="relative h-[280px] overflow-hidden bg-gray-800">
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900 z-10" />
+                  <div className="relative h-[320px] overflow-hidden">
                     <Image
                       src={speaker.image}
                       alt={speaker.name}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-tedx-red/0 group-hover:bg-tedx-red/10 transition-all duration-500 z-20" />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+
+                    {/* Red accent on hover */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-tedx-red transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-2 group-hover:text-tedx-red transition-colors duration-300">
+                  <div className="p-5 relative">
+                    {/* Name with underline effect */}
+                    <h3 className="text-xl font-bold text-white mb-1 relative inline-block">
                       {speaker.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-px bg-tedx-red group-hover:w-full transition-all duration-300" />
                     </h3>
-                    <p className="text-tedx-red text-sm font-semibold mb-3 uppercase tracking-wide">
+
+                    <p className="text-tedx-red/80 text-sm font-medium uppercase tracking-wider mb-3">
                       {speaker.profession}
                     </p>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-4">
+
+                    <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2">
                       {speaker.description}
                     </p>
-                    
-                    {/* Social Icons Placeholder */}
-                    <div className="flex gap-2 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-2 h-2 bg-white rounded-sm"></div>
-                      <div className="w-2 h-2 bg-white rounded-sm"></div>
-                      <div className="w-2 h-2 bg-white rounded-sm"></div>
-                    </div>
                   </div>
-
-                  {/* Bottom accent line */}
-                  <div className="h-1 bg-gradient-to-r from-tedx-red via-white to-tedx-red transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* Gradient Overlays for fade effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent pointer-events-none z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent pointer-events-none z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-black via-black/80 to-transparent pointer-events-none z-10" />
+
+          {/* Direction indicator */}
+          <div className="flex justify-center mt-8 gap-3">
+            <button
+              onClick={() => setScrollDirection('right')}
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${scrollDirection === 'right' ? 'bg-tedx-red' : 'bg-zinc-800 hover:bg-zinc-700'}`}
+            >
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setScrollDirection('left')}
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${scrollDirection === 'left' ? 'bg-tedx-red' : 'bg-zinc-800 hover:bg-zinc-700'}`}
+            >
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
   )
 }
+
+

@@ -3,7 +3,6 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Speakers from '@/components/Speakers'
 import Events from '@/components/Events'
-import Sponsors from '@/components/Sponsors'
 import Footer from '@/components/Footer'
 
 export default function Home() {

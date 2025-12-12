@@ -36,7 +36,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <motion.h1 
+          <motion.h1
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight uppercase"
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -52,7 +52,7 @@ export default function Hero() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            FEBRUARY 13, 2026
+            FEBRUARY 14, 2026
           </motion.p>
 
           <motion.p
