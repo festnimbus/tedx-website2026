@@ -17,12 +17,12 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Speakers', href: '#speakers' },
-    { name: 'Events', href: '#events' },
-    { name: 'Sponsors', href: '#sponsors' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Speakers', href: '/speakers' },
+    { name: 'Events', href: '/#events' },
+    { name: 'Sponsors', href: '/#sponsors' },
+    { name: 'Contact', href: '/#contact' },
   ]
 
   return (

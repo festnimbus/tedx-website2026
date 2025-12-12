@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -66,11 +67,16 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href="/" className="inline-block mb-4">
-              <span className="text-3xl font-bold">
-                <span className="text-white">TEDx</span>
-                <span className="text-tedx-red">NITHamirpur</span>
-              </span>
+            <Link href="/" className="inline-block mb-6">
+              <div className="relative h-12 w-48">
+                <Image
+                  src="/tedx-logo.png"
+                  alt="TEDx NIT Hamirpur"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
+              </div>
             </Link>
             <p className="text-gray-400 mb-6 leading-relaxed">
               An independently organized TED event bringing together brilliant minds to share ideas worth spreading at National Institute of Technology, Hamirpur.
