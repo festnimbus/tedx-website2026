@@ -15,7 +15,7 @@ export default function About() {
 
   useEffect(() => {
     const targetDate = new Date('2026-02-13T00:00:00').getTime()
-    
+
     const updateTimer = () => {
       const now = new Date().getTime()
       const difference = targetDate - now
@@ -36,7 +36,7 @@ export default function About() {
   }, [])
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-black text-white">
+    <section id="about" className="py-20 md:py-32 bg-[#171717] text-white">
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Side - About TEDx */}
@@ -87,7 +87,7 @@ export default function About() {
                   Days
                 </span>
               </div>
-              
+
               <div className="flex flex-col items-center">
                 <div className="bg-gray-800 rounded-lg p-6 mb-3 w-full">
                   <div className="text-4xl md:text-5xl font-bold">
@@ -98,7 +98,7 @@ export default function About() {
                   Hours
                 </span>
               </div>
-              
+
               <div className="flex flex-col items-center">
                 <div className="bg-gray-800 rounded-lg p-6 mb-3 w-full">
                   <div className="text-4xl md:text-5xl font-bold">
@@ -109,7 +109,7 @@ export default function About() {
                   Minutes
                 </span>
               </div>
-              
+
               <div className="flex flex-col items-center">
                 <div className="bg-gray-800 rounded-lg p-6 mb-3 w-full">
                   <div className="text-4xl md:text-5xl font-bold">

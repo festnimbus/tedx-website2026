@@ -8,7 +8,7 @@ export default function Hero() {
   const { ref, isInView } = useInView()
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-black overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center bg-[#171717] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -23,7 +23,7 @@ export default function Hero() {
           quality={90}
         />
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-[#171717]/60" />
         {/* Gradient fade to black at bottom */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-70% to-black" />
       </div>

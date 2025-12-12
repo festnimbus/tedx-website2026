@@ -6,7 +6,7 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply font-helvetica antialiased;
   }
@@ -16,4 +16,25 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* TEDx Amsterdam style gradient glow borders */
+.tedx-border-left,
+.tedx-border-right {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.tedx-border-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(235, 0, 40, 0.4) 0%, rgba(235, 0, 40, 0.15) 30%, transparent 100%);
+}
+
+.tedx-border-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(235, 0, 40, 0.4) 0%, rgba(235, 0, 40, 0.15) 30%, transparent 100%);
 }

@@ -99,7 +99,7 @@ export default function SpeakersPage() {
     }
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-[#171717]">
             <Navbar />
 
             {/* Hero Spacer */}

@@ -14,7 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {/* TEDx Amsterdam style gradient borders */}
+        <div className="tedx-border-left" />
+        <div className="tedx-border-right" />
+        {children}
+      </body>
     </html>
   )
 }

@@ -75,7 +75,7 @@ export default function Speakers() {
   }
 
   return (
-    <section id="speakers" className="py-20 md:py-32 bg-black text-white overflow-hidden">
+    <section id="speakers" className="py-20 md:py-32 bg-[#171717] text-white overflow-hidden">
       <style jsx>{`
         @keyframes scroll-left {
           0% { transform: translateX(0); }
