@@ -1,10 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const [email, setEmail] = useState('')
+  const [isSubscribed, setIsSubscribed] = useState(false)
 
   const quickLinks = [
     { name: 'Home', href: '#home' },
@@ -125,16 +128,35 @@ export default function Footer() {
             </div>
             <div className="mt-8">
               <h4 className="font-bold mb-3">Stay Updated</h4>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-2 rounded-full bg-gray-900 text-white border border-gray-800 focus:border-tedx-red focus:outline-none"
-                />
-                <button className="bg-tedx-red hover:bg-tedx-red-dark text-white px-6 py-2 rounded-full transition-colors duration-200">
-                  Subscribe
-                </button>
-              </div>
+              {isSubscribed ? (
+                <div className="flex items-center gap-2 text-green-400">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Subscribed! We'll be in touch.</span>
+                </div>
+              ) : (
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-1 px-4 py-2 rounded-full bg-gray-900 text-white border border-gray-800 focus:border-tedx-red focus:outline-none"
+                  />
+                  <button
+                    onClick={() => {
+                      if (email) {
+                        window.location.href = `mailto:voices@tedxnithamirpur.com?subject=Newsletter Subscription - TEDxNIT Hamirpur&body=New subscriber email: ${email}`
+                        setIsSubscribed(true)
+                      }
+                    }}
+                    className="bg-tedx-red hover:bg-tedx-red-dark text-white px-6 py-2 rounded-full transition-colors duration-200"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

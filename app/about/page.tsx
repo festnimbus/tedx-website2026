@@ -55,14 +55,14 @@ export default function AboutPage() {
                             </p>
                         </motion.div>
 
-                        {/* Right: Large X Graphic */}
+                        {/* Right: Large X Graphic - Hidden on mobile */}
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                             variants={fadeInRight}
-                            className="flex justify-center items-center"
+                            className="hidden md:flex justify-center items-center"
                         >
                             <div className="relative">
                                 <span className="text-[200px] md:text-[280px] lg:text-[350px] font-bold text-tedx-red select-none leading-none">
@@ -82,14 +82,14 @@ export default function AboutPage() {
             <section className="py-16 md:py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        {/* Left: NIT Campus Image */}
+                        {/* Left: NIT Campus Image - Hidden on mobile */}
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8 }}
                             variants={fadeInLeft}
-                            className="relative group"
+                            className="relative group hidden md:block"
                         >
                             <div className="relative aspect-[4/3] overflow-hidden rounded-lg border-4 border-tedx-red">
                                 <Image
@@ -163,14 +163,14 @@ export default function AboutPage() {
                             </p>
                         </motion.div>
 
-                        {/* Right: City Sunrise Placeholder */}
+                        {/* Right: City Sunrise Placeholder - Hidden on mobile */}
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                             variants={fadeInRight}
-                            className="relative group"
+                            className="relative group hidden md:block"
                         >
                             <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-tedx-red flex items-center justify-center">
                                 {/* Decorative gradient overlay */}

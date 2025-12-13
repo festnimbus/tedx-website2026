@@ -105,7 +105,7 @@ export default function SponsorsPage() {
                             Partner with TEDxNIT Hamirpur and be part of something extraordinary. Reach out to us for sponsorship opportunities.
                         </p>
                         <a
-                            href="mailto:tedx@nith.ac.in"
+                            href="mailto:voices@tedxnithamirpur.com?subject=Sponsorship Inquiry for TEDxNIT Hamirpur&body=Hello TEDxNIT Hamirpur Team,%0D%0A%0D%0AWe are interested in sponsorship opportunities for your event.%0D%0A%0D%0ACompany Name: %0D%0AContact Person: %0D%0APhone: %0D%0A%0D%0APlease share the sponsorship packages.%0D%0A%0D%0AThank you!"
                             className="inline-flex items-center gap-2 px-8 py-3 bg-tedx-red hover:bg-tedx-red-dark text-white font-bold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-tedx-red/30"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

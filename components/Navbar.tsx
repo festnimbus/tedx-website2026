@@ -87,26 +87,45 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#171717]/95 backdrop-blur-md border-t border-white/10">
+      {/* Mobile menu - Animated */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen
+            ? 'max-h-[500px] opacity-100'
+            : 'max-h-0 opacity-0'
+          }`}
+      >
+        <div className="bg-[#171717]/80 backdrop-blur-lg border-t border-white/10">
           <div className="px-4 pt-4 pb-6 space-y-1">
-            {navLinks.map((link) => (
+            {navLinks.map((link, index) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 font-semibold uppercase tracking-wider text-sm"
+                className={`block px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 font-semibold uppercase tracking-wider text-sm transform ${isMobileMenuOpen
+                    ? 'translate-x-0 opacity-100'
+                    : '-translate-x-4 opacity-0'
+                  }`}
+                style={{
+                  transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms'
+                }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <button className="w-full mt-4 px-6 py-3 rounded-full font-bold text-white bg-tedx-red uppercase tracking-wide text-sm hover:bg-red-600 transition-colors duration-300">
+            <button
+              className={`w-full mt-4 px-6 py-3 rounded-full font-bold text-white bg-tedx-red uppercase tracking-wide text-sm hover:bg-red-600 transition-all duration-300 transform ${isMobileMenuOpen
+                  ? 'translate-y-0 opacity-100'
+                  : 'translate-y-4 opacity-0'
+                }`}
+              style={{
+                transitionDelay: isMobileMenuOpen ? `${navLinks.length * 50}ms` : '0ms'
+              }}
+            >
               Get Tickets
             </button>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   )
 }

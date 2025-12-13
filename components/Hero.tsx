@@ -151,12 +151,18 @@ export default function Hero() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <button className="bg-tedx-red hover:bg-tedx-red-dark text-white px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+            <a
+              href="mailto:voices@tedxnithamirpur.com?subject=Speaker Application for TEDxNIT Hamirpur&body=Hello TEDxNIT Hamirpur Team,%0D%0A%0D%0AI am interested in applying to speak at your event.%0D%0A%0D%0AName: %0D%0ATopic: %0D%0ABrief Bio: %0D%0A%0D%0AThank you!"
+              className="bg-tedx-red hover:bg-tedx-red-dark text-white px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
+            >
               Apply to Speak
-            </button>
-            <button className="bg-white hover:bg-gray-100 text-black px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+            </a>
+            <a
+              href="/#contact"
+              className="bg-white hover:bg-gray-100 text-black px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
+            >
               Get Tickets
-            </button>
+            </a>
           </motion.div>
         </motion.div>
       </div>
