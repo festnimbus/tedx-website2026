@@ -6,8 +6,8 @@ import { useInView } from './hooks/useInView'
 const events = [
   {
     id: 1,
-    title: 'Registration & Welcome Coffee',
-    description: 'Meet fellow attendees and grab some refreshments',
+    title: 'Call for Speakers',
+    description: 'Submit your proposals for the TEDx event',
   },
   {
     id: 2,

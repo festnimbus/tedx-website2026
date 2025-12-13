@@ -135,8 +135,8 @@ export default function Hero() {
           className="max-w-3xl"
         >
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight uppercase">
-            <TypewriterText text={firstLineText} delay={firstLineDelay} isInView={isInView} />
-            <TypewriterText text={secondLineText} delay={secondLineDelay} isInView={isInView} />
+            <TypewriterText text={firstLineText} delay={firstLineDelay} isInView={isInView} cycle={cycle} />
+            <TypewriterText text={secondLineText} delay={secondLineDelay} isInView={isInView} cycle={cycle} onComplete={() => setSecondLineComplete(true)} />
           </h1>
 
           <motion.p
