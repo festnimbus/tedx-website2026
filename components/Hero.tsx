@@ -81,8 +81,8 @@ function TypewriterText({
 
 export default function Hero() {
   const { ref, isInView } = useInView()
-  const [cycle, setCycle] = useState(0)
-  const [secondLineComplete, setSecondLineComplete] = useState(false)
+  // Animation runs only once on page load (cycle is constant)
+  const cycle = 0
 
   // Calculate when the second line should start (after first line finishes)
   const firstLineText = 'IDEAS WORTH'
@@ -90,18 +90,6 @@ export default function Hero() {
   const typingSpeed = 80
   const firstLineDelay = 200 // Initial delay before starting
   const secondLineDelay = firstLineDelay + (firstLineText.length * typingSpeed) + 100
-
-  // Reset cycle to loop the animation
-  useEffect(() => {
-    if (secondLineComplete) {
-      const pauseBeforeRestart = 2500 // Pause for 2.5 seconds before restarting
-      const timeout = setTimeout(() => {
-        setCycle(c => c + 1)
-        setSecondLineComplete(false)
-      }, pauseBeforeRestart)
-      return () => clearTimeout(timeout)
-    }
-  }, [secondLineComplete])
 
   return (
     <section id="home" className="relative min-h-screen flex items-center bg-[#171717] overflow-hidden">
@@ -136,7 +124,7 @@ export default function Hero() {
         >
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight uppercase">
             <TypewriterText text={firstLineText} delay={firstLineDelay} isInView={isInView} cycle={cycle} />
-            <TypewriterText text={secondLineText} delay={secondLineDelay} isInView={isInView} cycle={cycle} onComplete={() => setSecondLineComplete(true)} />
+            <TypewriterText text={secondLineText} delay={secondLineDelay} isInView={isInView} cycle={cycle} />
           </h1>
 
           <motion.p

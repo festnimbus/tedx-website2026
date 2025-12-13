@@ -24,9 +24,17 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 100px;
+  width: 15px;
   z-index: 9999;
   pointer-events: none;
+}
+
+@media (min-width: 768px) {
+
+  .tedx-border-left,
+  .tedx-border-right {
+    width: 100px;
+  }
 }
 
 .tedx-border-left {

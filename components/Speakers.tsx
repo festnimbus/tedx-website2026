@@ -75,7 +75,7 @@ export default function Speakers() {
   }
 
   return (
-    <section id="speakers" className="py-20 md:py-32 bg-[#171717] text-white overflow-hidden">
+    <section id="speakers" className="relative py-20 md:py-32 bg-[#171717] text-white overflow-hidden">
       <style jsx>{`
         @keyframes scroll-left {
           0% { transform: translateX(0); }
@@ -86,10 +86,10 @@ export default function Speakers() {
           100% { transform: translateX(0); }
         }
         .scroll-left {
-          animation: scroll-left 30s linear infinite;
+          animation: scroll-left 15s linear infinite;
         }
         .scroll-right {
-          animation: scroll-right 30s linear infinite;
+          animation: scroll-right 15s linear infinite;
         }
         .paused {
           animation-play-state: paused;
@@ -138,11 +138,11 @@ export default function Speakers() {
             {allSpeakers.map((speaker, index) => (
               <div
                 key={`${speaker.id}-${index}`}
-                className="flex-shrink-0 w-[300px] group transition-transform duration-300 hover:-translate-y-2"
+                className="flex-shrink-0 w-[220px] sm:w-[300px] group transition-transform duration-300 hover:-translate-y-2"
               >
                 <div className="relative bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800/60 hover:border-tedx-red/40 transition-all duration-400">
                   {/* Image Container */}
-                  <div className="relative h-[320px] overflow-hidden">
+                  <div className="relative h-[240px] sm:h-[320px] overflow-hidden">
                     <Image
                       src={speaker.image}
                       alt={speaker.name}
@@ -157,9 +157,9 @@ export default function Speakers() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-5 relative">
+                  <div className="p-3 sm:p-5 relative">
                     {/* Name with underline effect */}
-                    <h3 className="text-xl font-bold text-white mb-1 relative inline-block">
+                    <h3 className="text-base sm:text-xl font-bold text-white mb-1 relative inline-block">
                       {speaker.name}
                       <span className="absolute bottom-0 left-0 w-0 h-px bg-tedx-red group-hover:w-full transition-all duration-300" />
                     </h3>
@@ -177,9 +177,9 @@ export default function Speakers() {
             ))}
           </div>
 
-          {/* Gradient Overlays for fade effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-black via-black/80 to-transparent pointer-events-none z-10" />
+          {/* Gradient Overlays for fade effect - hidden on mobile */}
+          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none z-10 hidden md:block" />
+          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black via-black/80 to-transparent pointer-events-none z-10 hidden md:block" />
 
           {/* Direction indicator */}
           <div className="flex justify-center mt-8 gap-3">
@@ -202,6 +202,8 @@ export default function Speakers() {
           </div>
         </div>
       </div>
+      {/* Bottom gradient for seamless blend with next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#171717] to-transparent pointer-events-none" />
     </section>
   )
 }

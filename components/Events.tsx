@@ -11,38 +11,28 @@ const events = [
   },
   {
     id: 2,
+    title: 'Speakers Announcement',
+    description: 'Announcement of speakers',
+  },
+  {
+    id: 3,
     title: 'Opening Ceremony',
     description: 'Welcome address and introduction to the theme',
   },
   {
-    id: 3,
-    title: 'Session 1: Technology & Innovation',
-    description: 'Three speakers sharing groundbreaking tech ideas',
-  },
-  {
     id: 4,
-    title: 'Networking Lunch',
-    description: 'Connect with speakers and attendees over lunch',
+    title: 'TEDx Talks by Speakers',
+    description: 'Main talk by the speaker',
   },
   {
     id: 5,
-    title: 'Session 2: Social Impact',
-    description: 'Stories of change-makers and social entrepreneurs',
+    title: 'Q&A Session',
+    description: 'Questions and answers with the speaker',
   },
   {
     id: 6,
-    title: 'Coffee Break & Interactive Activities',
-    description: 'Refreshments and engaging activities',
-  },
-  {
-    id: 7,
-    title: 'Session 3: Science & Future',
-    description: 'Exploring the frontiers of science and innovation',
-  },
-  {
-    id: 8,
-    title: 'Closing Ceremony & Performance',
-    description: 'Final thoughts and special cultural performance',
+    title: 'Closing Ceremony',
+    description: 'Closing remarks and thank you',
   },
 ]
 
@@ -96,27 +86,27 @@ export default function Events() {
                     >
                       {/* Card Background with layered effect */}
                       <div className="absolute inset-0 bg-tedx-red/5 rounded-xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300" />
-                      <div className="relative bg-gradient-to-br from-zinc-900/90 to-zinc-950/90 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-zinc-800/50 group-hover:border-tedx-red/30 transition-all duration-300">
+                      <div className="relative bg-gradient-to-br from-zinc-900/90 to-zinc-950/90 backdrop-blur-sm rounded-xl p-4 sm:p-6 md:p-8 border border-zinc-800/50 group-hover:border-tedx-red/30 transition-all duration-300">
 
                         {/* Event number indicator */}
-                        <div className={`absolute top-0 ${isLeft ? '-right-3 md:-right-6' : '-left-3 md:-left-6'} transform -translate-y-1/2`}>
-                          <span className="text-tedx-red/20 text-5xl md:text-6xl font-black select-none">
+                        <div className={`absolute top-0 ${isLeft ? '-right-2 sm:-right-3 md:-right-6' : '-left-2 sm:-left-3 md:-left-6'} transform -translate-y-1/2`}>
+                          <span className="text-tedx-red/20 text-3xl sm:text-5xl md:text-6xl font-black select-none">
                             {String(event.id).padStart(2, '0')}
                           </span>
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-xl md:text-2xl font-bold mb-3 text-white/90 group-hover:text-white transition-colors duration-300 leading-tight">
+                        <h3 className="text-base sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 text-white/90 group-hover:text-white transition-colors duration-300 leading-tight">
                           {event.title}
                         </h3>
 
                         {/* Description */}
-                        <p className="text-gray-500 group-hover:text-gray-400 text-sm md:text-base leading-relaxed transition-colors duration-300">
+                        <p className="text-gray-500 group-hover:text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-300">
                           {event.description}
                         </p>
 
                         {/* Subtle bottom accent */}
-                        <div className="mt-5 h-px bg-gradient-to-r from-tedx-red/0 via-tedx-red/40 to-tedx-red/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center" />
+                        <div className="mt-3 sm:mt-5 h-px bg-gradient-to-r from-tedx-red/0 via-tedx-red/40 to-tedx-red/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center" />
                       </div>
                     </motion.div>
                   </div>

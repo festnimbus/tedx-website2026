@@ -88,7 +88,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-center sm:text-left">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a
