@@ -84,7 +84,7 @@ export default function Events() {
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.08 }}
-                  viewport={{ once: true, margin: "-50px" }}
+                  viewport={{ once: false, margin: "-50px" }}
                   className={`relative flex items-center py-4 md:py-8 ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}
                 >
                   {/* Content Card */}
@@ -126,7 +126,7 @@ export default function Events() {
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.08 + 0.2 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="absolute left-1/2 transform -translate-x-1/2 z-10 hidden md:flex items-center justify-center"
                   >
                     <div className="w-3 h-3 bg-tedx-red rounded-full shadow-lg shadow-tedx-red/40" />
@@ -145,7 +145,7 @@ export default function Events() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="mt-24 text-center bg-gradient-to-br from-zinc-900/80 to-black border border-tedx-red/20 rounded-2xl p-10 relative overflow-hidden"
         >
           {/* Subtle corner accents */}
