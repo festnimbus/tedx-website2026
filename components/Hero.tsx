@@ -1,98 +1,144 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { useInView } from './hooks/useInView'
-import { useState, useEffect } from 'react'
+import DecryptedText from './DecryptedText'
+import ScrambledText from './ScrambledText'
 
-// Typewriter component for animated text with continuous loop
-function TypewriterText({
-  text,
-  delay = 0,
-  isInView,
-  onComplete,
-  cycle
-}: {
-  text: string;
-  delay?: number;
-  isInView: boolean;
-  onComplete?: () => void;
-  cycle: number;
-}) {
-  const [displayedText, setDisplayedText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [hasStarted, setHasStarted] = useState(false)
-
-  // Reset when cycle changes (for looping)
-  useEffect(() => {
-    setDisplayedText('')
-    setCurrentIndex(0)
-    setHasStarted(false)
-  }, [cycle])
+// Theme animation sequence component
+function ThemeReveal({ isInView }: { isInView: boolean }) {
+  const [phase, setPhase] = useState(0)
+  // Phase 0: Show nothing
+  // Phase 1: Show "Initium" 
+  // Phase 2: Show tagline
+  // Phase 3: Show both together (final state)
 
   useEffect(() => {
-    if (!isInView) {
-      setDisplayedText('')
-      setCurrentIndex(0)
-      setHasStarted(false)
-      return
+    if (!isInView) return
+
+    const timings = [
+      300,   // Wait before starting
+      1500,  // Initium display time
+      2000,  // Tagline display time
+    ]
+
+    const timer1 = setTimeout(() => setPhase(1), timings[0])
+    const timer2 = setTimeout(() => setPhase(2), timings[0] + timings[1])
+    const timer3 = setTimeout(() => setPhase(3), timings[0] + timings[1] + timings[2])
+
+    return () => {
+      clearTimeout(timer1)
+      clearTimeout(timer2)
+      clearTimeout(timer3)
     }
+  }, [isInView])
 
-    // Start typing after the initial delay
-    const startTimeout = setTimeout(() => {
-      setHasStarted(true)
-    }, delay)
+  const titleLetters = ['I', 'N', 'I', 'T', 'I', 'U', 'M']
 
-    return () => clearTimeout(startTimeout)
-  }, [isInView, delay, cycle])
-
-  useEffect(() => {
-    if (!hasStarted || currentIndex >= text.length) {
-      // Call onComplete when finished typing
-      if (hasStarted && currentIndex >= text.length && onComplete) {
-        onComplete()
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1
       }
-      return
     }
+  }
 
-    const typingSpeed = 80 // milliseconds per character
-
-    const timeout = setTimeout(() => {
-      setDisplayedText(text.slice(0, currentIndex + 1))
-      setCurrentIndex(currentIndex + 1)
-    }, typingSpeed)
-
-    return () => clearTimeout(timeout)
-  }, [hasStarted, currentIndex, text, onComplete])
+  const letterVariants = {
+    hidden: {
+      y: 60,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        damping: 25,
+        stiffness: 200
+      }
+    }
+  }
 
   return (
-    <span className="text-white block">
-      {displayedText}
-      {currentIndex < text.length && hasStarted && (
-        <motion.span
-          className="inline-block w-[4px] h-[0.9em] bg-tedx-red ml-1 align-middle"
-          animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
-        />
-      )}
-    </span>
+    <div className="flex flex-col items-start">
+      {/* Main Title - INITIUM with scramble hover effect */}
+      <AnimatePresence mode="wait">
+        {phase >= 1 && (
+          <motion.div
+            key="initium"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="mb-2 md:mb-4"
+          >
+            <h1 className="flex items-center">
+              <motion.div variants={letterVariants}>
+                <ScrambledText
+                  text="INITIUM"
+                  radius={80}
+                  duration={0.6}
+                  speed={0.25}
+                  scrambleChars=".:!@#$%&*XYZABC"
+                  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white/90 tracking-wide hover:text-tedx-red/90 transition-colors duration-300"
+                />
+              </motion.div>
+            </h1>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Tagline - Hindi with DecryptedText effect */}
+      <AnimatePresence mode="wait">
+        {phase >= 2 && (
+          <motion.div
+            key="tagline"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6 md:mb-10"
+          >
+            <DecryptedText
+              text="अंत: अस्ति आरंभ"
+              speed={60}
+              maxIterations={15}
+              sequential={true}
+              revealDirection="start"
+              animateOn="view"
+              className="text-tedx-red/80"
+              encryptedClassName="text-white/30"
+              parentClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide"
+              style={{
+                fontFamily: "'Noto Sans Devanagari', sans-serif",
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Decorative line */}
+      <AnimatePresence>
+        {phase >= 3 && (
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="w-24 md:w-32 h-[2px] bg-gradient-to-r from-tedx-red/60 to-transparent origin-left"
+          />
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
 export default function Hero() {
   const { ref, isInView } = useInView()
-  // Animation runs only once on page load (cycle is constant)
-  const cycle = 0
-
-  // Calculate when the second line should start (after first line finishes)
-  const firstLineText = 'IDEAS WORTH'
-  const secondLineText = 'SPREADING'
-  const typingSpeed = 80
-  const firstLineDelay = 200 // Initial delay before starting
-  const secondLineDelay = firstLineDelay + (firstLineText.length * typingSpeed) + 100
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-[#171717] overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center bg-[#080808] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -101,20 +147,22 @@ export default function Hero() {
           fill
           className="object-cover"
           style={{
-            filter: 'brightness(0.7) contrast(1.1) saturate(0.85)',
+            filter: 'brightness(0.35) contrast(1.15) saturate(0.7) sepia(0.1)',
           }}
           priority
           quality={90}
         />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#171717]/60" />
+        {/* Red-tinted Dark Overlay - warmer, less blue */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0505]/75 via-[#080808]/70 to-[#080505]/75" />
+        {/* Subtle red glow at edges */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#EB0028]/3 via-transparent to-[#EB0028]/3" />
         {/* Gradient fade to background at bottom - seamless blend */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-50% to-[#171717]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-50% to-[#080808]" />
         {/* Extra solid cover at very bottom for seamless transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#171717] via-[#171717] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080808] via-[#080808] to-transparent" />
       </div>
 
-      {/* Content */}
+      {/* Content - Left aligned */}
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
         <motion.div
           initial={{ opacity: 0 }}
@@ -122,47 +170,40 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="max-w-3xl"
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight uppercase">
-            <TypewriterText text={firstLineText} delay={firstLineDelay} isInView={isInView} cycle={cycle} />
-            <TypewriterText text={secondLineText} delay={secondLineDelay} isInView={isInView} cycle={cycle} />
-          </h1>
+          {/* Theme Reveal Animation */}
+          <ThemeReveal isInView={isInView} />
 
-          <motion.p
-            className="text-tedx-red text-xl md:text-2xl font-bold mb-6 uppercase tracking-wide"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            FEBRUARY 14, 2026
-          </motion.p>
-
-          <motion.p
-            className="text-white text-base md:text-lg mb-10"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            National Institute of Technology, Hamirpur
-          </motion.p>
-
+          {/* Date Banner */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 3.5 }}
+            className="mt-10 flex flex-col items-start"
           >
-            <a
-              href="mailto:voices@tedxnithamirpur.com?subject=Speaker Application for TEDxNIT Hamirpur&body=Hello TEDxNIT Hamirpur Team,%0D%0A%0D%0AI am interested in applying to speak at your event.%0D%0A%0D%0AName: %0D%0ATopic: %0D%0ABrief Bio: %0D%0A%0D%0AThank you!"
-              className="bg-tedx-red hover:bg-tedx-red-dark text-white px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
+            {/* Date Display */}
+            <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-lg border border-tedx-red/20 bg-[#080808]/60 backdrop-blur-sm">
+              <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white/90">
+                14
+              </span>
+              <div className="flex flex-col items-start leading-tight">
+                <span className="text-base sm:text-lg md:text-xl font-semibold text-tedx-red/80 uppercase tracking-wider">
+                  FEB
+                </span>
+                <span className="text-xs sm:text-sm text-white/40">
+                  2026
+                </span>
+              </div>
+            </div>
+
+            {/* Location */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 4 }}
+              className="mt-4 text-white/40 text-sm md:text-base tracking-wide"
             >
-              Apply to Speak
-            </a>
-            <a
-              href="/#contact"
-              className="bg-white hover:bg-gray-100 text-black px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
-            >
-              Get Tickets
-            </a>
+              National Institute of Technology, Hamirpur
+            </motion.p>
           </motion.div>
         </motion.div>
       </div>

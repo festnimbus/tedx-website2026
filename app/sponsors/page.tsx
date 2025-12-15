@@ -1,16 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export default function SponsorsPage() {
     return (
-        <main className="min-h-screen bg-[#171717]">
-            <Navbar />
-
-            {/* Hero Spacer */}
-            <div className="h-20" />
+        <main className="min-h-screen bg-[#080808]">
+            {/* Hero Spacer for fixed header */}
+            <div className="h-24" />
 
             {/* Coming Soon Section */}
             <section className="py-20 md:py-32 flex items-center justify-center min-h-[70vh]">

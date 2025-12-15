@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import StaggeredMenu from '@/components/StaggeredMenu'
 
 export const metadata: Metadata = {
   title: 'TEDxNITHamirpur - Ideas Worth Spreading',
@@ -18,8 +19,11 @@ export default function RootLayout({
         {/* TEDx Amsterdam style gradient borders */}
         <div className="tedx-border-left" />
         <div className="tedx-border-right" />
+        {/* Staggered Menu Navigation */}
+        <StaggeredMenu />
         {children}
       </body>
     </html>
   )
 }
+

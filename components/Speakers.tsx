@@ -75,7 +75,7 @@ export default function Speakers() {
   }
 
   return (
-    <section id="speakers" className="relative py-20 md:py-32 bg-[#171717] text-white overflow-hidden">
+    <section id="speakers" className="relative py-20 md:py-32 bg-[#080808] text-white overflow-hidden">
       <style jsx>{`
         @keyframes scroll-left {
           0% { transform: translateX(0); }
@@ -178,8 +178,8 @@ export default function Speakers() {
           </div>
 
           {/* Gradient Overlays for fade effect - hidden on mobile */}
-          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none z-10 hidden md:block" />
-          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black via-black/80 to-transparent pointer-events-none z-10 hidden md:block" />
+          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#080808] via-[#080808]/80 to-transparent pointer-events-none z-10 hidden md:block" />
+          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#080808] via-[#080808]/80 to-transparent pointer-events-none z-10 hidden md:block" />
 
           {/* Direction indicator */}
           <div className="flex justify-center mt-8 gap-3">
@@ -203,7 +203,7 @@ export default function Speakers() {
         </div>
       </div>
       {/* Bottom gradient for seamless blend with next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#171717] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
     </section>
   )
 }

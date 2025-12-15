@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 // Team data
@@ -24,38 +23,38 @@ const organizers = [
 const volunteers = [
     {
         id: 1,
-        name: 'Anya Sharma',
-        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop',
+        name: 'Dipanshu',
+        image: '/volunteers/Dipanshu.webp',
     },
     {
         id: 2,
-        name: 'Witr Shakal',
-        image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop',
+        name: 'Sanskar',
+        image: '/volunteers/Sanskar.webp',
     },
     {
         id: 3,
-        name: 'Mohit Sanir',
-        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
+        name: 'Somya Verma',
+        image: '/volunteers/Somya Verma.webp',
     },
     {
         id: 4,
-        name: 'Kana Shawati',
-        image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop',
+        name: 'Vaibhav',
+        image: '/volunteers/Vaibhav.webp',
     },
     {
         id: 5,
-        name: 'Hehit Smakk',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+        name: 'Ayush',
+        image: '/volunteers/ayush.webp',
     },
     {
         id: 6,
-        name: 'Naeolo Adoyet',
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
+        name: 'Parthivi',
+        image: '/volunteers/parthivi.webp',
     },
     {
         id: 7,
-        name: 'Priya Mehta',
-        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
+        name: 'Saurabh',
+        image: '/volunteers/saurabh.webp',
     },
     {
         id: 8,
@@ -108,11 +107,9 @@ export default function TeamPage() {
     }
 
     return (
-        <main className="min-h-screen bg-[#171717]">
-            <Navbar />
-
-            {/* Hero Spacer */}
-            <div className="h-20" />
+        <main className="min-h-screen bg-[#080808]">
+            {/* Hero Spacer for fixed header */}
+            <div className="h-24" />
 
             {/* Page Header */}
             <section className="py-12 md:py-20">

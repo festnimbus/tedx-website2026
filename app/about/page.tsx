@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export default function AboutPage() {
@@ -22,11 +21,9 @@ export default function AboutPage() {
     }
 
     return (
-        <main className="min-h-screen bg-[#171717]">
-            <Navbar />
-
-            {/* Hero Spacer for fixed navbar */}
-            <div className="h-20" />
+        <main className="min-h-screen bg-[#080808]">
+            {/* Hero Spacer for fixed header */}
+            <div className="h-24" />
 
             {/* Section 1: What is TEDx? */}
             <section className="py-16 md:py-24">

@@ -36,7 +36,7 @@ export default function About() {
   }, [])
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-[#171717] text-white">
+    <section id="about" className="py-20 md:py-32 bg-[#080808] text-white">
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Side - About TEDx */}

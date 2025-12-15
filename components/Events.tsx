@@ -40,7 +40,7 @@ export default function Events() {
   const { ref, isInView } = useInView()
 
   return (
-    <section id="events" className="py-20 md:py-32 bg-[#171717] text-white">
+    <section id="events" className="py-20 md:py-32 bg-[#080808] text-white">
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
