@@ -1,211 +1,228 @@
 'use client'
 
-import { motion, useMotionValue, useAnimation, PanInfo } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useInView } from './hooks/useInView'
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useRef } from 'react'
+import CardSwap, { Card } from './CardSwap'
 
 const speakers = [
   {
     id: 1,
-    name: 'Sichrat Donar',
+    name: 'Speaker One',
     profession: 'AI Researcher',
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop',
-    description: 'Lorem ipsum dolor sit eweity awt hoalite, nennase astremo',
   },
   {
     id: 2,
-    name: 'Jastan Nahtan',
+    name: 'Speaker Two',
     profession: 'Social Entrepreneur',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop',
-    description: 'Lorem ipsum dolor sit eweity and trusify, prelaecrometstitine',
   },
   {
     id: 3,
-    name: 'Sichoed Donor',
+    name: 'Speaker Three',
     profession: 'Neuroscientist',
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop',
-    description: 'Lorem ipsum dolor sit eweity awt hoalite, nennase astremo',
   },
   {
     id: 4,
-    name: 'Jarran Nahtan',
+    name: 'Speaker Four',
     profession: 'Climate Activist',
     image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop',
-    description: 'Lorem ipsum dolor sit eweity and leturno prelaecrometdintim',
   },
   {
     id: 5,
-    name: 'Maya Sharma',
+    name: 'Speaker Five',
     profession: 'Tech Entrepreneur',
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop',
-    description: 'Lorem ipsum dolor sit eweity awt hoalite, nennase astremo',
   },
   {
     id: 6,
-    name: 'Vikram Singh',
+    name: 'Speaker Six',
     profession: 'Space Scientist',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
-    description: 'Lorem ipsum dolor sit eweity and trusify, prelaecrometstitine',
   },
 ]
 
-export default function Speakers() {
-  const { ref, isInView } = useInView()
-  const [isPaused, setIsPaused] = useState(false)
-  const [scrollDirection, setScrollDirection] = useState<'left' | 'right'>('left')
-  const containerRef = useRef<HTMLDivElement>(null)
+// Speaker Card Component
+function SpeakerCard({ speaker }: { speaker: typeof speakers[0] }) {
+  return (
+    <div className="w-full h-full p-4 flex flex-col">
+      {/* Image */}
+      <div className="relative flex-1 rounded-lg overflow-hidden mb-4">
+        <Image
+          src={speaker.image}
+          alt={speaker.name}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+      </div>
 
-  // Duplicate speakers for seamless infinite scroll
-  const allSpeakers = [...speakers, ...speakers]
+      {/* Info */}
+      <div className="text-center">
+        <h3 className="text-xl font-bold text-white mb-1">{speaker.name}</h3>
+        <p className="text-tedx-red/80 text-sm font-medium uppercase tracking-wider">
+          {speaker.profession}
+        </p>
+      </div>
+    </div>
+  )
+}
 
-  // Handle drag to change scroll direction
-  const handleDrag = (e: React.MouseEvent | React.TouchEvent) => {
-    setIsPaused(true)
+// Mobile Swipe Card Component
+function MobileSwipeCards() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
   }
 
-  const handleDragEnd = (e: React.MouseEvent | React.TouchEvent, startX: number) => {
-    const endX = 'touches' in e ? e.changedTouches[0].clientX : e.clientX
-    const diff = endX - startX
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX
+  }
 
-    if (Math.abs(diff) > 50) {
-      setScrollDirection(diff > 0 ? 'right' : 'left')
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current
+    const threshold = 50
+
+    if (diff > threshold) {
+      // Swipe left - next card
+      setCurrentIndex((prev) => (prev + 1) % speakers.length)
+    } else if (diff < -threshold) {
+      // Swipe right - previous card
+      setCurrentIndex((prev) => (prev - 1 + speakers.length) % speakers.length)
     }
-    setIsPaused(false)
   }
 
   return (
-    <section id="speakers" className="relative py-20 md:py-32 bg-[#080808] text-white overflow-hidden">
-      <style jsx>{`
-        @keyframes scroll-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes scroll-right {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-        .scroll-left {
-          animation: scroll-left 15s linear infinite;
-        }
-        .scroll-right {
-          animation: scroll-right 15s linear infinite;
-        }
-        .paused {
-          animation-play-state: paused;
-        }
-      `}</style>
-
-      <div ref={ref} className="mb-16">
+    <div className="w-full flex flex-col items-center">
+      {/* Card Container */}
+      <div
+        className="relative w-[300px] h-[380px] touch-pan-y"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center"
+          key={currentIndex}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.3 }}
+          className="w-full h-full rounded-xl border border-tedx-red/30 bg-[#0a0a0a] overflow-hidden"
+          style={{ boxShadow: '0 0 25px rgba(235, 0, 40, 0.25)' }}
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 uppercase">
-            <span className="text-tedx-red">MEET</span> THE SPEAKERS
-          </h2>
+          <SpeakerCard speaker={speakers[currentIndex]} />
         </motion.div>
+      </div>
 
-        {/* Infinite Scrolling Container */}
-        <div
-          className="relative mt-16"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <div
-            ref={containerRef}
-            className={`flex gap-5 cursor-grab active:cursor-grabbing ${scrollDirection === 'left' ? 'scroll-left' : 'scroll-right'
-              } ${isPaused ? 'paused' : ''}`}
-            onMouseDown={(e) => {
-              const startX = e.clientX
-              const handleUp = (upEvent: MouseEvent) => {
-                handleDragEnd(upEvent as unknown as React.MouseEvent, startX)
-                window.removeEventListener('mouseup', handleUp)
-              }
-              window.addEventListener('mouseup', handleUp)
-            }}
-            onTouchStart={(e) => {
-              const startX = e.touches[0].clientX
-              const handleEnd = (endEvent: TouchEvent) => {
-                handleDragEnd(endEvent as unknown as React.TouchEvent, startX)
-                containerRef.current?.removeEventListener('touchend', handleEnd)
-              }
-              containerRef.current?.addEventListener('touchend', handleEnd)
-            }}
+      {/* Dots Indicator */}
+      <div className="flex gap-2 mt-6">
+        {speakers.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
+              ? 'bg-tedx-red w-6'
+              : 'bg-white/30 hover:bg-white/50'
+              }`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function Speakers() {
+  const { ref, isInView } = useInView()
+
+  return (
+    <section id="speakers" className="relative py-20 md:py-32 bg-[#080808] text-white overflow-hidden">
+      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Desktop Layout */}
+        <div className="hidden md:grid md:grid-cols-2 gap-12 items-center min-h-[600px]">
+          {/* Left Side - Text */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="pr-8"
           >
-            {allSpeakers.map((speaker, index) => (
-              <div
-                key={`${speaker.id}-${index}`}
-                className="flex-shrink-0 w-[220px] sm:w-[300px] group transition-transform duration-300 hover:-translate-y-2"
+            <h2 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+              <span className="text-white">MEET</span>
+              <br />
+              <span className="text-white">OUR</span>
+              <br />
+              <span className="text-tedx-red">SPEAKERS</span>
+            </h2>
+            <p className="text-white/60 text-lg leading-relaxed mb-8">
+              Inspiring minds who will share their groundbreaking ideas and transformative stories at TEDxNIT Hamirpur.
+            </p>
+            <div className="w-20 h-1 bg-tedx-red/60" />
+          </motion.div>
+
+          {/* Right Side - CardSwap */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative h-[550px] flex items-center justify-center"
+          >
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[10%]">
+              <CardSwap
+                width={320}
+                height={400}
+                cardDistance={45}
+                verticalDistance={55}
+                delay={4000}
+                pauseOnHover={true}
+                skewAmount={4}
+                easing="elastic"
               >
-                <div className="relative bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800/60 hover:border-tedx-red/40 transition-all duration-400">
-                  {/* Image Container */}
-                  <div className="relative h-[240px] sm:h-[320px] overflow-hidden">
-                    <Image
-                      src={speaker.image}
-                      alt={speaker.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+                {speakers.map((speaker) => (
+                  <Card key={speaker.id}>
+                    <SpeakerCard speaker={speaker} />
+                  </Card>
+                ))}
+              </CardSwap>
+            </div>
+          </motion.div>
+        </div>
 
-                    {/* Red accent on hover */}
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-tedx-red transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
-                  </div>
+        {/* Mobile Layout */}
+        <div className="md:hidden flex flex-col items-center">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-white">MEET OUR</span>
+              <br />
+              <span className="text-tedx-red">SPEAKERS</span>
+            </h2>
+            <div className="w-16 h-1 bg-tedx-red/60 mx-auto" />
+          </motion.div>
 
-                  {/* Content */}
-                  <div className="p-3 sm:p-5 relative">
-                    {/* Name with underline effect */}
-                    <h3 className="text-base sm:text-xl font-bold text-white mb-1 relative inline-block">
-                      {speaker.name}
-                      <span className="absolute bottom-0 left-0 w-0 h-px bg-tedx-red group-hover:w-full transition-all duration-300" />
-                    </h3>
-
-                    <p className="text-tedx-red/80 text-sm font-medium uppercase tracking-wider mb-3">
-                      {speaker.profession}
-                    </p>
-
-                    <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2">
-                      {speaker.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Gradient Overlays for fade effect - hidden on mobile */}
-          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#080808] via-[#080808]/80 to-transparent pointer-events-none z-10 hidden md:block" />
-          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#080808] via-[#080808]/80 to-transparent pointer-events-none z-10 hidden md:block" />
-
-          {/* Direction indicator */}
-          <div className="flex justify-center mt-8 gap-3">
-            <button
-              onClick={() => setScrollDirection('right')}
-              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${scrollDirection === 'right' ? 'bg-tedx-red' : 'bg-zinc-800 hover:bg-zinc-700'}`}
-            >
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={() => setScrollDirection('left')}
-              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${scrollDirection === 'left' ? 'bg-tedx-red' : 'bg-zinc-800 hover:bg-zinc-700'}`}
-            >
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
+          {/* Swipeable Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <MobileSwipeCards />
+          </motion.div>
         </div>
       </div>
-      {/* Bottom gradient for seamless blend with next section */}
+
+      {/* Bottom gradient for seamless blend */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
     </section>
   )
 }
-
-

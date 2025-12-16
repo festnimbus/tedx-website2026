@@ -52,9 +52,6 @@ export default function Events() {
             Event <span className="text-tedx-red">Schedule</span>
           </h2>
           <div className="w-24 h-1 bg-tedx-red mx-auto mb-8" />
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            A full day of inspiring talks, networking opportunities, and unforgettable experiences
-          </p>
         </motion.div>
 
         {/* Timeline Container */}
@@ -136,22 +133,26 @@ export default function Events() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: false }}
-          className="mt-24 text-center bg-gradient-to-br from-zinc-900/80 to-black border border-tedx-red/20 rounded-2xl p-10 relative overflow-hidden"
+          className="mt-24 text-center bg-[#080808] rounded-2xl p-10 relative overflow-hidden border border-tedx-red/40 shadow-[0_0_30px_rgba(235,0,40,0.15),inset_0_0_60px_rgba(235,0,40,0.05)]"
         >
-          {/* Subtle corner accents */}
-          <div className="absolute top-0 left-0 w-20 h-20 border-l-2 border-t-2 border-tedx-red/30 rounded-tl-2xl" />
-          <div className="absolute bottom-0 right-0 w-20 h-20 border-r-2 border-b-2 border-tedx-red/30 rounded-br-2xl" />
+          {/* Glowing red outline effect */}
+          <div className="absolute inset-0 rounded-2xl border-2 border-tedx-red/20 pointer-events-none" />
+          <div className="absolute inset-[-2px] rounded-2xl bg-gradient-to-r from-tedx-red/10 via-transparent to-tedx-red/10 pointer-events-none blur-sm" />
 
-          {/* Ambient glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-tedx-red/10 rounded-full blur-3xl" />
+          {/* Corner glow accents */}
+          <div className="absolute top-0 left-0 w-32 h-32 bg-tedx-red/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-32 h-32 bg-tedx-red/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+
+          {/* Subtle corner frame accents */}
+          <div className="absolute top-0 left-0 w-20 h-20 border-l-2 border-t-2 border-tedx-red/50 rounded-tl-2xl" />
+          <div className="absolute bottom-0 right-0 w-20 h-20 border-r-2 border-b-2 border-tedx-red/50 rounded-br-2xl" />
+
+          {/* Ambient center glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-tedx-red/8 rounded-full blur-3xl" />
 
           <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 uppercase tracking-wider text-white/90">Save the Date</h3>
             <p className="text-4xl md:text-6xl font-bold text-tedx-red mb-2">February 14, 2026</p>
-            <p className="text-lg md:text-xl text-gray-400 mb-8">NIT Hamirpur Campus | 9:00 AM - 6:00 PM</p>
-            <button className="bg-tedx-red hover:bg-tedx-red/90 text-white px-8 md:px-10 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-tedx-red/30">
-              Add to Calendar
-            </button>
+            <p className="text-lg md:text-xl text-gray-400">NIT Hamirpur Auditorium | 2:00 PM - 5:00 PM</p>
           </div>
         </motion.div>
       </div>

@@ -50,7 +50,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     displayItemNumbering = true,
     logoUrl = '/tedx-logo.png',
     menuButtonColor = '#fff',
-    openMenuButtonColor = '#080808',
+    openMenuButtonColor = '#ffffff',
     accentColor = '#EB0028',
     onMenuOpen,
     onMenuClose
@@ -407,12 +407,12 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 >
                     {/* Logo */}
                     <Link href="/" className="pointer-events-auto">
-                        <div className="relative h-10 md:h-12 w-40 md:w-48">
+                        <div className="relative h-10 md:h-12 w-40 md:w-48 -ml-2">
                             <Image
                                 src={logoUrl}
                                 alt="TEDx NIT Hamirpur"
                                 fill
-                                className={`object-contain object-left transition-all duration-300 ${open ? 'brightness-0 invert' : ''}`}
+                                className="object-contain object-left"
                                 priority
                             />
                         </div>
@@ -463,7 +463,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 <aside
                     id="staggered-menu-panel"
                     ref={panelRef}
-                    className="staggered-menu-panel fixed top-0 right-0 h-screen bg-white flex flex-col p-24 pt-28 md:pt-32 overflow-y-auto z-[50]"
+                    className="staggered-menu-panel fixed top-0 right-0 h-screen bg-[#0a0a0a]/95 backdrop-blur-xl border-l border-white/10 flex flex-col p-24 pt-28 md:pt-32 overflow-y-auto z-[50]"
                     style={{ width: 'clamp(280px, 40vw, 450px)' }}
                     aria-hidden={!open}
                 >
@@ -476,7 +476,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                             {items.map((it, idx) => (
                                 <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={it.label + idx}>
                                     <Link
-                                        className="sm-panel-item relative text-[#080808] font-bold text-3xl md:text-4xl cursor-pointer leading-none tracking-[-1px] uppercase transition-colors duration-150 inline-block no-underline pr-[1.4em] hover:text-tedx-red"
+                                        className="sm-panel-item relative text-white/90 font-bold text-3xl md:text-4xl cursor-pointer leading-none tracking-[-1px] uppercase transition-colors duration-150 inline-block no-underline pr-[1.4em] hover:text-tedx-red"
                                         href={it.link}
                                         aria-label={it.ariaLabel}
                                         data-index={idx + 1}
@@ -503,7 +503,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                                 href={s.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="sm-socials-link text-base font-medium text-[#333] no-underline relative inline-block py-[2px] transition-colors duration-300 hover:text-tedx-red"
+                                                className="sm-socials-link text-base font-medium text-white/70 no-underline relative inline-block py-[2px] transition-colors duration-300 hover:text-tedx-red"
                                             >
                                                 {s.label}
                                             </a>

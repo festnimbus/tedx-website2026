@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from './hooks/useInView'
 import { useState, useEffect } from 'react'
+import BlurText from './BlurText'
 
 export default function About() {
   const { ref, isInView } = useInView()
@@ -35,6 +36,13 @@ export default function About() {
     return () => clearInterval(interval)
   }, [])
 
+  const timeUnits = [
+    { value: timeLeft.days, label: 'DAYS' },
+    { value: timeLeft.hours, label: 'HOURS' },
+    { value: timeLeft.minutes, label: 'MINUTES' },
+    { value: timeLeft.seconds, label: 'SECONDS' }
+  ]
+
   return (
     <section id="about" className="py-20 md:py-32 bg-[#080808] text-white">
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,10 +58,10 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-gray-300 text-base leading-relaxed">
               <p>
-                In the spirit of discovering and spreading ideas, TED has created a program called TEDx. TEDx is a program of local, self-organized events that bring people together to share a TED-like experience.
+                In the spirit of ideas worth spreading, TED has created a program called TEDx. TEDx is a program of local, self-organized events that bring people together to share a TED-like experience.
               </p>
               <p>
-                Our event is called TEDxNIT Hamirpur, where x = independently organized TED event. At our TEDxNIT Hamirpur event, TED Talks video and live speakers will combine to spark deep discussion and connection in a small group.
+                Our event is called TEDxNIT Hamirpur, where x = independently organized TED event. At our TEDxNIT Hamirpur event, TEDTalks video and live speakers will combine to spark deep discussion and connection in a small group.
               </p>
               <p>
                 The TED Conference provides general guidance for the TEDx program, but individual TEDx events, including ours, are self-organized.
@@ -68,57 +76,63 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col items-center text-center"
           >
-            <h2 className="text-5xl md:text-7xl font-bold mb-4 uppercase tracking-tight">
-              INNOVISION
-            </h2>
-            <p className="text-tedx-red text-xl md:text-2xl font-semibold mb-12">
-              ज्ञानं परमं बलम्
+            {/* INITIUM with BlurText animation */}
+            <div className="mb-4">
+              {isInView && (
+                <BlurText
+                  text="INITIUM"
+                  delay={120}
+                  animateBy="letters"
+                  direction="top"
+                  stepDuration={0.35}
+                  triggerOnLoad={isInView}
+                  className="text-5xl md:text-7xl font-bold uppercase tracking-tight justify-center"
+                  animationFrom={{ filter: 'blur(10px)', opacity: 0, y: -30 }}
+                  animationTo={[
+                    { filter: 'blur(5px)', opacity: 0.6, y: -8 },
+                    { filter: 'blur(0px)', opacity: 1, y: 0 }
+                  ]}
+                />
+              )}
+            </div>
+            <p className="text-tedx-red text-xl md:text-2xl font-semibold mb-12" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
+              अंत: अस्ति आरंभ
             </p>
 
-            {/* Countdown Timer */}
-            <div className="grid grid-cols-4 gap-4 w-full max-w-2xl">
-              <div className="flex flex-col items-center">
-                <div className="bg-gray-800 rounded-lg p-6 mb-3 w-full">
-                  <div className="text-4xl md:text-5xl font-bold">
-                    {String(timeLeft.days).padStart(2, '0')}
-                  </div>
-                </div>
-                <span className="bg-tedx-red text-white px-4 py-2 rounded-full text-sm font-semibold">
-                  Days
-                </span>
-              </div>
+            {/* Countdown Timer - New Design */}
+            <div className="w-full max-w-2xl">
+              <p className="text-white/60 text-sm md:text-base tracking-[0.3em] uppercase mb-6">
+                Remaining Days...
+              </p>
 
-              <div className="flex flex-col items-center">
-                <div className="bg-gray-800 rounded-lg p-6 mb-3 w-full">
-                  <div className="text-4xl md:text-5xl font-bold">
-                    {String(timeLeft.hours).padStart(2, '0')}
-                  </div>
-                </div>
-                <span className="bg-tedx-red text-white px-4 py-2 rounded-full text-sm font-semibold">
-                  Hours
-                </span>
-              </div>
+              <div className="flex items-center justify-center gap-2 md:gap-4">
+                {timeUnits.map((unit, index) => (
+                  <div key={unit.label} className="flex items-center">
+                    {/* Time Card */}
+                    <div className="flex flex-col items-center">
+                      <div
+                        className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-4 py-5 md:px-6 md:py-6 min-w-[70px] md:min-w-[100px]"
+                        style={{ boxShadow: '0 0 15px rgba(235, 0, 40, 0.3), inset 0 0 10px rgba(235, 0, 40, 0.1)' }}
+                      >
+                        <div
+                          className="text-3xl md:text-5xl font-bold text-white"
+                          style={{ fontFamily: "'Orbitron', 'Courier New', monospace", textShadow: '0 0 10px rgba(235, 0, 40, 0.5)' }}
+                        >
+                          {String(unit.value).padStart(2, '0')}
+                        </div>
+                      </div>
+                      <span className="mt-3 text-white/60 text-xs md:text-sm tracking-wider uppercase">
+                        {unit.label}
+                      </span>
+                    </div>
 
-              <div className="flex flex-col items-center">
-                <div className="bg-gray-800 rounded-lg p-6 mb-3 w-full">
-                  <div className="text-4xl md:text-5xl font-bold">
-                    {String(timeLeft.minutes).padStart(2, '0')}
+                    {/* Colon Separator (except after last item) */}
+                    {index < timeUnits.length - 1 && (
+                      <div className="text-tedx-red/60 text-2xl md:text-4xl font-bold mx-1 md:mx-2 mb-6">
+                        :</div>
+                    )}
                   </div>
-                </div>
-                <span className="bg-tedx-red text-white px-4 py-2 rounded-full text-sm font-semibold">
-                  Minutes
-                </span>
-              </div>
-
-              <div className="flex flex-col items-center">
-                <div className="bg-gray-800 rounded-lg p-6 mb-3 w-full">
-                  <div className="text-4xl md:text-5xl font-bold">
-                    {String(timeLeft.seconds).padStart(2, '0')}
-                  </div>
-                </div>
-                <span className="bg-tedx-red text-white px-4 py-2 rounded-full text-sm font-semibold">
-                  Seconds
-                </span>
+                ))}
               </div>
             </div>
           </motion.div>

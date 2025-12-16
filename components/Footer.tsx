@@ -164,7 +164,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm text-center md:text-left">
+            <p className="text-gray-500 text-sm text-justify md:text-left">
               © {currentYear} TEDxNITHamirpur. This independent TEDx event is operated under license from TED.
             </p>
             <div className="flex gap-6 text-sm text-gray-500">
