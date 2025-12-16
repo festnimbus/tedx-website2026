@@ -1,10 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Footer from '@/components/Footer'
 import ChromaGrid, { SpeakerItem } from '@/components/ChromaGrid'
 
-const speakers: SpeakerItem[] = [
+const currentSpeakers: SpeakerItem[] = [
     {
         id: 1,
         name: 'Dr. Priya Sharma',
@@ -55,7 +56,52 @@ const speakers: SpeakerItem[] = [
     },
 ]
 
+const previousSpeakers: SpeakerItem[] = [
+    {
+        id: 101,
+        name: 'Dr. Arun Menon',
+        designation: 'Space Research Scientist',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+        linkedin: 'https://linkedin.com',
+        twitter: 'https://twitter.com',
+    },
+    {
+        id: 102,
+        name: 'Kavita Reddy',
+        designation: 'Sustainability Expert',
+        image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=400&fit=crop',
+        linkedin: 'https://linkedin.com',
+        instagram: 'https://instagram.com',
+    },
+    {
+        id: 103,
+        name: 'Sanjay Verma',
+        designation: 'Digital Transformation Leader',
+        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
+        linkedin: 'https://linkedin.com',
+        twitter: 'https://twitter.com',
+    },
+    {
+        id: 104,
+        name: 'Dr. Meera Iyer',
+        designation: 'Public Health Advocate',
+        image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=400&fit=crop',
+        linkedin: 'https://linkedin.com',
+        instagram: 'https://instagram.com',
+    },
+    {
+        id: 105,
+        name: 'Rahul Kapoor',
+        designation: 'Education Innovator',
+        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop',
+        linkedin: 'https://linkedin.com',
+        twitter: 'https://twitter.com',
+    },
+]
+
 export default function SpeakersPage() {
+    const [showPreviousSpeakers, setShowPreviousSpeakers] = useState(false)
+
     return (
         <main className="min-h-screen bg-[#080808]">
             {/* Hero Spacer for fixed header */}
@@ -71,25 +117,49 @@ export default function SpeakersPage() {
                         className="text-center mb-16"
                     >
                         <h1 className="text-5xl md:text-7xl font-bold text-tedx-red mb-6 tracking-tight">
-                            SPEAKERS
+                            {showPreviousSpeakers ? 'PREVIOUS SPEAKERS' : 'SPEAKERS'}
                         </h1>
                         <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
-                            Meet the visionary minds who will share ideas worth spreading at TEDxNIT Hamirpur
+                            {showPreviousSpeakers
+                                ? 'Meet the inspiring voices who graced our previous TEDxNIT Hamirpur events'
+                                : 'Meet the visionary minds who will share ideas worth spreading at TEDxNIT Hamirpur'
+                            }
                         </p>
                     </motion.div>
 
-                    {/* ChromaGrid Speaker Cards */}
+                    {/* Speaker Cards with Animation */}
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={showPreviousSpeakers ? 'previous' : 'current'}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            <ChromaGrid
+                                items={showPreviousSpeakers ? previousSpeakers : currentSpeakers}
+                                radius={400}
+                                damping={0.4}
+                                fadeOut={0.5}
+                            />
+                        </motion.div>
+                    </AnimatePresence>
+
+                    {/* Toggle Button */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        className="text-center mt-16"
                     >
-                        <ChromaGrid
-                            items={speakers}
-                            radius={400}
-                            damping={0.4}
-                            fadeOut={0.5}
-                        />
+                        <button
+                            onClick={() => setShowPreviousSpeakers(!showPreviousSpeakers)}
+                            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-tedx-red text-white font-semibold text-lg rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-tedx-red/30"
+                        >
+                            <span className="relative z-10">
+                                {showPreviousSpeakers ? '← Current Speakers' : 'Our Previous Speakers →'}
+                            </span>
+                        </button>
                     </motion.div>
                 </div>
             </section>
@@ -98,4 +168,3 @@ export default function SpeakersPage() {
         </main>
     )
 }
-
