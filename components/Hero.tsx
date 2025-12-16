@@ -26,7 +26,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/campus.png"
+          src="/campus.webp"
           alt="NIT Hamirpur Campus"
           fill
           className="object-cover"

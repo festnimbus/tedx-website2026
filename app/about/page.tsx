@@ -25,88 +25,61 @@ export default function AboutPage() {
             {/* Hero Spacer for fixed header */}
             <div className="h-24" />
 
-            {/* Section 1: What is TEDx? */}
+            {/* Section 1: What is TEDx? + TEDx NIT Hamirpur  |  About TED */}
             <section className="py-16 md:py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        {/* Left: Content */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.8 }}
-                            variants={fadeInLeft}
-                        >
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
-                                WHAT IS <span className="text-tedx-red">TEDx</span>?
-                            </h1>
-                            <p className="text-gray-300 text-lg leading-relaxed">
-                                In the spirit of discovering and spreading ideas, TEDx is a program of
-                                local, self-organized events that bring people together to share a TED-like
-                                experience. At a TEDx event, TED Talks video and live speakers
-                                combine to spark deep discussion and connection. These local, self-organized
-                                events are branded TEDx, where x = independently organized
-                                TED event. The TED Conference provides general guidance for the TEDx
-                                program, but individual TEDx events are self-organized. (Subject to
-                                certain rules and regulations.)
-                            </p>
-                        </motion.div>
+                    <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+                        {/* Left Column: What is TEDx? + TEDx NIT Hamirpur */}
+                        <div className="space-y-16">
+                            {/* What is TEDx? */}
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.8 }}
+                                variants={fadeInLeft}
+                            >
+                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
+                                    WHAT IS <span className="text-tedx-red">TEDx</span>?
+                                </h1>
+                                <p className="text-gray-300 text-lg leading-relaxed">
+                                    In the spirit of discovering and spreading ideas, TEDx is a program of
+                                    local, self-organized events that bring people together to share a TED-like
+                                    experience. At a TEDx event, TED Talks video and live speakers
+                                    combine to spark deep discussion and connection. These local, self-organized
+                                    events are branded TEDx, where x = independently organized
+                                    TED event. The TED Conference provides general guidance for the TEDx
+                                    program, but individual TEDx events are self-organized. (Subject to
+                                    certain rules and regulations.)
+                                </p>
+                            </motion.div>
 
-                        {/* Right: Large X Graphic - Hidden on mobile */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            variants={fadeInRight}
-                            className="hidden md:flex justify-center items-center"
-                        >
-                            <div className="relative">
-                                <span className="text-[200px] md:text-[280px] lg:text-[350px] font-bold text-tedx-red select-none leading-none">
-                                    X
-                                </span>
-                                {/* Glow effect */}
-                                <div className="absolute inset-0 text-[200px] md:text-[280px] lg:text-[350px] font-bold text-tedx-red blur-3xl opacity-30 select-none leading-none">
-                                    X
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
+                            {/* TEDx NIT Hamirpur */}
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                variants={fadeInLeft}
+                            >
+                                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-tedx-red mb-2">
+                                    TEDx
+                                </h2>
+                                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
+                                    NIT HAMIRPUR
+                                </h2>
+                                <p className="text-gray-300 text-lg leading-relaxed">
+                                    TEDx NIT Hamirpur is an independently organized TED event hosted at
+                                    the National Institute of Technology, Hamirpur. Our event brings together
+                                    innovative thinkers, visionary leaders, and passionate changemakers to
+                                    share ideas worth spreading. Through carefully curated talks and
+                                    immersive experiences, we aim to inspire our community, foster
+                                    meaningful connections, and spark conversations that drive positive change.
+                                </p>
+                            </motion.div>
+                        </div>
 
-            {/* Section 2: TEDx NIT Hamirpur */}
-            <section className="py-16 md:py-24">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        {/* Left: NIT Campus Image - Hidden on mobile */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.8 }}
-                            variants={fadeInLeft}
-                            className="relative group hidden md:block"
-                        >
-                            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border-4 border-tedx-red">
-                                <Image
-                                    src="/campus2.webp"
-                                    alt="NIT Hamirpur Campus"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                                {/* Label */}
-                                <div className="absolute bottom-4 left-4">
-                                    <span className="text-white text-xl md:text-2xl font-bold">
-                                        NIT Campus
-                                    </span>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Right: Content */}
+                        {/* Right Column: About TED */}
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
@@ -114,26 +87,21 @@ export default function AboutPage() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             variants={fadeInRight}
                         >
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
-                                TEDx
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
+                                ABOUT <span className="text-tedx-red">TED</span>
                             </h2>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-tedx-red mb-8">
-                                NIT HAMIRPUR
-                            </h2>
+                            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                                TED is a nonprofit, nonpartisan organization dedicated to discovering, debating and spreading ideas that spark conversation, deepen understanding and drive meaningful change. Our organization is devoted to curiosity, reason, wonder and the pursuit of knowledge — without an agenda. We welcome people from every discipline and culture who seek a deeper understanding of the world and connection with others, and we invite everyone to engage with ideas and activate them in your community.
+                            </p>
                             <p className="text-gray-300 text-lg leading-relaxed">
-                                TEDx NIT Hamirpur is an independently organized TED event hosted at
-                                the National Institute of Technology, Hamirpur. Our event brings together
-                                innovative thinkers, visionary leaders, and passionate changemakers to
-                                share ideas worth spreading. Through carefully curated talks and
-                                immersive experiences, we aim to inspire our community, foster
-                                meaningful connections, and spark conversations that drive positive change.
+                                TED began in 1984 as a conference where Technology, Entertainment and Design converged, but today it spans a multitude of worldwide communities and initiatives exploring everything from science and business to education, arts and global issues. In addition to the TED Talks curated from our annual conferences and published on TED.com, we produce original podcasts, short video series, animated educational lessons (TED-Ed) and TV programs that are translated into more than 100 languages and distributed via partnerships around the world. Each year, thousands of independently run TEDx events. Through the Audacious Project, TED has helped catalyze $6.6 billion in funding for projects that support bold solutions to the world&apos;s most urgent challenges — working to make the world more beautiful, sustainable and just. In 2020, TED launched Countdown, an initiative to accelerate solutions to the climate crisis and mobilize a movement for a net-zero future, and in 2023 TED launched TED Democracy to spark a new kind of conversation focused on realistic pathways towards a more vibrant and equitable future. View a full list of TED&apos;s many programs and initiatives.
                             </p>
                         </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Section 3: Theme - An Eye for a New Dawn */}
+            {/* Section 2: Theme - Initium */}
             <section className="py-16 md:py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -148,19 +116,18 @@ export default function AboutPage() {
                             <span className="text-tedx-red text-2xl md:text-3xl font-bold uppercase tracking-wider">
                                 THEME:
                             </span>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-8 leading-tight">
-                                "AN EYE FOR A<br />NEW DAWN"
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-2 leading-tight">
+                                INITIUM
                             </h2>
+                            <p className="text-2xl md:text-3xl text-tedx-red/80 font-semibold mb-8" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
+                                अंतः अस्ति आरंभ
+                            </p>
                             <p className="text-gray-300 text-lg leading-relaxed">
-                                TEDx NIT Hamirpur embraces the theme "An Eye for a New Dawn" —
-                                a call to look ahead with fresh perspectives, embrace innovation,
-                                and usher in a new era of possibilities. This theme celebrates the
-                                visionaries who see beyond the horizon and the dreamers who dare
-                                to reimagine our world.
+                                Initium: अंतः अस्ति आरंभ reflects the timeless idea that every ending carries within it the promise of a new beginning. Rooted in the Latin word Initium (beginning) and the Sanskrit wisdom that closure is never final, this theme invites us to view change, failure, and disruption not as conclusions, but as catalysts for transformation. At TEDx NIT Hamirpur, we bring forward ideas and stories that emerge from moments of pause and transition where old paths dissolve and new possibilities take shape reminding us that progress is born not from certainty, but from the courage to begin again.
                             </p>
                         </motion.div>
 
-                        {/* Right: City Sunrise Placeholder - Hidden on mobile */}
+                        {/* Right: Initium Image - Hidden on mobile */}
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
@@ -169,24 +136,20 @@ export default function AboutPage() {
                             variants={fadeInRight}
                             className="relative group hidden md:block"
                         >
-                            <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-tedx-red flex items-center justify-center">
-                                {/* Decorative gradient overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-tedx-red via-red-600 to-orange-500 opacity-90" />
-
-                                {/* Animated sunrise effect */}
-                                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-orange-400/50 to-transparent" />
-
-                                {/* Sun circle */}
-                                <motion.div
-                                    className="absolute bottom-8 w-24 h-24 md:w-32 md:h-32 bg-gradient-to-t from-yellow-400 to-orange-300 rounded-full blur-sm"
-                                    animate={{ y: [10, -5, 10] }}
-                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border-tedx-red">
+                                <Image
+                                    src="/initium.webp"
+                                    alt="Initium Theme"
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    style={{
+                                        filter: 'brightness(0.6) contrast(1.15) saturate(0.8) sepia(0.1)'
+                                    }}
                                 />
-
-                                {/* Label */}
-                                <span className="relative z-10 text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-                                    City Sunrise
-                                </span>
+                                {/* Dark overlay for theme consistency */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
+                                {/* Red tint overlay */}
+                                <div className="absolute inset-0 bg-tedx-red/10 mix-blend-overlay" />
                             </div>
                         </motion.div>
                     </div>
