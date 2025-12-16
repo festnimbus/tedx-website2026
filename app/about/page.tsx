@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
 import Masonry, { MasonryItem } from '@/components/Masonry'
+import ImageLoop, { ImageLoopItem } from '@/components/ImageLoop'
 
 // Gallery items for the Masonry grid
 const galleryItems: MasonryItem[] = [
@@ -164,8 +165,8 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Gallery Section - Masonry Grid */}
-            <section className="py-16 md:py-24">
+            {/* Gallery Section - Masonry Grid for Desktop */}
+            <section className="py-16 md:py-24 hidden md:block">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Masonry
                         items={galleryItems}
@@ -174,6 +175,30 @@ export default function AboutPage() {
                         scaleOnHover={true}
                         hoverScale={0.95}
                         blurToFocus={true}
+                    />
+                </div>
+            </section>
+
+            {/* Gallery Section - Infinite Scroll for Mobile */}
+            <section className="py-12 md:hidden">
+                <div className="space-y-4">
+                    {/* First row - scrolling left */}
+                    <ImageLoop
+                        images={galleryItems.slice(0, 4).map(item => ({ src: item.img, alt: `Gallery image ${item.id}` }))}
+                        speed={60}
+                        direction="left"
+                        imageHeight={160}
+                        gap={12}
+                        pauseOnHover={true}
+                    />
+                    {/* Second row - scrolling right */}
+                    <ImageLoop
+                        images={galleryItems.slice(4, 8).map(item => ({ src: item.img, alt: `Gallery image ${item.id}` }))}
+                        speed={50}
+                        direction="right"
+                        imageHeight={160}
+                        gap={12}
+                        pauseOnHover={true}
                     />
                 </div>
             </section>
