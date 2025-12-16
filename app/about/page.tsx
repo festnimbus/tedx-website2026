@@ -3,13 +3,21 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
+import Masonry, { MasonryItem } from '@/components/Masonry'
+
+// Gallery items for the Masonry grid
+const galleryItems: MasonryItem[] = [
+    { id: '1', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=900&fit=crop', height: 500 },
+    { id: '2', img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=750&fit=crop', height: 350 },
+    { id: '3', img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=800&fit=crop', height: 450 },
+    { id: '4', img: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=600&h=600&fit=crop', height: 300 },
+    { id: '5', img: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&h=850&fit=crop', height: 480 },
+    { id: '6', img: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=700&fit=crop', height: 380 },
+    { id: '7', img: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&h=650&fit=crop', height: 360 },
+    { id: '8', img: 'https://images.unsplash.com/photo-1559223607-180d0c39a29c?w=600&h=800&fit=crop', height: 420 },
+]
 
 export default function AboutPage() {
-    const fadeInUp = {
-        hidden: { opacity: 0, y: 40 },
-        visible: { opacity: 1, y: 0 }
-    }
-
     const fadeInLeft = {
         hidden: { opacity: 0, x: -60 },
         visible: { opacity: 1, x: 0 }
@@ -156,7 +164,22 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* Gallery Section - Masonry Grid */}
+            <section className="py-16 md:py-24">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <Masonry
+                        items={galleryItems}
+                        animateFrom="bottom"
+                        stagger={0.05}
+                        scaleOnHover={true}
+                        hoverScale={0.95}
+                        blurToFocus={true}
+                    />
+                </div>
+            </section>
+
             <Footer />
         </main>
     )
 }
+

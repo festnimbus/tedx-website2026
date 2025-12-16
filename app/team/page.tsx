@@ -33,7 +33,7 @@ const volunteers = [
     },
     {
         id: 3,
-        name: 'Somya Verma',
+        name: 'Somya',
         image: '/volunteers/Somya Verma.webp',
     },
     {
@@ -58,27 +58,27 @@ const volunteers = [
     },
     {
         id: 8,
-        name: 'Arjun Singh',
-        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop',
+        name: 'Vinay',
+        image: '/volunteers/vinay.webp',
     },
     {
         id: 9,
-        name: 'Sneha Gupta',
-        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
+        name: 'Suhanee',
+        image: '/volunteers/suhanee.webp',
     },
     {
         id: 10,
-        name: 'Rahul Verma',
-        image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop',
+        name: 'Kunz',
+        image: '/volunteers/kunz.webp',
     },
     {
         id: 11,
-        name: 'Anita Roy',
-        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop',
+        name: 'Agastya',
+        image: '/volunteers/agastya.webp',
     },
     {
         id: 12,
-        name: 'Vikram Das',
+        name: 'Prasi',
         image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop',
     },
 ]
