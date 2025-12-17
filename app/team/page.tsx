@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
+import TiltedCard from '@/components/TiltedCard'
 
 // Team data
 const organizers = [
@@ -79,7 +80,7 @@ const volunteers = [
     {
         id: 12,
         name: 'Prasi',
-        image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop',
+        image: '/volunteers/Prasi.webp',
     },
 ]
 
@@ -141,41 +142,37 @@ export default function TeamPage() {
                         animate="visible"
                         className="mb-20"
                     >
-                        <div className="flex flex-wrap justify-center gap-12 md:gap-20">
+                        <div className="flex flex-wrap justify-center gap-8 md:gap-16">
                             {organizers.map((member) => (
                                 <motion.div
                                     key={member.id}
                                     variants={itemVariants}
-                                    className="flex flex-col items-center group cursor-pointer"
+                                    className="flex flex-col items-center"
                                 >
-                                    {/* Image Container with Red Glow Border */}
-                                    <div className="relative mb-5">
-                                        {/* Outer glow ring */}
-                                        <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-tedx-red via-red-600 to-tedx-red opacity-70 blur-sm group-hover:opacity-100 group-hover:blur-md transition-all duration-300" />
-
-                                        {/* Border ring */}
-                                        <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-tedx-red via-red-500 to-tedx-red" />
-
-                                        {/* Image */}
-                                        <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden bg-zinc-900 group-hover:scale-105 transition-transform duration-300">
-                                            <Image
-                                                src={member.image}
-                                                alt={member.name}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Name */}
-                                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-tedx-red transition-colors duration-300">
-                                        {member.name}
-                                    </h3>
-
-                                    {/* Designation */}
-                                    <p className="text-tedx-red text-sm md:text-base uppercase tracking-wider font-medium">
-                                        {member.designation}
-                                    </p>
+                                    <TiltedCard
+                                        imageSrc={member.image}
+                                        altText={member.name}
+                                        captionText={member.name}
+                                        containerHeight="360px"
+                                        containerWidth="280px"
+                                        imageHeight="280px"
+                                        imageWidth="280px"
+                                        rotateAmplitude={12}
+                                        scaleOnHover={1.12}
+                                        showMobileWarning={false}
+                                        showTooltip={true}
+                                        displayOverlayContent={true}
+                                        overlayContent={
+                                            <div className="text-center">
+                                                <h3 className="text-xl font-bold text-white mb-1">
+                                                    {member.name}
+                                                </h3>
+                                                <p className="text-tedx-red text-sm uppercase tracking-wider font-semibold">
+                                                    {member.designation}
+                                                </p>
+                                            </div>
+                                        }
+                                    />
                                 </motion.div>
                             ))}
                         </div>
@@ -186,42 +183,38 @@ export default function TeamPage() {
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
-                        className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12"
+                        className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10"
                     >
                         {volunteers.map((member) => (
                             <motion.div
                                 key={member.id}
                                 variants={itemVariants}
-                                className="flex flex-col items-center group cursor-pointer"
+                                className="flex flex-col items-center"
                             >
-                                {/* Image Container with Red Glow Border */}
-                                <div className="relative mb-4">
-                                    {/* Outer glow ring */}
-                                    <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-tedx-red via-red-600 to-tedx-red opacity-60 blur-sm group-hover:opacity-100 group-hover:blur-md transition-all duration-300" />
-
-                                    {/* Border ring */}
-                                    <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-tedx-red via-red-500 to-tedx-red" />
-
-                                    {/* Image */}
-                                    <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden bg-zinc-900 group-hover:scale-105 transition-transform duration-300">
-                                        <Image
-                                            src={member.image}
-                                            alt={member.name}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Name */}
-                                <h3 className="text-base md:text-lg font-bold text-white mb-0.5 text-center group-hover:text-tedx-red transition-colors duration-300">
-                                    {member.name}
-                                </h3>
-
-                                {/* Designation */}
-                                <p className="text-tedx-red text-xs md:text-sm uppercase tracking-wider font-medium">
-                                    Volunteer
-                                </p>
+                                <TiltedCard
+                                    imageSrc={member.image}
+                                    altText={member.name}
+                                    captionText={member.name}
+                                    containerHeight="300px"
+                                    containerWidth="220px"
+                                    imageHeight="220px"
+                                    imageWidth="220px"
+                                    rotateAmplitude={10}
+                                    scaleOnHover={1.1}
+                                    showMobileWarning={false}
+                                    showTooltip={true}
+                                    displayOverlayContent={true}
+                                    overlayContent={
+                                        <div className="text-center">
+                                            <h3 className="text-lg font-bold text-white mb-0.5">
+                                                {member.name}
+                                            </h3>
+                                            <p className="text-tedx-red text-xs uppercase tracking-wider font-semibold">
+                                                Volunteer
+                                            </p>
+                                        </div>
+                                    }
+                                />
                             </motion.div>
                         ))}
                     </motion.div>

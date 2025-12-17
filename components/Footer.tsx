@@ -168,7 +168,7 @@ export default function Footer() {
               © {currentYear} TEDxNITHamirpur. This independent TEDx event is operated under license from TED.
             </p>
             <div className="flex gap-6 text-sm text-gray-500">
-              <a href="#" className="hover:text-white transition-colors duration-200">
+              <a href="https://www.ted.com/about/our-organization/our-policies-terms/privacy-policy" target="_blank" className="hover:text-white transition-colors duration-200">
                 Privacy Policy
               </a>
               <a href="#" className="hover:text-white transition-colors duration-200">
