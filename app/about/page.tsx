@@ -8,14 +8,14 @@ import ImageLoop, { ImageLoopItem } from '@/components/ImageLoop'
 
 // Gallery items for the Masonry grid using local images from public/gallery
 const galleryItems: MasonryItem[] = [
-    { id: '1', img: '/gallery/1.jpg', height: 500 },
-    { id: '2', img: '/gallery/2.jpg', height: 350 },
-    { id: '3', img: '/gallery/3.jpg', height: 450 },
-    { id: '4', img: '/gallery/4.jpg', height: 300 },
-    { id: '5', img: '/gallery/5.jpg', height: 480 },
-    { id: '6', img: '/gallery/6.jpg', height: 380 },
-    { id: '7', img: '/gallery/7.jpg', height: 360 },
-    { id: '8', img: '/gallery/8.jpg', height: 420 },
+    { id: '1', img: '/gallery/1.webp', height: 500 },
+    { id: '2', img: '/gallery/2.webp', height: 350 },
+    { id: '3', img: '/gallery/3.webp', height: 450 },
+    { id: '4', img: '/gallery/4.webp', height: 300 },
+    { id: '5', img: '/gallery/5.webp', height: 480 },
+    { id: '6', img: '/gallery/6.webp', height: 380 },
+    { id: '7', img: '/gallery/7.webp', height: 360 },
+    { id: '8', img: '/gallery/8.webp', height: 420 },
 ]
 
 export default function AboutPage() {

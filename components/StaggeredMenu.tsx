@@ -38,7 +38,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         { label: 'Speakers', ariaLabel: 'View speakers', link: '/speakers' },
         { label: 'Team', ariaLabel: 'Meet the team', link: '/team' },
         { label: 'Sponsors', ariaLabel: 'Our sponsors', link: '/sponsors' },
-        { label: 'Contact', ariaLabel: 'Get in touch', link: '/#contact' }
+        { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
     ],
     socialItems = [
         { label: 'Instagram', link: 'https://www.instagram.com/tedxnithamirpur/' },
