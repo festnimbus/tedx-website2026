@@ -141,7 +141,7 @@ export default function Speakers() {
   const { ref, isInView } = useInView()
 
   return (
-    <section id="speakers" className="relative py-20 md:py-32 bg-[#080808] text-white overflow-hidden">
+    <section id="speakers" className="relative pt-10 pb-20 md:pt-16 md:pb-32 bg-[#080808] text-white overflow-hidden">
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Desktop Layout */}
         <div className="hidden md:grid md:grid-cols-2 gap-12 items-center min-h-[600px]">

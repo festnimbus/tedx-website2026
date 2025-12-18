@@ -18,24 +18,6 @@ export default function Footer() {
 
   const socialLinks = [
     {
-      name: 'Facebook',
-      href: 'https://www.facebook.com/TEDxEvents/',
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-        </svg>
-      )
-    },
-    {
-      name: 'Twitter',
-      href: 'https://x.com/TEDx',
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-        </svg>
-      )
-    },
-    {
       name: 'Instagram',
       href: 'https://www.instagram.com/tedxnithamirpur/',
       icon: (
@@ -73,7 +55,7 @@ export default function Footer() {
             <Link href="/" className="inline-block mb-6">
               <div className="relative h-12 w-48">
                 <Image
-                  src="/tedx-logo.png"
+                  src="/tedx-logo.webp"
                   alt="TEDx NIT Hamirpur"
                   fill
                   className="object-contain object-left"
@@ -102,18 +84,13 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a href="#sponsors" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  Sponsors
-                </a>
-              </li>
             </ul>
           </div>
 
           {/* Connect */}
           <div>
             <h3 className="text-xl font-bold mb-4 text-tedx-red">Connect With Us</h3>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-12">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
@@ -127,23 +104,26 @@ export default function Footer() {
               ))}
             </div>
             <div className="mt-8">
-              <h4 className="font-bold mb-3">Stay Updated</h4>
+              <h4 className="font-bold mb-4">Stay Updated</h4>
               {isSubscribed ? (
-                <div className="flex items-center gap-2 text-green-400">
+                <div className="flex items-center gap-2 text-tedx-red">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span>Subscribed! We'll be in touch.</span>
                 </div>
               ) : (
-                <div className="flex gap-2">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="flex-1 px-4 py-2 rounded-full bg-gray-900 text-white border border-gray-800 focus:border-tedx-red focus:outline-none"
-                  />
+                <div className="space-y-4">
+                  {/* Minimalist Input - matching reference image */}
+                  <div className="relative">
+                    <input
+                      type="email"
+                      placeholder="Your Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full bg-transparent text-white/80 text-sm py-3 border-b border-white/30 focus:border-tedx-red focus:outline-none transition-colors duration-300 placeholder:text-white/40"
+                    />
+                  </div>
                   <button
                     onClick={() => {
                       if (email) {
@@ -151,9 +131,12 @@ export default function Footer() {
                         setIsSubscribed(true)
                       }
                     }}
-                    className="bg-tedx-red hover:bg-tedx-red-dark text-white px-6 py-2 rounded-full transition-colors duration-200"
+                    className="text-tedx-red text-sm font-medium hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                   >
                     Subscribe
+                    <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
                   </button>
                 </div>
               )}
@@ -165,19 +148,8 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm text-justify md:text-left">
-              © {currentYear} TEDxNITHamirpur. This independent TEDx event is operated under license from TED.
+              © {currentYear} TEDxNIT Hamirpur. This independent TEDx event is operated under license from TED.
             </p>
-            <div className="flex gap-6 text-sm text-gray-500">
-              <a href="https://www.ted.com/about/our-organization/our-policies-terms/privacy-policy" target="_blank" className="hover:text-white transition-colors duration-200">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-white transition-colors duration-200">
-                Terms of Service
-              </a>
-              <a href="#" className="hover:text-white transition-colors duration-200">
-                Code of Conduct
-              </a>
-            </div>
           </div>
         </div>
       </div>

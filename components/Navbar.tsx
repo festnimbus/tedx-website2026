@@ -35,7 +35,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="relative h-12 w-48 group">
             <Image
-              src="/tedx-logo.png"
+              src="/tedx-logo.webp"
               alt="TEDx NIT Hamirpur"
               fill
               className="object-contain object-left"

@@ -1,28 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useInView } from './hooks/useInView'
-import BlurText from './BlurText'
-import TextType from './TextType'
 
 export default function Hero() {
   const { ref, isInView } = useInView()
-  const [initiumComplete, setInitiumComplete] = useState(false)
-  const [taglineComplete, setTaglineComplete] = useState(false)
-  const [showTaglineAnimation, setShowTaglineAnimation] = useState(false)
-
-  // Delay tagline animation until INITIUM BlurText animation completes
-  useEffect(() => {
-    if (initiumComplete) {
-      const timer = setTimeout(() => setShowTaglineAnimation(true), 300)
-      return () => clearTimeout(timer)
-    }
-  }, [initiumComplete])
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-[#080808] overflow-hidden">
+    <section id="home" className="relative min-h-[80vh] md:min-h-screen flex items-center bg-[#080808] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -31,7 +17,7 @@ export default function Hero() {
           fill
           className="object-cover"
           style={{
-            filter: 'brightness(0.35) contrast(1.15) saturate(0.7) sepia(0.1)',
+            filter: 'brightness(0.8) contrast(1.15) saturate(0.7) sepia(0.1)',
           }}
           priority
           quality={90}
@@ -57,122 +43,84 @@ export default function Hero() {
           {/* Main Content Container */}
           <div className="flex flex-col items-center md:items-start">
 
-            {/* INITIUM with BlurText animation and simple hover effect */}
+            {/* INITIUM - Static text with hover effect */}
             <div className="mb-4 md:mb-6 w-full md:w-auto">
-              <motion.div
-                className="cursor-pointer group"
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              <h1
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-wider text-center md:text-left cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:drop-shadow-[0_0_25px_rgba(235,0,40,0.4)]"
               >
-                {isInView && (
-                  <BlurText
-                    text="INITIUM"
-                    delay={100}
-                    animateBy="letters"
-                    direction="bottom"
-                    stepDuration={0.4}
-                    triggerOnLoad={isInView}
-                    onAnimationComplete={() => setInitiumComplete(true)}
-                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-wider justify-center md:justify-start transition-all duration-300 group-hover:drop-shadow-[0_0_25px_rgba(235,0,40,0.4)]"
-                    animationFrom={{ filter: 'blur(12px)', opacity: 0, y: 40 }}
-                    animationTo={[
-                      { filter: 'blur(6px)', opacity: 0.6, y: 10 },
-                      { filter: 'blur(0px)', opacity: 1, y: 0 }
-                    ]}
-                  />
-                )}
-                {/* Colored letters overlay for TEDx theme */}
-                <style jsx global>{`
-                  .blur-text span:nth-child(1) { color: rgba(235, 0, 40, 0.9); }
-                  .blur-text span:nth-child(2) { color: rgba(255, 255, 255, 0.85); }
-                  .blur-text span:nth-child(3) { color: rgba(255, 255, 255, 0.85); }
-                  .blur-text span:nth-child(4) { color: rgba(255, 255, 255, 0.85); }
-                  .blur-text span:nth-child(5) { color: rgba(255, 255, 255, 0.85); }
-                  .blur-text span:nth-child(6) { color: rgba(255, 255, 255, 0.85); }
-                  .blur-text span:nth-child(7) { color: rgba(255, 255, 255, 0.85); }
-                  .blur-text:hover span:nth-child(1) { color: rgba(235, 0, 40, 1); text-shadow: 0 0 20px rgba(235, 0, 40, 0.6); }
-                  .blur-text:hover span { text-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
-                `}</style>
-              </motion.div>
+                <span className="text-tedx-red">I</span>
+                <span className="text-white/85">NITIUM</span>
+              </h1>
             </div>
 
-            {/* Tagline - अंत: अस्ति आरंभ with TextType animation */}
-            <AnimatePresence>
-              {showTaglineAnimation && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="mb-8 md:mb-10 group cursor-pointer"
-                >
-                  <div className="transition-transform duration-300 ease-out group-hover:scale-110">
-                    <TextType
-                      text="अंत: अस्ति आरंभ"
-                      typingSpeed={80}
-                      loop={false}
-                      showCursor={true}
-                      cursorCharacter="।"
-                      cursorClassName="text-tedx-red/70"
-                      triggerOnLoad={true}
-                      onComplete={() => setTaglineComplete(true)}
-                      className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide text-tedx-red/80"
-                      style={{
-                        fontFamily: "'Noto Sans Devanagari', sans-serif",
-                      }}
-                    />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Tagline - अंत: अस्ति आरंभ - Static text */}
+            <div className="mb-8 md:mb-10 w-full md:w-auto">
+              <p
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide text-tedx-red/80 text-center md:text-left cursor-pointer transition-transform duration-300 hover:scale-110"
+                style={{
+                  fontFamily: "'Noto Sans Devanagari', sans-serif",
+                }}
+              >
+                अंत: अस्ति आरंभ:
+              </p>
+            </div>
 
             {/* Decorative line */}
-            <AnimatePresence>
-              {taglineComplete && (
-                <motion.div
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={{ scaleX: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
-                  className="w-24 md:w-32 h-[2px] bg-gradient-to-r from-tedx-red/60 to-transparent origin-left mx-auto md:mx-0"
-                />
-              )}
-            </AnimatePresence>
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+              className="w-24 md:w-32 h-[2px] bg-gradient-to-r from-tedx-red/60 to-transparent origin-left mx-auto md:mx-0"
+            />
 
-            {/* Date Banner - appears after animations complete */}
-            <AnimatePresence>
-              {taglineComplete && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="mt-10 flex flex-col items-center md:items-start"
-                >
-                  {/* Date Display */}
-                  <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-lg border border-tedx-red/20 bg-[#080808]/60 backdrop-blur-sm">
-                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white/90">
-                      14
+            {/* Date Banner - Premium Design */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mt-12 flex flex-col items-center md:items-start"
+            >
+              {/* Date Display - Modern Split Design */}
+              <div className="group relative">
+                {/* Subtle glow effect on hover */}
+                <div className="absolute -inset-2 bg-tedx-red/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative flex items-center gap-3 sm:gap-4">
+                  {/* Large Date Number */}
+                  <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-none tracking-tight">
+                    14<sup className="text-xl sm:text-2xl md:text-3xl font-bold align-super">th</sup>
+                  </span>
+
+                  {/* Vertical Accent Line */}
+                  <div className="w-[2px] sm:w-[3px] h-10 sm:h-14 md:h-16 lg:h-20 bg-gradient-to-b from-tedx-red via-tedx-red/60 to-transparent rounded-full" />
+
+                  {/* Month & Year Stack */}
+                  <div className="flex flex-col justify-center">
+                    <span className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-tedx-red uppercase tracking-widest">
+                      FEBRUARY
                     </span>
-                    <div className="flex flex-col items-start leading-tight">
-                      <span className="text-base sm:text-lg md:text-xl font-semibold text-tedx-red/80 uppercase tracking-wider">
-                        FEB
-                      </span>
-                      <span className="text-xs sm:text-sm text-white/40">
-                        2026
-                      </span>
-                    </div>
+                    <span className="text-sm sm:text-lg md:text-xl lg:text-2xl font-light text-white/50 tracking-[0.2em] sm:tracking-[0.3em]">
+                      2026
+                    </span>
                   </div>
+                </div>
+              </div>
 
-                  {/* Location */}
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    className="mt-4 text-white/40 text-sm md:text-base tracking-wide text-center md:text-left"
-                  >
-                    National Institute of Technology, Hamirpur
-                  </motion.p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+              {/* Location with icon */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="mt-6 flex items-center gap-2 text-white/40"
+              >
+                <svg className="w-4 h-4 text-tedx-red/60" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm md:text-base tracking-wide">
+                  National Institute of Technology, Hamirpur
+                </span>
+              </motion.div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

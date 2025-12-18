@@ -6,33 +6,33 @@ import { useInView } from './hooks/useInView'
 const events = [
   {
     id: 1,
-    title: 'Call for Speakers',
-    description: 'Submit your proposals for the TEDx event',
+    time: '3:00 – 3:45 PM',
+    title: 'Opening Ceremony',
+    description: 'Audience seating, welcome address, TEDx introduction, candle lighting & opening remarks',
   },
   {
     id: 2,
-    title: 'Speakers Announcement',
-    description: 'Announcement of speakers',
+    time: '3:45 – 4:45 PM',
+    title: 'Speaker Session I',
+    description: 'TEDx talks by Speaker 1, Speaker 2, and Speaker 3',
   },
   {
     id: 3,
-    title: 'Opening Ceremony',
-    description: 'Welcome address and introduction to the theme',
+    time: '4:45 – 5:00 PM',
+    title: 'Cultural Performance',
+    description: 'Musical and cultural performances by talented artists',
   },
   {
     id: 4,
-    title: 'TEDx Talks by Speakers',
-    description: 'Main talk by the speaker',
+    time: '5:00 – 6:00 PM',
+    title: 'Speaker Session II',
+    description: 'TEDx talks by Speaker 4, Speaker 5, and Speaker 6',
   },
   {
     id: 5,
-    title: 'Q&A Session',
-    description: 'Questions and answers with the speaker',
-  },
-  {
-    id: 6,
+    time: '6:00 – 6:30 PM',
     title: 'Closing Ceremony',
-    description: 'Closing remarks and thank you',
+    description: 'Felicitation ceremony, mementos, certificates, group photos, vote of thanks & sponsor acknowledgements',
   },
 ]
 
@@ -92,6 +92,11 @@ export default function Events() {
                           </span>
                         </div>
 
+                        {/* Time */}
+                        <p className="text-tedx-red/50 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2">
+                          {event.time}
+                        </p>
+
                         {/* Title */}
                         <h3 className="text-base sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 text-white/90 group-hover:text-white transition-colors duration-300 leading-tight">
                           {event.title}
@@ -127,34 +132,6 @@ export default function Events() {
             })}
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false }}
-          className="mt-24 text-center bg-[#080808] rounded-2xl p-10 relative overflow-hidden border border-tedx-red/40 shadow-[0_0_30px_rgba(235,0,40,0.15),inset_0_0_60px_rgba(235,0,40,0.05)]"
-        >
-          {/* Glowing red outline effect */}
-          <div className="absolute inset-0 rounded-2xl border-2 border-tedx-red/20 pointer-events-none" />
-          <div className="absolute inset-[-2px] rounded-2xl bg-gradient-to-r from-tedx-red/10 via-transparent to-tedx-red/10 pointer-events-none blur-sm" />
-
-          {/* Corner glow accents */}
-          <div className="absolute top-0 left-0 w-32 h-32 bg-tedx-red/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-32 h-32 bg-tedx-red/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-
-          {/* Subtle corner frame accents */}
-          <div className="absolute top-0 left-0 w-20 h-20 border-l-2 border-t-2 border-tedx-red/50 rounded-tl-2xl" />
-          <div className="absolute bottom-0 right-0 w-20 h-20 border-r-2 border-b-2 border-tedx-red/50 rounded-br-2xl" />
-
-          {/* Ambient center glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-tedx-red/8 rounded-full blur-3xl" />
-
-          <div className="relative z-10">
-            <p className="text-4xl md:text-6xl font-bold text-tedx-red mb-2">February 14, 2026</p>
-            <p className="text-lg md:text-xl text-gray-400">NIT Hamirpur Auditorium | 2:00 PM - 5:00 PM</p>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

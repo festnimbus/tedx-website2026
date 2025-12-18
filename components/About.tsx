@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from './hooks/useInView'
 import { useState, useEffect } from 'react'
-import BlurText from './BlurText'
+import Link from 'next/link'
 
 export default function About() {
   const { ref, isInView } = useInView()
@@ -44,7 +44,7 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-[#080808] text-white">
+    <section id="about" className="pt-8 pb-20 md:py-16 bg-[#080808] text-white">
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Side - About TEDx */}
@@ -67,6 +67,34 @@ export default function About() {
                 The TED Conference provides general guidance for the TEDx program, but individual TEDx events, including ours, are self-organized.
               </p>
             </div>
+
+            {/* Arrow Button to About Page - Timer Style */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="mt-8"
+            >
+              <Link
+                href="/about"
+                className="group inline-block"
+              >
+                <div
+                  className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-6 py-3 transition-all duration-300 group-hover:border-tedx-red/80 group-hover:scale-100"
+                  style={{ boxShadow: '0 0 15px rgba(235, 0, 40, 0.3), inset 0 0 10px rgba(235, 0, 40, 0.1)' }}
+                >
+                  <svg
+                    className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    style={{ filter: 'drop-shadow(0 0 8px rgba(235, 0, 40, 0.5))' }}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Right Side - Theme and Countdown */}
@@ -76,24 +104,17 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col items-center text-center"
           >
-            {/* INITIUM with BlurText animation */}
+            {/* INITIUM - Styled Text */}
             <div className="mb-4">
-              {isInView && (
-                <BlurText
-                  text="INITIUM"
-                  delay={120}
-                  animateBy="letters"
-                  direction="top"
-                  stepDuration={0.35}
-                  triggerOnLoad={isInView}
-                  className="text-5xl md:text-7xl font-bold uppercase tracking-tight justify-center"
-                  animationFrom={{ filter: 'blur(10px)', opacity: 0, y: -30 }}
-                  animationTo={[
-                    { filter: 'blur(5px)', opacity: 0.6, y: -8 },
-                    { filter: 'blur(0px)', opacity: 1, y: 0 }
-                  ]}
-                />
-              )}
+              <h3
+                className="text-5xl md:text-7xl font-extrabold uppercase tracking-[0.15em] cursor-pointer transition-all duration-300 hover:scale-105"
+                style={{
+                  textShadow: '0 0 40px rgba(235, 0, 40, 0.3), 0 0 80px rgba(235, 0, 40, 0.1)',
+                }}
+              >
+                <span className="text-tedx-red drop-shadow-[0_0_15px_rgba(235,0,40,0.6)]">I</span>
+                <span className="text-white/90">NITIUM</span>
+              </h3>
             </div>
             <p className="text-tedx-red text-xl md:text-2xl font-semibold mb-12" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
               अंत: अस्ति आरंभ

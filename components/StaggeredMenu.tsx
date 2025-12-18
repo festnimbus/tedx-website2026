@@ -48,7 +48,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     ],
     displaySocials = true,
     displayItemNumbering = true,
-    logoUrl = '/tedx-logo.png',
+    logoUrl = '/tedx-logo.webp',
     menuButtonColor = '#fff',
     openMenuButtonColor = '#ffffff',
     accentColor = '#EB0028',
@@ -56,6 +56,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     onMenuClose
 }) => {
     const [open, setOpen] = useState(false)
+    const [initialized, setInitialized] = useState(false)
     const openRef = useRef(false)
 
     const panelRef = useRef<HTMLDivElement | null>(null)
@@ -81,40 +82,38 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null)
 
     useLayoutEffect(() => {
-        // Small delay to ensure DOM is fully ready before setting initial states
-        const timer = setTimeout(() => {
-            const ctx = gsap.context(() => {
-                const panel = panelRef.current
-                const preContainer = preLayersRef.current
+        const ctx = gsap.context(() => {
+            const panel = panelRef.current
+            const preContainer = preLayersRef.current
 
-                const plusH = plusHRef.current
-                const plusV = plusVRef.current
-                const icon = iconRef.current
-                const textInner = textInnerRef.current
+            const plusH = plusHRef.current
+            const plusV = plusVRef.current
+            const icon = iconRef.current
+            const textInner = textInnerRef.current
 
-                if (!panel || !plusH || !plusV || !icon || !textInner) return
+            if (!panel || !plusH || !plusV || !icon || !textInner) return
 
-                let preLayers: HTMLElement[] = []
-                if (preContainer) {
-                    preLayers = Array.from(preContainer.querySelectorAll('.sm-prelayer')) as HTMLElement[]
-                }
-                preLayerElsRef.current = preLayers
+            let preLayers: HTMLElement[] = []
+            if (preContainer) {
+                preLayers = Array.from(preContainer.querySelectorAll('.sm-prelayer')) as HTMLElement[]
+            }
+            preLayerElsRef.current = preLayers
 
-                const offscreen = position === 'left' ? -100 : 100
-                gsap.set([panel, ...preLayers], { xPercent: offscreen })
+            const offscreen = position === 'left' ? -100 : 100
+            gsap.set([panel, ...preLayers], { xPercent: offscreen })
 
-                gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0 })
-                gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 90 })
-                gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' })
+            gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0 })
+            gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 90 })
+            gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' })
 
-                gsap.set(textInner, { yPercent: 0 })
+            gsap.set(textInner, { yPercent: 0 })
 
-                if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor })
-            })
-            return () => ctx.revert()
-        }, 50) // Small delay to ensure proper initialization
+            if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor })
 
-        return () => clearTimeout(timer)
+            // Mark as initialized after GSAP has set up initial positions
+            setInitialized(true)
+        })
+        return () => ctx.revert()
     }, [menuButtonColor, position])
 
     const buildOpenTimeline = useCallback(() => {
@@ -387,7 +386,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 <div
                     ref={preLayersRef}
                     className="sm-prelayers fixed top-0 right-0 bottom-0 pointer-events-none z-[45]"
-                    style={{ width: 'clamp(280px, 40vw, 450px)' }}
+                    style={{ width: 'clamp(280px, 40vw, 450px)', visibility: initialized ? 'visible' : 'hidden' }}
                     aria-hidden="true"
                 >
                     <div
@@ -464,12 +463,12 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     id="staggered-menu-panel"
                     ref={panelRef}
                     className="staggered-menu-panel fixed top-0 right-0 h-screen bg-[#0a0a0a]/95 backdrop-blur-xl border-l border-white/10 flex flex-col p-24 pt-28 md:pt-32 overflow-y-auto z-[50]"
-                    style={{ width: 'clamp(280px, 40vw, 450px)' }}
+                    style={{ width: 'clamp(280px, 40vw, 450px)', visibility: initialized ? 'visible' : 'hidden' }}
                     aria-hidden={!open}
                 >
                     <div className="sm-panel-inner flex-1 flex flex-col gap-5">
                         <ul
-                            className="sm-panel-list list-none m-0 p-0 flex flex-col gap-2"
+                            className="sm-panel-list list-none m-0 p-0 flex flex-col gap-6"
                             role="list"
                             data-numbering={displayItemNumbering || undefined}
                         >

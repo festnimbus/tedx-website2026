@@ -61,8 +61,8 @@ const placeNow = (el: HTMLElement, slot: Slot, skew: number) =>
         x: slot.x,
         y: slot.y,
         z: slot.z,
-        xPercent: -50,
-        yPercent: -50,
+        xPercent: -100,
+        yPercent: -10,
         skewY: skew,
         transformOrigin: 'center center',
         zIndex: slot.zIndex,
@@ -70,10 +70,10 @@ const placeNow = (el: HTMLElement, slot: Slot, skew: number) =>
     });
 
 const CardSwap: React.FC<CardSwapProps> = ({
-    width = 350,
-    height = 420,
-    cardDistance = 50,
-    verticalDistance = 60,
+    width = 500,
+    height = 500,
+    cardDistance = 100,
+    verticalDistance = 100,
     delay = 4000,
     pauseOnHover = true,
     onCardClick,

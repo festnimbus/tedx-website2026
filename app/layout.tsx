@@ -3,9 +3,14 @@ import './globals.css'
 import StaggeredMenu from '@/components/StaggeredMenu'
 
 export const metadata: Metadata = {
-  title: 'TEDxNITHamirpur - Ideas Worth Spreading',
+  title: 'TEDxNIT Hamirpur',
   description: 'TEDx event at National Institute of Technology, Hamirpur. Join us for inspiring talks and innovative ideas.',
   keywords: 'TEDx, NIT Hamirpur, Technology, Innovation, Ideas, Conference',
+  icons: {
+    icon: '/site-logo.webp',
+    shortcut: '/site-logo.webp',
+    apple: '/site-logo.webp',
+  },
 }
 
 export default function RootLayout({
