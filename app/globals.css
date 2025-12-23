@@ -30,6 +30,16 @@
   .bg-dark {
     background-color: var(--bg-dark);
   }
+
+  /* Hide scrollbar but keep scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* TEDx Amsterdam style gradient glow borders - improved blending */
@@ -69,4 +79,19 @@
       rgba(235, 0, 40, 0.08) 35%,
       rgba(235, 0, 40, 0.03) 55%,
       transparent 100%);
+}
+
+/* Infinite scroll animation for mobile carousel */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 25s linear infinite;
 }

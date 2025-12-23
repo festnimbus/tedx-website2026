@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useInView } from './hooks/useInView'
 import { useState, useRef } from 'react'
+import Link from 'next/link'
 import FuzzyText from './FuzzyText'
 // import CardSwap, { Card } from './CardSwap' // COMMENTED OUT - Will be used when speakers are announced
 
@@ -148,11 +149,13 @@ const speakers = [
    ============================================ */
 
 // Coming Soon Component with FuzzyText effect
-function ComingSoonDisplay() {
+function ComingSoonDisplay({ isMobile = false }: { isMobile?: boolean }) {
+  const fontSize = isMobile ? "clamp(2rem, 12vw, 4rem)" : "clamp(3rem, 8vw, 6rem)"
+
   return (
-    <div className="flex flex-col items-center justify-center gap-0 py-8">
+    <div className="flex flex-col items-center justify-center gap-0 py-4 md:py-8">
       <FuzzyText
-        fontSize="clamp(3rem, 10vw, 7rem)"
+        fontSize={fontSize}
         fontWeight={900}
         color="#eb0028"
         enableHover={true}
@@ -162,7 +165,7 @@ function ComingSoonDisplay() {
         COMING
       </FuzzyText>
       <FuzzyText
-        fontSize="clamp(3rem, 10vw, 7rem)"
+        fontSize={fontSize}
         fontWeight={900}
         color="#ffffff"
         enableHover={true}
@@ -200,7 +203,34 @@ export default function Speakers() {
             <p className="text-white/60 text-lg leading-relaxed mb-8">
               Inspiring minds who will share their groundbreaking ideas and transformative stories at TEDxNIT Hamirpur.
             </p>
-            <div className="w-20 h-1 bg-tedx-red/60" />
+            <div className="w-20 h-1 bg-tedx-red/60 mb-8" />
+
+            {/* Arrow Button to Speakers Page */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <Link
+                href="/speakers"
+                className="group inline-block"
+              >
+                <div
+                  className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-6 py-3 transition-all duration-300 group-hover:border-tedx-red/80"
+                  style={{ boxShadow: '0 0 15px rgba(235, 0, 40, 0.3), inset 0 0 10px rgba(235, 0, 40, 0.1)' }}
+                >
+                  <svg
+                    className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    style={{ filter: 'drop-shadow(0 0 8px rgba(235, 0, 40, 0.5))' }}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Right Side - Coming Soon with FuzzyText */}
@@ -255,7 +285,34 @@ export default function Speakers() {
               <br />
               <span className="text-tedx-red">SPEAKERS</span>
             </h2>
-            <div className="w-16 h-1 bg-tedx-red/60 mx-auto" />
+            <div className="w-16 h-1 bg-tedx-red/60 mx-auto mb-6" />
+
+            {/* Arrow Button to Speakers Page - Mobile */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Link
+                href="/speakers"
+                className="group inline-block"
+              >
+                <div
+                  className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-5 py-2.5 transition-all duration-300 group-hover:border-tedx-red/80"
+                  style={{ boxShadow: '0 0 15px rgba(235, 0, 40, 0.3), inset 0 0 10px rgba(235, 0, 40, 0.1)' }}
+                >
+                  <svg
+                    className="w-5 h-5 text-white transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    style={{ filter: 'drop-shadow(0 0 8px rgba(235, 0, 40, 0.5))' }}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Coming Soon Display */}
