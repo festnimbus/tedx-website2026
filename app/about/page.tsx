@@ -110,7 +110,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Section 2: Theme - Initium */}
+            {/* Section 2: Theme - Inchoation */}
             <section className="py-16 md:py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -125,18 +125,18 @@ export default function AboutPage() {
                             <span className="text-tedx-red text-2xl md:text-3xl font-bold uppercase tracking-wider">
                                 THEME:
                             </span>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-2 leading-tight">
-                                INITIUM
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 mb-2 leading-tight">
+                                INCHOATION
                             </h2>
                             <p className="text-2xl md:text-3xl text-tedx-red/80 font-semibold mb-8" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
                                 अंतः अस्ति आरंभ
                             </p>
                             <p className="text-gray-300 text-lg leading-relaxed">
-                                Initium: अंतः अस्ति आरंभ reflects the timeless idea that every ending carries within it the promise of a new beginning. Rooted in the Latin word Initium (beginning) and the Sanskrit wisdom that closure is never final, this theme invites us to view change, failure, and disruption not as conclusions, but as catalysts for transformation. At TEDx NIT Hamirpur, we bring forward ideas and stories that emerge from moments of pause and transition where old paths dissolve and new possibilities take shape reminding us that progress is born not from certainty, but from the courage to begin again.
+                                Inchoation: अंतः अस्ति आरंभ reflects the timeless idea that every ending carries within it the promise of a new beginning. Rooted in the Latin word Inchoation (beginning) and the Sanskrit wisdom that closure is never final, this theme invites us to view change, failure, and disruption not as conclusions, but as catalysts for transformation. At TEDx NIT Hamirpur, we bring forward ideas and stories that emerge from moments of pause and transition where old paths dissolve and new possibilities take shape reminding us that progress is born not from certainty, but from the courage to begin again.
                             </p>
                         </motion.div>
 
-                        {/* Right: Initium Image - Hidden on mobile */}
+                        {/* Right: Inchoation Image - Hidden on mobile */}
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
@@ -147,8 +147,8 @@ export default function AboutPage() {
                         >
                             <div className="relative aspect-[4/3] overflow-hidden rounded-lg border-tedx-red">
                                 <Image
-                                    src="/initium.webp"
-                                    alt="Initium Theme"
+                                    src="/inchoation.webp"
+                                    alt="Inchoation Theme"
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                     style={{

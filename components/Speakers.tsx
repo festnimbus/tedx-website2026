@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useInView } from './hooks/useInView'
 import { useState, useRef } from 'react'
-import CardSwap, { Card } from './CardSwap'
+import FuzzyText from './FuzzyText'
+// import CardSwap, { Card } from './CardSwap' // COMMENTED OUT - Will be used when speakers are announced
 
 const speakers = [
   {
@@ -45,94 +46,131 @@ const speakers = [
   },
 ]
 
-// Speaker Card Component
-function SpeakerCard({ speaker }: { speaker: typeof speakers[0] }) {
-  return (
-    <div className="w-full h-full p-4 flex flex-col">
-      {/* Image */}
-      <div className="relative flex-1 rounded-lg overflow-hidden mb-4">
-        <Image
-          src={speaker.image}
-          alt={speaker.name}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
-      </div>
+/* ============================================
+   SPEAKER CARD COMPONENTS - COMMENTED OUT
+   Uncomment these when speakers are announced
+   ============================================ */
 
-      {/* Info */}
-      <div className="text-center">
-        <h3 className="text-xl font-bold text-white mb-1">{speaker.name}</h3>
-        <p className="text-tedx-red/80 text-sm font-medium uppercase tracking-wider">
-          {speaker.profession}
-        </p>
-      </div>
-    </div>
-  )
-}
+// Speaker Card Component
+// function SpeakerCard({ speaker }: { speaker: typeof speakers[0] }) {
+//   return (
+//     <div className="w-full h-full p-4 flex flex-col">
+//       {/* Image */}
+//       <div className="relative flex-1 rounded-lg overflow-hidden mb-4">
+//         <Image
+//           src={speaker.image}
+//           alt={speaker.name}
+//           fill
+//           className="object-cover"
+//         />
+//         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+//       </div>
+
+//       {/* Info */}
+//       <div className="text-center">
+//         <h3 className="text-xl font-bold text-white mb-1">{speaker.name}</h3>
+//         <p className="text-tedx-red/80 text-sm font-medium uppercase tracking-wider">
+//           {speaker.profession}
+//         </p>
+//       </div>
+//     </div>
+//   )
+// }
 
 // Mobile Swipe Card Component
-function MobileSwipeCards() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const touchStartX = useRef(0)
-  const touchEndX = useRef(0)
+// function MobileSwipeCards() {
+//   const [currentIndex, setCurrentIndex] = useState(0)
+//   const touchStartX = useRef(0)
+//   const touchEndX = useRef(0)
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }
+//   const handleTouchStart = (e: React.TouchEvent) => {
+//     touchStartX.current = e.touches[0].clientX
+//   }
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX
-  }
+//   const handleTouchMove = (e: React.TouchEvent) => {
+//     touchEndX.current = e.touches[0].clientX
+//   }
 
-  const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current
-    const threshold = 50
+//   const handleTouchEnd = () => {
+//     const diff = touchStartX.current - touchEndX.current
+//     const threshold = 50
 
-    if (diff > threshold) {
-      // Swipe left - next card
-      setCurrentIndex((prev) => (prev + 1) % speakers.length)
-    } else if (diff < -threshold) {
-      // Swipe right - previous card
-      setCurrentIndex((prev) => (prev - 1 + speakers.length) % speakers.length)
-    }
-  }
+//     if (diff > threshold) {
+//       // Swipe left - next card
+//       setCurrentIndex((prev) => (prev + 1) % speakers.length)
+//     } else if (diff < -threshold) {
+//       // Swipe right - previous card
+//       setCurrentIndex((prev) => (prev - 1 + speakers.length) % speakers.length)
+//     }
+//   }
 
+//   return (
+//     <div className="w-full flex flex-col items-center">
+//       {/* Card Container */}
+//       <div
+//         className="relative w-[300px] h-[380px] touch-pan-y"
+//         onTouchStart={handleTouchStart}
+//         onTouchMove={handleTouchMove}
+//         onTouchEnd={handleTouchEnd}
+//       >
+//         <motion.div
+//           key={currentIndex}
+//           initial={{ opacity: 0, x: 50 }}
+//           animate={{ opacity: 1, x: 0 }}
+//           exit={{ opacity: 0, x: -50 }}
+//           transition={{ duration: 0.3 }}
+//           className="w-full h-full rounded-xl border border-tedx-red/30 bg-[#0a0a0a] overflow-hidden"
+//           style={{ boxShadow: '0 0 25px rgba(235, 0, 40, 0.25)' }}
+//         >
+//           <SpeakerCard speaker={speakers[currentIndex]} />
+//         </motion.div>
+//       </div>
+
+//       {/* Dots Indicator */}
+//       <div className="flex gap-2 mt-6">
+//         {speakers.map((_, index) => (
+//           <button
+//             key={index}
+//             onClick={() => setCurrentIndex(index)}
+//             className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
+//               ? 'bg-tedx-red w-6'
+//               : 'bg-white/30 hover:bg-white/50'
+//               }`}
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   )
+// }
+
+/* ============================================
+   END OF COMMENTED OUT SPEAKER CARD COMPONENTS
+   ============================================ */
+
+// Coming Soon Component with FuzzyText effect
+function ComingSoonDisplay() {
   return (
-    <div className="w-full flex flex-col items-center">
-      {/* Card Container */}
-      <div
-        className="relative w-[300px] h-[380px] touch-pan-y"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+    <div className="flex flex-col items-center justify-center gap-0 py-8">
+      <FuzzyText
+        fontSize="clamp(3rem, 10vw, 7rem)"
+        fontWeight={900}
+        color="#eb0028"
+        enableHover={true}
+        baseIntensity={0.15}
+        hoverIntensity={0.6}
       >
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -50 }}
-          transition={{ duration: 0.3 }}
-          className="w-full h-full rounded-xl border border-tedx-red/30 bg-[#0a0a0a] overflow-hidden"
-          style={{ boxShadow: '0 0 25px rgba(235, 0, 40, 0.25)' }}
-        >
-          <SpeakerCard speaker={speakers[currentIndex]} />
-        </motion.div>
-      </div>
-
-      {/* Dots Indicator */}
-      <div className="flex gap-2 mt-6">
-        {speakers.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
-              ? 'bg-tedx-red w-6'
-              : 'bg-white/30 hover:bg-white/50'
-              }`}
-          />
-        ))}
-      </div>
+        COMING
+      </FuzzyText>
+      <FuzzyText
+        fontSize="clamp(3rem, 10vw, 7rem)"
+        fontWeight={900}
+        color="#ffffff"
+        enableHover={true}
+        baseIntensity={0.15}
+        hoverIntensity={0.6}
+      >
+        SOON
+      </FuzzyText>
     </div>
   )
 }
@@ -144,7 +182,7 @@ export default function Speakers() {
     <section id="speakers" className="relative pt-10 pb-20 md:pt-16 md:pb-32 bg-[#080808] text-white overflow-hidden">
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Desktop Layout */}
-        <div className="hidden md:grid md:grid-cols-2 gap-12 items-center min-h-[600px]">
+        <div className="hidden md:grid md:grid-cols-2 gap-8 items-center min-h-[500px]">
           {/* Left Side - Text */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -165,8 +203,18 @@ export default function Speakers() {
             <div className="w-20 h-1 bg-tedx-red/60" />
           </motion.div>
 
-          {/* Right Side - CardSwap */}
+          {/* Right Side - Coming Soon with FuzzyText */}
           <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative flex items-center justify-center"
+          >
+            <ComingSoonDisplay />
+          </motion.div>
+
+          {/* COMMENTED OUT - CardSwap for when speakers are announced */}
+          {/* <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -190,7 +238,7 @@ export default function Speakers() {
                 ))}
               </CardSwap>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         {/* Mobile Layout */}
@@ -200,7 +248,7 @@ export default function Speakers() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-10"
+            className="text-center mb-6"
           >
             <h2 className="text-4xl font-bold mb-4">
               <span className="text-white">MEET OUR</span>
@@ -210,14 +258,23 @@ export default function Speakers() {
             <div className="w-16 h-1 bg-tedx-red/60 mx-auto" />
           </motion.div>
 
-          {/* Swipeable Cards */}
+          {/* Coming Soon Display */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <MobileSwipeCards />
+            <ComingSoonDisplay />
           </motion.div>
+
+          {/* COMMENTED OUT - MobileSwipeCards for when speakers are announced */}
+          {/* <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <MobileSwipeCards />
+          </motion.div> */}
         </div>
       </div>
 

@@ -104,16 +104,16 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col items-center text-center"
           >
-            {/* INITIUM - Styled Text */}
+            {/* INCHOATION - Styled Text */}
             <div className="mb-4">
               <h3
-                className="text-5xl md:text-7xl font-extrabold uppercase tracking-[0.15em] cursor-pointer transition-all duration-300 hover:scale-105"
+                className="text-3xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-[0.08em] cursor-pointer transition-all duration-300 hover:scale-105"
                 style={{
                   textShadow: '0 0 40px rgba(235, 0, 40, 0.3), 0 0 80px rgba(235, 0, 40, 0.1)',
                 }}
               >
                 <span className="text-tedx-red drop-shadow-[0_0_15px_rgba(235,0,40,0.6)]">I</span>
-                <span className="text-white/90">NITIUM</span>
+                <span className="text-white/90">NCHOATION</span>
               </h3>
             </div>
             <p className="text-tedx-red text-xl md:text-2xl font-semibold mb-12" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>

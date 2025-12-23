@@ -43,13 +43,13 @@ export default function Hero() {
           {/* Main Content Container */}
           <div className="flex flex-col items-center md:items-start">
 
-            {/* INITIUM - Static text with hover effect */}
+            {/* INCHOATION - Static text with hover effect */}
             <div className="mb-4 md:mb-6 w-full md:w-auto">
               <h1
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-wider text-center md:text-left cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:drop-shadow-[0_0_25px_rgba(235,0,40,0.4)]"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-wider text-center md:text-left cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:drop-shadow-[0_0_25px_rgba(235,0,40,0.4)]"
               >
                 <span className="text-tedx-red">I</span>
-                <span className="text-white/85">NITIUM</span>
+                <span className="text-white/85">NCHOATION</span>
               </h1>
             </div>
 
