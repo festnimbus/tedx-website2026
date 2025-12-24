@@ -22,7 +22,7 @@ export default function SponsorsPage() {
                         <div className="relative inline-block">
                             {/* Pulsing ring */}
                             <motion.div
-                                className="absolute inset-0 rounded-full border-4 border-tedx-red"
+                                className="absolute inset-0 rounded-full border-4 border-red-900"
                                 animate={{
                                     scale: [1, 1.3, 1],
                                     opacity: [0.8, 0, 0.8],
@@ -34,7 +34,7 @@ export default function SponsorsPage() {
                                 }}
                             />
                             {/* Icon container */}
-                            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-tedx-red to-red-700 flex items-center justify-center shadow-2xl shadow-tedx-red/30">
+                            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-red-600 to-red-900 flex items-center justify-center shadow-2xl shadow-tedx-red/30">
                                 <span className="text-5xl md:text-6xl font-bold text-white">₹</span>
                             </div>
                         </div>
@@ -102,7 +102,7 @@ export default function SponsorsPage() {
                             Partner with TEDxNIT Hamirpur and be part of something extraordinary. Reach out to us for sponsorship opportunities.
                         </p>
                         <a
-                            href="mailto:voices@tedxnithamirpur.com?subject=Sponsorship Inquiry for TEDxNIT Hamirpur&body=Hello TEDxNIT Hamirpur Team,%0D%0A%0D%0AWe are interested in sponsorship opportunities for your event.%0D%0A%0D%0ACompany Name: %0D%0AContact Person: %0D%0APhone: %0D%0A%0D%0APlease share the sponsorship packages.%0D%0A%0D%0AThank you!"
+                            href="/contact"
                             className="inline-flex items-center gap-2 px-8 py-3 bg-tedx-red hover:bg-tedx-red-dark text-white font-bold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-tedx-red/30"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

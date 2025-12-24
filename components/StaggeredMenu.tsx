@@ -43,7 +43,6 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     socialItems = [
         { label: 'Instagram', link: 'https://www.instagram.com/tedxnithamirpur/' },
         { label: 'LinkedIn', link: 'https://www.linkedin.com/company/tedxnithamirpurofficial/' },
-        { label: 'Twitter', link: 'https://x.com/TEDx' },
         { label: 'YouTube', link: 'https://www.youtube.com/user/TEDxTalks' }
     ],
     displaySocials = true,

@@ -1,10 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Footer from '@/components/Footer'
 import Masonry, { MasonryItem } from '@/components/Masonry'
-import ImageLoop, { ImageLoopItem } from '@/components/ImageLoop'
+import ImageLoop from '@/components/ImageLoop'
+import Folder from '@/components/Folder'
 
 // Gallery items for the Masonry grid using local images from public/gallery
 const galleryItems: MasonryItem[] = [
@@ -132,34 +132,28 @@ export default function AboutPage() {
                                 अंतः अस्ति आरंभ
                             </p>
                             <p className="text-gray-300 text-lg leading-relaxed">
-                                Inchoation: अंतः अस्ति आरंभ reflects the timeless idea that every ending carries within it the promise of a new beginning. Rooted in the Latin word Inchoation (beginning) and the Sanskrit wisdom that closure is never final, this theme invites us to view change, failure, and disruption not as conclusions, but as catalysts for transformation. At TEDx NIT Hamirpur, we bring forward ideas and stories that emerge from moments of pause and transition where old paths dissolve and new possibilities take shape reminding us that progress is born not from certainty, but from the courage to begin again.
+                                Inchoation marks the moment something begins to take shape, a thought awakening, an idea forming. अंतः अस्ति आरंभ means "within lies the beginning," a reminder that every transformation starts from within before it ever reaches the world. This theme celebrates the quiet sparks: the decisions made in silence, the inner struggles that fuel breakthroughs. Through stories of resilience and discovery, we explore how what begins inside us becomes the ideas worth spreading.
                             </p>
                         </motion.div>
 
-                        {/* Right: Inchoation Image - Hidden on mobile */}
+                        {/* Right: Interactive Folder Component */}
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                             variants={fadeInRight}
-                            className="relative group hidden md:block"
+                            className="relative hidden md:flex items-center justify-center min-h-[300px]"
                         >
-                            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border-tedx-red">
-                                <Image
-                                    src="/inchoation.webp"
-                                    alt="Inchoation Theme"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                    style={{
-                                        filter: 'brightness(0.6) contrast(1.15) saturate(0.8) sepia(0.1)'
-                                    }}
-                                />
-                                {/* Dark overlay for theme consistency */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
-                                {/* Red tint overlay */}
-                                <div className="absolute inset-0 bg-tedx-red/10 mix-blend-overlay" />
-                            </div>
+                            <Folder
+                                size={2.5}
+                                color="#E62B1E"
+                                items={[
+                                    <span key="tedx" className="text-tedx-red font-bold text-lg drop-shadow-lg">TEDx</span>,
+                                    <span key="hamirpur" className="text-tedx-red font-bold text-lg drop-shadow-lg">Hamirpur</span>,
+                                    <span key="nit" className="text-tedx-red font-bold text-lg drop-shadow-lg">NIT</span>
+                                ]}
+                            />
                         </motion.div>
                     </div>
                 </div>
@@ -207,4 +201,3 @@ export default function AboutPage() {
         </main>
     )
 }
-

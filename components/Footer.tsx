@@ -13,7 +13,6 @@ export default function Footer() {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Speakers', href: '#speakers' },
-    { name: 'Events', href: '#events' },
   ]
 
   const socialLinks = [

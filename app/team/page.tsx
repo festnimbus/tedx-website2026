@@ -9,9 +9,9 @@ import TiltedCard from '@/components/TiltedCard'
 const organizers = [
     {
         id: 1,
-        name: 'Rajit Sneh',
+        name: 'Rahul Prasad',
         designation: 'Organizer',
-        image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop',
+        image: '/volunteers/rahul.webp',
     },
     {
         id: 2,

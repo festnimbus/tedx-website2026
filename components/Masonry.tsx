@@ -237,8 +237,8 @@ const Masonry: React.FC<MasonryProps> = ({
                     onMouseLeave={() => handleMouseLeave(item.id)}
                 >
                     <div
-                        className="relative w-full h-full bg-cover bg-center rounded-lg shadow-lg overflow-hidden"
-                        style={{ backgroundImage: `url(${item.img})` }}
+                        className="relative w-full h-full bg-contain bg-center bg-no-repeat rounded-lg shadow-lg overflow-hidden"
+                        style={{ backgroundImage: `url(${item.img})`, backgroundColor: '#1a1a1a' }}
                     >
                         {/* Dark overlay on hover */}
                         <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors duration-300" />
