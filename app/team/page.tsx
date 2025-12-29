@@ -15,9 +15,9 @@ const organizers = [
     },
     {
         id: 2,
-        name: 'Mohit Soni',
+        name: 'Sarayu Nallabolu',
         designation: 'Co-Organizer',
-        image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop',
+        image: '/volunteers/sarayu.webp',
     },
 ]
 
@@ -147,20 +147,20 @@ export default function TeamPage() {
                                 <motion.div
                                     key={member.id}
                                     variants={itemVariants}
-                                    className="flex flex-col items-center"
+                                    className="flex flex-col items-center cursor-pointer"
                                 >
                                     <TiltedCard
                                         imageSrc={member.image}
                                         altText={member.name}
                                         captionText={member.name}
-                                        containerHeight="360px"
+                                        containerHeight="380px"
                                         containerWidth="280px"
-                                        imageHeight="280px"
+                                        imageHeight="350px"
                                         imageWidth="280px"
                                         rotateAmplitude={12}
                                         scaleOnHover={1.12}
                                         showMobileWarning={false}
-                                        showTooltip={true}
+                                        showTooltip={false}
                                         displayOverlayContent={true}
                                         overlayContent={
                                             <div className="text-center">
@@ -189,20 +189,20 @@ export default function TeamPage() {
                             <motion.div
                                 key={member.id}
                                 variants={itemVariants}
-                                className="flex flex-col items-center"
+                                className="flex flex-col items-center cursor-pointer"
                             >
                                 <TiltedCard
                                     imageSrc={member.image}
                                     altText={member.name}
                                     captionText={member.name}
-                                    containerHeight="300px"
+                                    containerHeight="310px"
                                     containerWidth="220px"
-                                    imageHeight="220px"
+                                    imageHeight="275px"
                                     imageWidth="220px"
                                     rotateAmplitude={10}
                                     scaleOnHover={1.1}
                                     showMobileWarning={false}
-                                    showTooltip={true}
+                                    showTooltip={false}
                                     displayOverlayContent={true}
                                     overlayContent={
                                         <div className="text-center">

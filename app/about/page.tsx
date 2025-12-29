@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Footer from '@/components/Footer'
 import Masonry, { MasonryItem } from '@/components/Masonry'
 import ImageLoop from '@/components/ImageLoop'
-import Folder from '@/components/Folder'
 
 // Gallery items for the Masonry grid using local images from public/gallery
 const galleryItems: MasonryItem[] = [
@@ -113,49 +112,28 @@ export default function AboutPage() {
             {/* Section 2: Theme - Inchoation */}
             <section className="py-16 md:py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        {/* Left: Theme Content */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.8 }}
-                            variants={fadeInLeft}
-                        >
-                            <span className="text-tedx-red text-2xl md:text-3xl font-bold uppercase tracking-wider">
-                                THEME:
-                            </span>
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 mb-2 leading-tight">
-                                INCHOATION
-                            </h2>
-                            <p className="text-2xl md:text-3xl text-tedx-red/80 font-semibold mb-8" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
-                                अंतः अस्ति आरंभ
-                            </p>
-                            <p className="text-gray-300 text-lg leading-relaxed">
-                                Inchoation marks the moment something begins to take shape, a thought awakening, an idea forming. अंतः अस्ति आरंभ means "within lies the beginning," a reminder that every transformation starts from within before it ever reaches the world. This theme celebrates the quiet sparks: the decisions made in silence, the inner struggles that fuel breakthroughs. Through stories of resilience and discovery, we explore how what begins inside us becomes the ideas worth spreading.
-                            </p>
-                        </motion.div>
-
-                        {/* Right: Interactive Folder Component */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            variants={fadeInRight}
-                            className="relative hidden md:flex items-center justify-center min-h-[300px]"
-                        >
-                            <Folder
-                                size={2.5}
-                                color="#E62B1E"
-                                items={[
-                                    <span key="tedx" className="text-tedx-red font-bold text-lg drop-shadow-lg">TEDx</span>,
-                                    <span key="hamirpur" className="text-tedx-red font-bold text-lg drop-shadow-lg">Hamirpur</span>,
-                                    <span key="nit" className="text-tedx-red font-bold text-lg drop-shadow-lg">NIT</span>
-                                ]}
-                            />
-                        </motion.div>
-                    </div>
+                    {/* Theme Content - Centered */}
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8 }}
+                        variants={fadeInLeft}
+                        className="max-w-4xl mx-auto text-center"
+                    >
+                        <span className="text-tedx-red text-2xl md:text-3xl font-bold uppercase tracking-wider">
+                            THEME:
+                        </span>
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 mb-2 leading-tight">
+                            INCHOATION
+                        </h2>
+                        <p className="text-2xl md:text-3xl text-tedx-red/80 font-semibold mb-8" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
+                            अंतः अस्ति आरंभ
+                        </p>
+                        <p className="text-gray-300 text-lg leading-relaxed">
+                            Inchoation marks the moment something begins to take shape, a thought awakening, an idea forming. अंतः अस्ति आरंभ means "within lies the beginning," a reminder that every transformation starts from within before it ever reaches the world. This theme celebrates the quiet sparks: the decisions made in silence, the inner struggles that fuel breakthroughs. Through stories of resilience and discovery, we explore how what begins inside us becomes the ideas worth spreading.
+                        </p>
+                    </motion.div>
                 </div>
             </section>
 

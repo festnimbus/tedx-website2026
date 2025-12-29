@@ -12,39 +12,11 @@ export default function SponsorsPage() {
             {/* Coming Soon Section */}
             <section className="py-20 md:py-32 flex items-center justify-center min-h-[70vh]">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    {/* Animated Logo/Icon */}
-                    <motion.div
-                        initial={{ scale: 0, rotate: -180 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
-                        className="mb-12"
-                    >
-                        <div className="relative inline-block">
-                            {/* Pulsing ring */}
-                            <motion.div
-                                className="absolute inset-0 rounded-full border-4 border-red-900"
-                                animate={{
-                                    scale: [1, 1.3, 1],
-                                    opacity: [0.8, 0, 0.8],
-                                }}
-                                transition={{
-                                    duration: 2,
-                                    repeat: Infinity,
-                                    ease: 'easeInOut',
-                                }}
-                            />
-                            {/* Icon container */}
-                            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-red-600 to-red-900 flex items-center justify-center shadow-2xl shadow-tedx-red/30">
-                                <span className="text-5xl md:text-6xl font-bold text-white">₹</span>
-                            </div>
-                        </div>
-                    </motion.div>
-
                     {/* Heading */}
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
+                        transition={{ duration: 0.8 }}
                         className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
                     >
                         <span className="text-tedx-red">SPONSORS</span>
@@ -54,7 +26,7 @@ export default function SponsorsPage() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <h2 className="text-2xl md:text-4xl font-bold text-white mb-6">
                             Coming Soon
@@ -68,7 +40,7 @@ export default function SponsorsPage() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.8 }}
+                        transition={{ duration: 1, delay: 0.4 }}
                         className="flex justify-center gap-4 mb-12"
                     >
                         {[...Array(3)].map((_, i) => (
@@ -92,7 +64,7 @@ export default function SponsorsPage() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 1 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
                         className="bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 rounded-2xl p-8 md:p-12 border border-zinc-700/50"
                     >
                         <h3 className="text-xl md:text-2xl font-bold text-white mb-4">

@@ -24,8 +24,6 @@ export default function Hero() {
         />
         {/* Red-tinted Dark Overlay - warmer, less blue */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a0505]/75 via-[#080808]/70 to-[#080505]/75" />
-        {/* Subtle red glow at edges */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#EB0028]/3 via-transparent to-[#EB0028]/3" />
         {/* Gradient fade to background at bottom - seamless blend */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-50% to-[#080808]" />
         {/* Extra solid cover at very bottom for seamless transition */}
