@@ -72,19 +72,17 @@ const previousSpeakers: SpeakerItem[] = [
     },
     {
         id: 102,
-        name: 'Jagdeep Singh',
+        name: 'Yash Garg',
         designation: 'Civil Servant & Advocate',
-        image: '/prev_speakers/5.webp',
-        linkedin: 'https://www.linkedin.com/in/jagdeepsinghkas/',
-        twitter: 'https://x.com/jagdeep_kas19',
+        image: '/prev_speakers/3.webp',
+        linkedin: 'https://www.linkedin.com/in/yashgargdl/',
+        twitter: 'https://x.com/yashgargdl',
     },
     {
         id: 103,
-        name: 'Yash Garg',
+        name: 'Col. Ashokan K.',
         designation: 'Founder, College Setu & Ed-tech Entrepreneur',
-        image: '/prev_speakers/3.webp',
-        linkedin: 'https://www.linkedin.com/in/yashgargdl/',
-        twitter: 'https://x.com/YashxGarg',
+        image: '/prev_speakers/2.webp',
     },
     {
         id: 104,
@@ -94,18 +92,23 @@ const previousSpeakers: SpeakerItem[] = [
     },
     {
         id: 105,
-        name: 'Col. Ashokan K.',
+        name: 'Jagdeep Singh',
         designation: 'Indian Army Veteran & Security Expert',
-        image: '/prev_speakers/2.webp',
+        image: '/prev_speakers/5.webp',
+        linkedin: 'https://www.linkedin.com/in/jagdeepsinghkas/',
+        twitter: 'https://x.com/jagdeep_kas19',
     },
 ]
 
 // Coming Soon Component with FuzzyText effect
 function ComingSoonDisplay() {
+    // Improved responsive sizing that works better across all devices
+    const fontSize = "clamp(3.5rem, 12vw, 8rem)" // min 56px, max 128px
+
     return (
         <div className="flex flex-col items-center justify-center gap-2 py-16 md:py-24">
             <FuzzyText
-                fontSize="clamp(3rem, 10vw, 8rem)"
+                fontSize={fontSize}
                 fontWeight={900}
                 color="#eb0028"
                 enableHover={true}
@@ -115,7 +118,7 @@ function ComingSoonDisplay() {
                 COMING
             </FuzzyText>
             <FuzzyText
-                fontSize="clamp(3rem, 10vw, 8rem)"
+                fontSize={fontSize}
                 fontWeight={900}
                 color="#ffffff"
                 enableHover={true}

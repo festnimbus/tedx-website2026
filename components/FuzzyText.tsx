@@ -48,8 +48,12 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
             if (typeof fontSize === 'number') {
                 numericFontSize = fontSize;
             } else {
+                // Use visibility hidden instead of removing element to avoid layout shifts
                 const temp = document.createElement('span');
                 temp.style.fontSize = fontSize;
+                temp.style.visibility = 'hidden';
+                temp.style.position = 'absolute';
+                temp.textContent = 'M'; // Use reference character for measurement
                 document.body.appendChild(temp);
                 const computedSize = window.getComputedStyle(temp).fontSize;
                 numericFontSize = parseFloat(computedSize);
@@ -88,8 +92,15 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
 
             const horizontalMargin = 50;
             const verticalMargin = 0;
+
+            // Set canvas dimensions - this determines the final rendered size
             canvas.width = offscreenWidth + horizontalMargin * 2;
             canvas.height = tightHeight + verticalMargin * 2;
+
+            // Set canvas display size to match internal resolution to prevent scaling
+            canvas.style.width = `${canvas.width}px`;
+            canvas.style.height = `${canvas.height}px`;
+
             ctx.translate(horizontalMargin, verticalMargin);
 
             const interactiveLeft = horizontalMargin + xOffset;
@@ -175,7 +186,18 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
         };
     }, [children, fontSize, fontWeight, fontFamily, color, enableHover, baseIntensity, hoverIntensity]);
 
-    return <canvas ref={canvasRef} />;
+    return (
+        <div style={{ display: 'inline-block', lineHeight: 0 }}>
+            <canvas
+                ref={canvasRef}
+                style={{
+                    display: 'block',
+                    maxWidth: '100%',
+                    height: 'auto'
+                }}
+            />
+        </div>
+    );
 };
 
 export default FuzzyText;

@@ -1,7 +1,7 @@
 import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Speakers from '@/components/Speakers'
-import Events from '@/components/Events'
+import Events from '@/components/PrevSpeakers'
 import Footer from '@/components/Footer'
 
 export default function Home() {

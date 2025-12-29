@@ -80,11 +80,12 @@ export default function About() {
                 className="group inline-block"
               >
                 <div
-                  className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-6 py-3 transition-all duration-300 group-hover:border-tedx-red/80 group-hover:scale-100"
+                  className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-6 py-3 transition-all duration-300 group-hover:border-tedx-red/80 group-hover:scale-105 flex items-center gap-3"
                   style={{ boxShadow: '0 0 15px rgba(235, 0, 40, 0.3), inset 0 0 10px rgba(235, 0, 40, 0.1)' }}
                 >
+                  <span className="text-white font-semibold text-base tracking-wide">Know More</span>
                   <svg
-                    className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-1"
+                    className="w-6 h-6 text-tedx-red transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

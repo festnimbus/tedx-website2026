@@ -150,7 +150,10 @@ const speakers = [
 
 // Coming Soon Component with FuzzyText effect
 function ComingSoonDisplay({ isMobile = false }: { isMobile?: boolean }) {
-  const fontSize = isMobile ? "clamp(2rem, 12vw, 4rem)" : "clamp(3rem, 8vw, 6rem)"
+  // Improved responsive sizing that works better across all devices
+  const fontSize = isMobile
+    ? "clamp(2.5rem, 15vw, 4.5rem)"  // Mobile: min 40px, max 72px
+    : "clamp(4rem, 10vw, 8rem)"       // Desktop: min 64px, max 128px
 
   return (
     <div className="flex flex-col items-center justify-center gap-0 py-4 md:py-8">
@@ -216,11 +219,12 @@ export default function Speakers() {
                 className="group inline-block"
               >
                 <div
-                  className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-6 py-3 transition-all duration-300 group-hover:border-tedx-red/80"
+                  className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-6 py-3 transition-all duration-300 group-hover:border-tedx-red/80 group-hover:scale-105 flex items-center gap-3"
                   style={{ boxShadow: '0 0 15px rgba(235, 0, 40, 0.3), inset 0 0 10px rgba(235, 0, 40, 0.1)' }}
                 >
+                  <span className="text-white font-semibold text-base tracking-wide">Know More</span>
                   <svg
-                    className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-1"
+                    className="w-6 h-6 text-tedx-red transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -298,11 +302,12 @@ export default function Speakers() {
                 className="group inline-block"
               >
                 <div
-                  className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-5 py-2.5 transition-all duration-300 group-hover:border-tedx-red/80"
+                  className="relative bg-[#0a0a0a] border border-tedx-red/40 rounded-xl px-5 py-2.5 transition-all duration-300 group-hover:border-tedx-red/80 group-hover:scale-105 flex items-center gap-2"
                   style={{ boxShadow: '0 0 15px rgba(235, 0, 40, 0.3), inset 0 0 10px rgba(235, 0, 40, 0.1)' }}
                 >
+                  <span className="text-white font-semibold text-sm tracking-wide">Know More</span>
                   <svg
-                    className="w-5 h-5 text-white transition-transform duration-300 group-hover:translate-x-1"
+                    className="w-5 h-5 text-tedx-red transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -321,7 +326,7 @@ export default function Speakers() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <ComingSoonDisplay />
+            <ComingSoonDisplay isMobile={true} />
           </motion.div>
 
           {/* COMMENTED OUT - MobileSwipeCards for when speakers are announced */}

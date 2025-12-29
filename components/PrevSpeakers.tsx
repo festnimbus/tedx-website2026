@@ -8,34 +8,40 @@ import { gsap } from 'gsap'
 
 const previousSpeakers = [
   {
-    id: 1,
+    id: 101,
     name: 'Manu Arora',
     designation: 'Founder, Acerternity UI',
     image: '/prev_speakers/1.webp',
+    linkedin: 'https://www.linkedin.com/in/manuarora28/',
+    twitter: 'https://x.com/mannupaaji?lang=en',
   },
   {
-    id: 2,
-    name: 'Jagdeep Singh',
-    designation: 'Civil Servant & Advocate',
-    image: '/prev_speakers/5.webp',
-  },
-  {
-    id: 3,
+    id: 102,
     name: 'Yash Garg',
-    designation: 'Founder, College Setu & Ed-tech Entrepreneur',
+    designation: 'Civil Servant & Advocate',
     image: '/prev_speakers/3.webp',
+    linkedin: 'https://www.linkedin.com/in/yashgargdl/',
+    twitter: 'https://x.com/yashgargdl',
   },
   {
-    id: 4,
+    id: 103,
+    name: 'Col. Ashokan K.',
+    designation: 'Founder, College Setu & Ed-tech Entrepreneur',
+    image: '/prev_speakers/2.webp',
+  },
+  {
+    id: 104,
     name: 'Yatin Pandit',
     designation: 'Historian & Researcher',
     image: '/prev_speakers/4.webp',
   },
   {
-    id: 5,
-    name: 'Col. Ashokan K.',
+    id: 105,
+    name: 'Jagdeep Singh',
     designation: 'Indian Army Veteran & Security Expert',
-    image: '/prev_speakers/2.webp',
+    image: '/prev_speakers/5.webp',
+    linkedin: 'https://www.linkedin.com/in/jagdeepsinghkas/',
+    twitter: 'https://x.com/jagdeep_kas19',
   },
 ]
 
