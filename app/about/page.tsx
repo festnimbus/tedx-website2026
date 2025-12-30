@@ -77,7 +77,7 @@ export default function AboutPage() {
                                     NIT HAMIRPUR
                                 </h2>
                                 <p className="text-gray-300 text-lg leading-relaxed">
-                                    TEDx NIT Hamirpur is an independently organized TED event hosted at
+                                    TEDxNIT Hamirpur is an independently organized TED event hosted at
                                     the National Institute of Technology, Hamirpur. Our event brings together
                                     innovative thinkers, visionary leaders, and passionate changemakers to
                                     share ideas worth spreading. Through carefully curated talks and
