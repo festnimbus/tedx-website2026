@@ -30,7 +30,7 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080808] via-[#080808] to-transparent" />
       </div>
 
-      {/* Content - Left aligned on desktop, centered on mobile */}
+      {/* Content - Left aligned on all devices */}
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
         <motion.div
           initial={{ opacity: 0 }}
@@ -39,22 +39,21 @@ export default function Hero() {
           className="max-w-4xl md:max-w-3xl"
         >
           {/* Main Content Container */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-start">
 
             {/* INCHOATION - Static text with hover effect */}
-            <div className="mb-4 md:mb-6 w-full md:w-auto">
+            <div className="mb-4 md:mb-6 w-auto">
               <h1
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-wider text-center md:text-left cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:drop-shadow-[0_0_25px_rgba(235,0,40,0.4)]"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-extrabold tracking-wider text-left cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:drop-shadow-[0_0_25px_rgba(235,0,40,0.4)]"
               >
-                <span className="text-tedx-red">I</span>
-                <span className="text-white/85">NCHOATION</span>
+                <span className="text-white/85">INCHOATION</span>
               </h1>
             </div>
 
             {/* Tagline - अंत: अस्ति आरंभ - Static text */}
-            <div className="mb-8 md:mb-10 w-full md:w-auto">
+            <div className="mb-8 md:mb-10 w-auto">
               <p
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide text-tedx-red/80 text-center md:text-left cursor-pointer transition-transform duration-300 hover:scale-110"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide text-tedx-red/80 text-left cursor-pointer transition-transform duration-300 hover:scale-110"
                 style={{
                   fontFamily: "'Noto Sans Devanagari', sans-serif",
                 }}
@@ -68,7 +67,7 @@ export default function Hero() {
               initial={{ scaleX: 0, opacity: 0 }}
               animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-              className="w-24 md:w-32 h-[2px] bg-gradient-to-r from-tedx-red/60 to-transparent origin-left mx-auto md:mx-0"
+              className="w-24 md:w-32 h-[2px] bg-gradient-to-r from-tedx-red/60 to-transparent origin-left"
             />
 
             {/* Date Banner - Premium Design */}
@@ -76,7 +75,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-12 flex flex-col items-center md:items-start"
+              className="mt-12 flex flex-col items-start"
             >
               {/* Date Display - Modern Split Design */}
               <div className="group relative">

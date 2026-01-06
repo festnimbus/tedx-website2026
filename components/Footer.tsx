@@ -8,6 +8,8 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
   const [email, setEmail] = useState('')
   const [isSubscribed, setIsSubscribed] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const quickLinks = [
     { name: 'Home', href: '#home' },
@@ -119,23 +121,74 @@ export default function Footer() {
                       type="email"
                       placeholder="Your Email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => {
+                        setEmail(e.target.value)
+                        setError('')
+                      }}
                       className="w-full bg-transparent text-white/80 text-sm py-3 border-b border-white/30 focus:border-tedx-red focus:outline-none transition-colors duration-300 placeholder:text-white/40"
                     />
                   </div>
+                  {error && (
+                    <p className="text-red-500 text-xs">{error}</p>
+                  )}
                   <button
-                    onClick={() => {
-                      if (email) {
-                        window.location.href = `mailto:voices@tedxnithamirpur.com?subject=Newsletter Subscription - TEDxNIT Hamirpur&body=New subscriber email: ${email}`
+                    onClick={async () => {
+                      if (!email) {
+                        setError('Please enter your email')
+                        return
+                      }
+
+                      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                      if (!emailRegex.test(email)) {
+                        setError('Please enter a valid email')
+                        return
+                      }
+
+                      setIsLoading(true)
+                      setError('')
+
+                      try {
+                        const response = await fetch('/api/subscribe', {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify({ email }),
+                        })
+
+                        const data = await response.json()
+
+                        if (!response.ok) {
+                          throw new Error(data.error || 'Failed to subscribe')
+                        }
+
                         setIsSubscribed(true)
+                        setEmail('')
+                      } catch (err) {
+                        setError(err instanceof Error ? err.message : 'Failed to subscribe. Please try again.')
+                      } finally {
+                        setIsLoading(false)
                       }
                     }}
-                    className="text-tedx-red text-sm font-medium hover:text-white transition-colors duration-200 flex items-center gap-2 group"
+                    disabled={isLoading}
+                    className="text-tedx-red text-sm font-medium hover:text-white transition-colors duration-200 flex items-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Subscribe
-                    <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    {isLoading ? (
+                      <>
+                        <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        <span>Subscribing...</span>
+                      </>
+                    ) : (
+                      <>
+                        Subscribe
+                        <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </>
+                    )}
                   </button>
                 </div>
               )}

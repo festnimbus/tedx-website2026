@@ -44,8 +44,10 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="pt-8 pb-20 md:py-16 bg-[#080808] text-white">
-      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="pt-8 pb-20 md:py-16 bg-[#080808] text-white relative">
+      {/* Top gradient to blend with Hero section */}
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#080808] to-transparent pointer-events-none" />
+      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Side - About TEDx */}
           <motion.div
@@ -113,8 +115,7 @@ export default function About() {
                   textShadow: '0 0 40px rgba(235, 0, 40, 0.3), 0 0 80px rgba(235, 0, 40, 0.1)',
                 }}
               >
-                <span className="text-tedx-red drop-shadow-[0_0_15px_rgba(235,0,40,0.6)]">I</span>
-                <span className="text-white/90">NCHOATION</span>
+                <span className="text-white/90">INCHOATION</span>
               </h3>
             </div>
             <p className="text-tedx-red text-xl md:text-2xl font-semibold mb-12" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>

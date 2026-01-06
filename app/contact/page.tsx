@@ -62,32 +62,42 @@ export default function ContactPage() {
 
         setIsSubmitting(true)
 
-        // Simulate API call / form submission
         try {
-            // Create mailto link with form data
-            const subject = `TEDxNIT Hamirpur - ${formData.interest || 'Contact Form'}`
-            const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone || 'Not provided'}%0D%0AInterest: ${formData.interest || 'Not specified'}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
 
-            // Open mailto in new window so user stays on page
-            window.open(`mailto:voices@tedxnithamirpur.com?subject=${encodeURIComponent(subject)}&body=${body}`, '_blank')
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to send message')
+            }
 
             // Show success message
-            setTimeout(() => {
-                setIsSubmitting(false)
-                setIsSubmitted(true)
+            setIsSubmitting(false)
+            setIsSubmitted(true)
 
-                // Reset form
-                setFormData({
-                    name: '',
-                    email: '',
-                    phone: '',
-                    interest: '',
-                    message: ''
-                })
-            }, 500)
+            // Reset form
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                interest: '',
+                message: ''
+            })
+
+            // Reset success message after 5 seconds
+            setTimeout(() => {
+                setIsSubmitted(false)
+            }, 5000)
         } catch (error) {
             setIsSubmitting(false)
             console.error('Error submitting form:', error)
+            setErrors({ submit: error instanceof Error ? error.message : 'Failed to send message. Please try again.' })
         }
     }
 
@@ -222,6 +232,13 @@ export default function ContactPage() {
                                             <p className="text-red-500 text-xs mt-1">{errors.message}</p>
                                         )}
                                     </div>
+
+                                    {/* Submit Error Display */}
+                                    {errors.submit && (
+                                        <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
+                                            <p className="text-red-500 text-sm">{errors.submit}</p>
+                                        </div>
+                                    )}
 
                                     {/* Submit Button */}
                                     <div className="pt-4">

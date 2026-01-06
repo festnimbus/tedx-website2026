@@ -50,7 +50,7 @@ export default function AboutPage() {
                                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
                                     WHAT IS <span className="text-tedx-red">TEDx</span>?
                                 </h1>
-                                <p className="text-gray-300 text-lg leading-relaxed">
+                                <p className="text-gray-300 text-lg leading-relaxed text-justify">
                                     In the spirit of discovering and spreading ideas, TEDx is a program of
                                     local, self-organized events that bring people together to share a TED-like
                                     experience. At a TEDx event, TED Talks video and live speakers
@@ -76,7 +76,7 @@ export default function AboutPage() {
                                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
                                     NIT HAMIRPUR
                                 </h2>
-                                <p className="text-gray-300 text-lg leading-relaxed">
+                                <p className="text-gray-300 text-lg leading-relaxed text-justify">
                                     TEDxNIT Hamirpur is an independently organized TED event hosted at
                                     the National Institute of Technology, Hamirpur. Our event brings together
                                     innovative thinkers, visionary leaders, and passionate changemakers to
@@ -98,10 +98,10 @@ export default function AboutPage() {
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
                                 ABOUT <span className="text-tedx-red">TED</span>
                             </h2>
-                            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                            <p className="text-gray-300 text-lg leading-relaxed mb-6 text-justify">
                                 TED is a nonprofit, nonpartisan organization dedicated to discovering, debating and spreading ideas that spark conversation, deepen understanding and drive meaningful change. Our organization is devoted to curiosity, reason, wonder and the pursuit of knowledge — without an agenda. We welcome people from every discipline and culture who seek a deeper understanding of the world and connection with others, and we invite everyone to engage with ideas and activate them in your community.
                             </p>
-                            <p className="text-gray-300 text-lg leading-relaxed">
+                            <p className="text-gray-300 text-lg leading-relaxed text-justify">
                                 TED began in 1984 as a conference where Technology, Entertainment and Design converged, but today it spans a multitude of worldwide communities and initiatives exploring everything from science and business to education, arts and global issues. In addition to the TED Talks curated from our annual conferences and published on TED.com, we produce original podcasts, short video series, animated educational lessons (TED-Ed) and TV programs that are translated into more than 100 languages and distributed via partnerships around the world. Each year, thousands of independently run TEDx events. Through the Audacious Project, TED has helped catalyze $6.6 billion in funding for projects that support bold solutions to the world&apos;s most urgent challenges — working to make the world more beautiful, sustainable and just. In 2020, TED launched Countdown, an initiative to accelerate solutions to the climate crisis and mobilize a movement for a net-zero future, and in 2023 TED launched TED Democracy to spark a new kind of conversation focused on realistic pathways towards a more vibrant and equitable future. View a full list of TED&apos;s many programs and initiatives.
                             </p>
                         </motion.div>
@@ -130,7 +130,7 @@ export default function AboutPage() {
                         <p className="text-2xl md:text-3xl text-tedx-red/80 font-semibold mb-8" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
                             अंतः अस्ति आरंभ
                         </p>
-                        <p className="text-gray-300 text-lg leading-relaxed">
+                        <p className="text-gray-300 text-lg leading-relaxed text-justify">
                             Inchoation marks the moment something begins to take shape, a thought awakening, an idea forming. अंतः अस्ति आरंभ means "within lies the beginning," a reminder that every transformation starts from within before it ever reaches the world. This theme celebrates the quiet sparks: the decisions made in silence, the inner struggles that fuel breakthroughs. Through stories of resilience and discovery, we explore how what begins inside us becomes the ideas worth spreading.
                         </p>
                     </motion.div>

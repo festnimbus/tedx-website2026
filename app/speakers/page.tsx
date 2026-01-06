@@ -73,7 +73,7 @@ const previousSpeakers: SpeakerItem[] = [
     {
         id: 102,
         name: 'Yash Garg',
-        designation: 'Civil Servant & Advocate',
+        designation: 'Founder, College Setu & Ed-tech Entrepreneur',
         image: '/prev_speakers/3.webp',
         linkedin: 'https://www.linkedin.com/in/yashgargdl/',
         twitter: 'https://x.com/yashgargdl',
@@ -81,7 +81,7 @@ const previousSpeakers: SpeakerItem[] = [
     {
         id: 103,
         name: 'Col. Ashokan K.',
-        designation: 'Founder, College Setu & Ed-tech Entrepreneur',
+        designation: 'Indian Army Veteran & Security Expert',
         image: '/prev_speakers/2.webp',
     },
     {
@@ -93,7 +93,7 @@ const previousSpeakers: SpeakerItem[] = [
     {
         id: 105,
         name: 'Jagdeep Singh',
-        designation: 'Indian Army Veteran & Security Expert',
+        designation: 'Civil Servant & Advocate',
         image: '/prev_speakers/5.webp',
         linkedin: 'https://www.linkedin.com/in/jagdeepsinghkas/',
         twitter: 'https://x.com/jagdeep_kas19',

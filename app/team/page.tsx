@@ -129,12 +129,6 @@ export default function TeamPage() {
                         </p>
                     </motion.div>
 
-                    {/* Decorative X marks */}
-                    <div className="hidden lg:block">
-                        <span className="fixed top-32 right-10 text-tedx-red text-4xl font-bold opacity-60">X</span>
-                        <span className="fixed bottom-40 left-10 text-tedx-red text-4xl font-bold opacity-60">X</span>
-                    </div>
-
                     {/* Organizers Section */}
                     <motion.div
                         variants={containerVariants}
