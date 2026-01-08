@@ -24,63 +24,63 @@ const organizers = [
 const volunteers = [
     {
         id: 1,
-        name: 'Dipanshu',
-        image: '/volunteers/Dipanshu.webp',
-    },
-    {
-        id: 2,
-        name: 'Sanskar',
-        image: '/volunteers/Sanskar.webp',
-    },
-    {
-        id: 3,
-        name: 'Somya',
-        image: '/volunteers/Somya Verma.webp',
-    },
-    {
-        id: 4,
-        name: 'Vaibhav',
-        image: '/volunteers/Vaibhav.webp',
-    },
-    {
-        id: 5,
-        name: 'Ayush',
-        image: '/volunteers/ayush.webp',
-    },
-    {
-        id: 6,
-        name: 'Parthivi',
-        image: '/volunteers/parthivi.webp',
-    },
-    {
-        id: 7,
-        name: 'Saurabh',
-        image: '/volunteers/saurabh.webp',
-    },
-    {
-        id: 8,
-        name: 'Vinay',
-        image: '/volunteers/vinay.webp',
-    },
-    {
-        id: 9,
-        name: 'Suhanee',
-        image: '/volunteers/suhanee.webp',
-    },
-    {
-        id: 10,
-        name: 'Kunz',
-        image: '/volunteers/kunz.webp',
-    },
-    {
-        id: 11,
         name: 'Agastya',
         image: '/volunteers/agastya.webp',
     },
     {
-        id: 12,
+        id: 2,
+        name: 'Ayush',
+        image: '/volunteers/ayush.webp',
+    },
+    {
+        id: 3,
+        name: 'Dipanshu',
+        image: '/volunteers/Dipanshu.webp',
+    },
+    {
+        id: 4,
+        name: 'Kunz',
+        image: '/volunteers/kunz.webp',
+    },
+    {
+        id: 5,
+        name: 'Parthivi',
+        image: '/volunteers/parthivi.webp',
+    },
+    {
+        id: 6,
         name: 'Prasi',
         image: '/volunteers/Prasi.webp',
+    },
+    {
+        id: 7,
+        name: 'Sanskar',
+        image: '/volunteers/Sanskar.webp',
+    },
+    {
+        id: 8,
+        name: 'Saurabh',
+        image: '/volunteers/saurabh.webp',
+    },
+    {
+        id: 9,
+        name: 'Somya',
+        image: '/volunteers/Somya Verma.webp',
+    },
+    {
+        id: 10,
+        name: 'Suhanee',
+        image: '/volunteers/suhanee.webp',
+    },
+    {
+        id: 11,
+        name: 'Vaibhav',
+        image: '/volunteers/Vaibhav.webp',
+    },
+    {
+        id: 12,
+        name: 'Vinay',
+        image: '/volunteers/vinay.webp',
     },
 ]
 
@@ -173,11 +173,19 @@ export default function TeamPage() {
                     </motion.div>
 
                     {/* Volunteers Section */}
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
+                    >
+                        Our Volunteers
+                    </motion.h2>
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
-                        className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10"
+                        className="flex flex-col items-center gap-8"
                     >
                         {volunteers.map((member) => (
                             <motion.div
@@ -189,10 +197,10 @@ export default function TeamPage() {
                                     imageSrc={member.image}
                                     altText={member.name}
                                     captionText={member.name}
-                                    containerHeight="310px"
-                                    containerWidth="220px"
-                                    imageHeight="275px"
-                                    imageWidth="220px"
+                                    containerHeight="260px"
+                                    containerWidth="180px"
+                                    imageHeight="225px"
+                                    imageWidth="180px"
                                     rotateAmplitude={10}
                                     scaleOnHover={1.1}
                                     showMobileWarning={false}
@@ -200,7 +208,7 @@ export default function TeamPage() {
                                     displayOverlayContent={true}
                                     overlayContent={
                                         <div className="text-center">
-                                            <h3 className="text-lg font-bold text-white mb-0.5">
+                                            <h3 className="text-base font-bold text-white mb-0.5">
                                                 {member.name}
                                             </h3>
                                             <p className="text-tedx-red text-xs uppercase tracking-wider font-semibold">
