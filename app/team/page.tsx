@@ -185,7 +185,7 @@ export default function TeamPage() {
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
-                        className="flex flex-col items-center gap-8"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 justify-items-center"
                     >
                         {volunteers.map((member) => (
                             <motion.div
