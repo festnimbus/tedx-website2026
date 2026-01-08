@@ -4,6 +4,51 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
 import TiltedCard from '@/components/TiltedCard'
+import Link from 'next/link'
+
+// Instagram Icon Component
+const InstagramIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+)
+
+// LinkedIn Icon Component
+const LinkedInIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect width="4" height="12" x="2" y="9" />
+        <circle cx="4" cy="4" r="2" />
+    </svg>
+)
+
+// Social Links Component
+const SocialLinks = ({ instagram, linkedin }: { instagram?: string; linkedin?: string }) => (
+    <div className="flex items-center justify-center gap-4 mt-3">
+        {instagram && (
+            <Link
+                href={instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-tedx-red transition-all duration-300 hover:scale-110 transform"
+            >
+                <InstagramIcon />
+            </Link>
+        )}
+        {linkedin && (
+            <Link
+                href={linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-tedx-red transition-all duration-300 hover:scale-110 transform"
+            >
+                <LinkedInIcon />
+            </Link>
+        )}
+    </div>
+)
 
 // Team data
 const organizers = [
@@ -12,12 +57,16 @@ const organizers = [
         name: 'Rahul Prasad',
         designation: 'Organizer',
         image: '/volunteers/rahul.webp',
+        instagram: 'https://www.instagram.com/rahulxprasad/',
+        linkedin: 'https://www.linkedin.com/in/rahul-prasad-0224b225a/',
     },
     {
         id: 2,
         name: 'Sarayu Nallabolu',
         designation: 'Co-Organizer',
         image: '/volunteers/sarayu.webp',
+        instagram: 'https://www.instagram.com/sarayu_.n/',
+        linkedin: 'https://www.linkedin.com/in/sarayu-nallabolu-3271b525a/',
     },
 ]
 
@@ -26,61 +75,85 @@ const volunteers = [
         id: 1,
         name: 'Agastya',
         image: '/volunteers/agastya.webp',
+        instagram: 'https://www.instagram.com/_agstya04_/',
+        linkedin: 'https://www.linkedin.com/in/agastya-gautam-b2201a322?',
     },
     {
         id: 2,
         name: 'Ayush',
         image: '/volunteers/ayush.webp',
+        instagram: 'https://www.instagram.com/mai_ak_hoon/',
+        linkedin: 'https://www.linkedin.com/in/ayush-ksharma/',
     },
     {
         id: 3,
         name: 'Dipanshu',
         image: '/volunteers/Dipanshu.webp',
+        instagram: 'https://www.instagram.com/dipanshuyadav091?igsh=MWI4NGhqY2w5czVqZQ==',
+        linkedin: 'https://www.linkedin.com/in/dipanshu-yadav-434116392',
     },
     {
         id: 4,
         name: 'Kunz',
         image: '/volunteers/kunz.webp',
+        instagram: 'https://www.instagram.com/kunzsharma_/',
+        linkedin: 'https://www.linkedin.com/in/kunz-sharma-975877334/',
     },
     {
         id: 5,
         name: 'Parthivi',
         image: '/volunteers/parthivi.webp',
+        instagram: 'https://www.instagram.com/parthivi_pradhan/',
+        linkedin: 'https://www.linkedin.com/in/parthivi-pradhan-aba260322/',
     },
     {
         id: 6,
         name: 'Prasi',
         image: '/volunteers/Prasi.webp',
+        instagram: 'https://www.instagram.com/prasi_.paris/',
+        linkedin: 'https://www.linkedin.com/in/prasi-mishra-a80028326/',
     },
     {
         id: 7,
         name: 'Sanskar',
         image: '/volunteers/Sanskar.webp',
+        instagram: 'https://www.instagram.com/sanskar_057/',
+        linkedin: 'https://www.linkedin.com/in/sanskar-bhangalia-19658032a/',
     },
     {
         id: 8,
         name: 'Saurabh',
         image: '/volunteers/saurabh.webp',
+        instagram: 'https://www.instagram.com/__1saurabh__/',
+        linkedin: 'https://www.linkedin.com/in/saurabh-chauhan-a96413323/',
     },
     {
         id: 9,
         name: 'Somya',
         image: '/volunteers/Somya Verma.webp',
+        instagram: 'https://www.instagram.com/somya.ve',
+        linkedin: 'https://www.linkedin.com/in/somya-verma-nith/',
     },
     {
         id: 10,
         name: 'Suhanee',
         image: '/volunteers/suhanee.webp',
+        instagram: 'https://www.instagram.com/queeencxrd/',
+        linkedin: 'https://www.linkedin.com/in/suhanee-thakur-866055324/',
     },
     {
         id: 11,
         name: 'Vaibhav',
         image: '/volunteers/Vaibhav.webp',
+        instagram: 'https://www.instagram.com/vaibhav.pandey_75/',
+        linkedin: 'https://www.linkedin.com/in/vaibhav-pandey-562055314/',
     },
     {
         id: 12,
         name: 'Vinay',
         image: '/volunteers/vinay.webp',
+        instagram: 'https://www.instagram.com/vinnay_206?igsh=ZWNpY3djYWY2Mnhk',
+        linkedin: 'https://www.linkedin.com/in/vinay-kumar-b25024333/',
     },
 ]
 
@@ -167,6 +240,7 @@ export default function TeamPage() {
                                             </div>
                                         }
                                     />
+                                    <SocialLinks instagram={member.instagram} linkedin={member.linkedin} />
                                 </motion.div>
                             ))}
                         </div>
@@ -217,6 +291,7 @@ export default function TeamPage() {
                                         </div>
                                     }
                                 />
+                                <SocialLinks instagram={member.instagram} linkedin={member.linkedin} />
                             </motion.div>
                         ))}
                     </motion.div>
