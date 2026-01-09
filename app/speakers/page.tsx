@@ -68,6 +68,7 @@ const previousSpeakers: SpeakerItem[] = [
         designation: 'Founder, Acerternity UI',
         image: '/prev_speakers/1.webp',
         linkedin: 'https://www.linkedin.com/in/manuarora28/',
+        instagram: 'https://www.instagram.com/mannupaaji/',
         twitter: 'https://x.com/mannupaaji?lang=en',
     },
     {
@@ -76,6 +77,7 @@ const previousSpeakers: SpeakerItem[] = [
         designation: 'Founder, College Setu & Ed-tech Entrepreneur',
         image: '/prev_speakers/3.webp',
         linkedin: 'https://www.linkedin.com/in/yashgargdl/',
+        instagram: 'https://www.instagram.com/yashgargdl/',
         twitter: 'https://x.com/yashgargdl',
     },
     {
@@ -83,12 +85,14 @@ const previousSpeakers: SpeakerItem[] = [
         name: 'Col. Ashokan K.',
         designation: 'Indian Army Veteran & Security Expert',
         image: '/prev_speakers/2.webp',
+        instagram: 'https://www.instagram.com/colonel_ashokan_k/',
     },
     {
         id: 104,
         name: 'Yatin Pandit',
         designation: 'Historian & Researcher',
         image: '/prev_speakers/4.webp',
+        instagram: 'https://www.instagram.com/dev_sons_kriti/',
     },
     {
         id: 105,
@@ -96,6 +100,7 @@ const previousSpeakers: SpeakerItem[] = [
         designation: 'Civil Servant & Advocate',
         image: '/prev_speakers/5.webp',
         linkedin: 'https://www.linkedin.com/in/jagdeepsinghkas/',
+        instagram: 'https://www.instagram.com/jagdeep_kas19/',
         twitter: 'https://x.com/jagdeep_kas19',
     },
 ]
