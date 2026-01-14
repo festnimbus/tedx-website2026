@@ -136,10 +136,10 @@ const volunteers = [
     },
     {
         id: 10,
-        name: 'Suhanee',
+        name: 'Shubham',
         image: '/volunteers/suhanee.webp',
-        instagram: 'https://www.instagram.com/queeencxrd/',
-        linkedin: 'https://www.linkedin.com/in/suhanee-thakur-866055324/',
+        instagram: 'https://www.instagram.com/whoisshubhamm_/',
+        linkedin: 'https://www.linkedin.com/in/shubham-pathak-41b4a732b/',
     },
     {
         id: 11,
