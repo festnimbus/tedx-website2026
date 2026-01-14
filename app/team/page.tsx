@@ -137,7 +137,7 @@ const volunteers = [
     {
         id: 10,
         name: 'Shubham',
-        image: '/volunteers/suhanee.webp',
+        image: '/volunteers/shubham.webp',
         instagram: 'https://www.instagram.com/whoisshubhamm_/',
         linkedin: 'https://www.linkedin.com/in/shubham-pathak-41b4a732b/',
     },
