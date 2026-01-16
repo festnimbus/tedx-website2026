@@ -22,6 +22,7 @@ export default function Navbar() {
     { name: 'Speakers', href: '/speakers' },
     { name: 'Team', href: '/team' },
     { name: 'Sponsors', href: '/sponsors' },
+    { name: 'Merchandise', href: '/merchandise' },
     { name: 'Contact', href: '/contact' },
   ]
 

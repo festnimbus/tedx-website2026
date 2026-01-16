@@ -38,7 +38,8 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         { label: 'Speakers', ariaLabel: 'View speakers', link: '/speakers' },
         { label: 'Team', ariaLabel: 'Meet the team', link: '/team' },
         { label: 'Sponsors', ariaLabel: 'Our sponsors', link: '/sponsors' },
-        { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+        { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' },
+        { label: 'Merchandise', ariaLabel: 'Get merchandise', link: '/merchandise' },
     ],
     socialItems = [
         { label: 'Instagram', link: 'https://www.instagram.com/tedxnithamirpur/' },
@@ -462,7 +463,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     id="staggered-menu-panel"
                     ref={panelRef}
                     className="staggered-menu-panel fixed top-0 right-0 h-screen bg-[#0a0a0a]/95 backdrop-blur-xl border-l border-white/10 flex flex-col p-24 pt-28 md:pt-32 overflow-y-auto z-[50]"
-                    style={{ width: 'clamp(280px, 40vw, 450px)', visibility: initialized ? 'visible' : 'hidden' }}
+                    style={{ width: 'clamp(320px, 50vw, 500px)', visibility: initialized ? 'visible' : 'hidden' }}
                     aria-hidden={!open}
                 >
                     <div className="sm-panel-inner flex-1 flex flex-col gap-5">
@@ -474,7 +475,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                             {items.map((it, idx) => (
                                 <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={it.label + idx}>
                                     <Link
-                                        className="sm-panel-item relative text-white/90 font-bold text-3xl md:text-4xl cursor-pointer leading-none tracking-[-1px] uppercase transition-colors duration-150 inline-block no-underline pr-[1.4em] hover:text-tedx-red"
+                                        className="sm-panel-item relative text-white/90 font-bold text-2xl md:text-3xl cursor-pointer leading-none tracking-[-1px] uppercase transition-colors duration-150 inline-block no-underline pr-[1.4em] hover:text-tedx-red"
                                         href={it.link}
                                         aria-label={it.ariaLabel}
                                         data-index={idx + 1}

@@ -12,9 +12,10 @@ export default function Footer() {
   const [error, setError] = useState('')
 
   const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Speakers', href: '#speakers' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Speakers', href: '/speakers' },
+    { name: 'Merchandise', href: '/merchandise' },
   ]
 
   const socialLinks = [

@@ -128,7 +128,7 @@ export default function AboutPage() {
                             INCHOATION
                         </h2>
                         <p className="text-2xl md:text-3xl text-tedx-red/80 font-semibold mb-8" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
-                            अंतः अस्ति आरंभ
+                            अंतः अस्ति आरंभ:
                         </p>
                         <p className="text-gray-300 text-lg leading-relaxed text-justify">
                             Inchoation marks the moment something begins to take shape, a thought awakening, an idea forming. अंतः अस्ति आरंभ means "within lies the beginning," a reminder that every transformation starts from within before it ever reaches the world. This theme celebrates the quiet sparks: the decisions made in silence, the inner struggles that fuel breakthroughs. Through stories of resilience and discovery, we explore how what begins inside us becomes the ideas worth spreading.
