@@ -119,7 +119,7 @@ export default function About() {
               </h3>
             </div>
             <p className="text-tedx-red text-xl md:text-2xl font-semibold mb-12" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
-              अंत: अस्ति आरंभ
+              अंत: अस्ति आरंभ:
             </p>
 
             {/* Countdown Timer - New Design */}

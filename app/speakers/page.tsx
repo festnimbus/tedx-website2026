@@ -207,7 +207,10 @@ export default function SpeakersPage() {
                         className="text-center mt-16"
                     >
                         <button
-                            onClick={() => setShowPreviousSpeakers(!showPreviousSpeakers)}
+                            onClick={() => {
+                                setShowPreviousSpeakers(!showPreviousSpeakers)
+                                window.scrollTo({ top: 0, behavior: 'smooth' })
+                            }}
                             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-tedx-red text-white font-semibold text-lg rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-tedx-red/30"
                         >
                             <span className="relative z-10">
