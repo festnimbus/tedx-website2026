@@ -93,7 +93,7 @@ export default function Hero() {
 
                   {/* Month & Year Stack */}
                   <div className="flex flex-col justify-center">
-                    <span className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-tedx-red uppercase tracking-widest">
+                    <span className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-tedx-red/80 uppercase tracking-widest">
                       FEBRUARY
                     </span>
                     <span className="text-sm sm:text-lg md:text-xl lg:text-2xl font-light text-white/50 tracking-[0.2em] sm:tracking-[0.3em]">

@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Footer from '@/components/Footer'
 import ChromaGrid, { SpeakerItem } from '@/components/ChromaGrid'
 import FuzzyText from '@/components/FuzzyText'
+import LoadingScreen from '@/components/LoadingScreen'
 
 /* ============================================
    CURRENT SPEAKERS - COMMENTED OUT FOR NOW
@@ -137,7 +138,19 @@ function ComingSoonDisplay() {
 }
 
 export default function SpeakersPage() {
+    const [isLoading, setIsLoading] = useState(true)
     const [showPreviousSpeakers, setShowPreviousSpeakers] = useState(false)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1500)
+        return () => clearTimeout(timer)
+    }, [])
+
+    if (isLoading) {
+        return <LoadingScreen />
+    }
 
     return (
         <main className="min-h-screen bg-[#080808]">

@@ -1,9 +1,24 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Footer from '@/components/Footer'
+import LoadingScreen from '@/components/LoadingScreen'
 
 export default function SponsorsPage() {
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1500)
+        return () => clearTimeout(timer)
+    }, [])
+
+    if (isLoading) {
+        return <LoadingScreen />
+    }
+
     return (
         <main className="min-h-screen bg-[#080808]">
             {/* Hero Spacer for fixed header */}
@@ -34,30 +49,6 @@ export default function SponsorsPage() {
                         <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
                             We're working on bringing amazing partners onboard. Our sponsors will be announced very soon. Stay tuned!
                         </p>
-                    </motion.div>
-
-                    {/* Decorative Elements */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.4 }}
-                        className="flex justify-center gap-4 mb-12"
-                    >
-                        {[...Array(3)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                className="w-3 h-3 rounded-full bg-tedx-red"
-                                animate={{
-                                    y: [-5, 5, -5],
-                                }}
-                                transition={{
-                                    duration: 1.5,
-                                    repeat: Infinity,
-                                    delay: i * 0.2,
-                                    ease: 'easeInOut',
-                                }}
-                            />
-                        ))}
                     </motion.div>
 
                     {/* CTA Section */}

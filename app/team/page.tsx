@@ -1,10 +1,12 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
 import TiltedCard from '@/components/TiltedCard'
 import Link from 'next/link'
+import LoadingScreen from '@/components/LoadingScreen'
 
 // Instagram Icon Component
 const InstagramIcon = () => (
@@ -158,6 +160,15 @@ const volunteers = [
 ]
 
 export default function TeamPage() {
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1500)
+        return () => clearTimeout(timer)
+    }, [])
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -178,6 +189,10 @@ export default function TeamPage() {
                 ease: 'easeOut',
             },
         },
+    }
+
+    if (isLoading) {
+        return <LoadingScreen />
     }
 
     return (

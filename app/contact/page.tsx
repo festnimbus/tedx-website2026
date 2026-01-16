@@ -1,10 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Footer from '@/components/Footer'
+import LoadingScreen from '@/components/LoadingScreen'
 
 export default function ContactPage() {
+    const [isLoading, setIsLoading] = useState(true)
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -15,6 +17,13 @@ export default function ContactPage() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1500)
+        return () => clearTimeout(timer)
+    }, [])
 
     const interestOptions = [
         'General Inquiry',
@@ -101,6 +110,9 @@ export default function ContactPage() {
         }
     }
 
+    if (isLoading) {
+        return <LoadingScreen />
+    }
 
     return (
         <main className="min-h-screen bg-[#080808]">

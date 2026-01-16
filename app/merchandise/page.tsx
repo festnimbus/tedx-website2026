@@ -1,10 +1,25 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Footer from '@/components/Footer'
 import FuzzyText from '@/components/FuzzyText'
+import LoadingScreen from '@/components/LoadingScreen'
 
 export default function MerchandisePage() {
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1500)
+        return () => clearTimeout(timer)
+    }, [])
+
+    if (isLoading) {
+        return <LoadingScreen />
+    }
+
     return (
         <main className="min-h-screen bg-[#080808] relative overflow-hidden">
             {/* Hero Spacer for fixed header */}

@@ -1,9 +1,11 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Footer from '@/components/Footer'
 import Masonry, { MasonryItem } from '@/components/Masonry'
 import ImageLoop from '@/components/ImageLoop'
+import LoadingScreen from '@/components/LoadingScreen'
 
 // Gallery items for the Masonry grid using local images from public/gallery
 const galleryItems: MasonryItem[] = [
@@ -18,6 +20,15 @@ const galleryItems: MasonryItem[] = [
 ]
 
 export default function AboutPage() {
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1500)
+        return () => clearTimeout(timer)
+    }, [])
+
     const fadeInLeft = {
         hidden: { opacity: 0, x: -60 },
         visible: { opacity: 1, x: 0 }
@@ -26,6 +37,10 @@ export default function AboutPage() {
     const fadeInRight = {
         hidden: { opacity: 0, x: 60 },
         visible: { opacity: 1, x: 0 }
+    }
+
+    if (isLoading) {
+        return <LoadingScreen />
     }
 
     return (
