@@ -46,6 +46,9 @@ export default function MerchandisePage() {
                             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-tedx-red mb-2 leading-tight">
                                 TEDx
                             </h1>
+                            <h2 className="text-5xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
+                                NIT Hamirpur
+                            </h2>
                             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
                                 Merchandise
                             </h1>
