@@ -17,98 +17,98 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ fullScreen = true }) => {
         <div
             className={`${fullScreen ? 'fixed inset-0' : 'w-full h-full min-h-[400px]'} bg-[#0a0a0c] flex items-center justify-center z-50 overflow-hidden`}
         >
-            {/* Dual-ring rotating loader */}
-            <div className="loader-circle-container">
-                <div className={`loader-circle-2 ${mounted ? 'loaded' : ''}`}></div>
+            {/* 3-Dot Pulse Loader with TEDx Theme */}
+            <div className="dot-pulse-container">
+                <div className={`dot-pulse ${mounted ? 'loaded' : ''}`}></div>
             </div>
 
-            {/* Inline styles for the loader animation */}
+            {/* Inline styles for the dot-pulse animation */}
             <style jsx>{`
-                .loader-circle-container {
+                .dot-pulse-container {
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    min-width: 60px;
+                    min-height: 20px;
                 }
 
-                .loader-circle-2 {
+                .dot-pulse {
                     position: relative;
-                    width: 80px;
-                    height: 80px;
-                    display: inline-block;
+                    left: -9999px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 6px;
+                    background-color: #eb0028;
+                    color: #eb0028;
+                    box-shadow: 9999px 0 0 -5px;
+                    animation: dot-pulse 1.5s infinite linear;
+                    animation-delay: 0.25s;
                 }
 
-                .loader-circle-2::before,
-                .loader-circle-2::after {
+                .dot-pulse::before,
+                .dot-pulse::after {
                     content: "";
-                    display: block;
+                    display: inline-block;
                     position: absolute;
-                    border-width: 5px;
-                    border-style: solid;
-                    border-radius: 50%;
-                    box-sizing: border-box;
+                    top: 0;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 6px;
+                    background-color: #eb0028;
+                    color: #eb0028;
                 }
 
-                /* Outer ring - TEDx Red with 80% opacity */
-                .loader-circle-2::before {
-                    width: 80px;
-                    height: 80px;
-                    border-bottom-color: rgba(235, 0, 40, 0.8);
-                    border-right-color: rgba(235, 0, 40, 0.8);
-                    border-top-color: transparent;
-                    border-left-color: transparent;
-                    animation: loader-circle-2-animation-2 1s linear infinite;
-                    box-shadow: 
-                        0 0 20px rgba(235, 0, 40, 0.4),
-                        0 0 40px rgba(235, 0, 40, 0.2);
+                .dot-pulse::before {
+                    box-shadow: 9984px 0 0 -5px;
+                    animation: dot-pulse-before 1.5s infinite linear;
+                    animation-delay: 0s;
                 }
 
-                /* Inner ring - White */
-                .loader-circle-2::after {
-                    width: 50px;
-                    height: 50px;
-                    border-bottom-color: #ffffff;
-                    border-right-color: #ffffff;
-                    border-top-color: transparent;
-                    border-left-color: transparent;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    animation: loader-circle-2-animation 0.85s linear infinite;
-                    box-shadow: 
-                        0 0 15px rgba(255, 255, 255, 0.3),
-                        0 0 30px rgba(255, 255, 255, 0.15);
+                .dot-pulse::after {
+                    box-shadow: 10014px 0 0 -5px;
+                    animation: dot-pulse-after 1.5s infinite linear;
+                    animation-delay: 0.5s;
                 }
 
-                @keyframes loader-circle-2-animation {
+                @keyframes dot-pulse-before {
                     0% {
-                        transform: translate(-50%, -50%) rotate(0deg);
+                        box-shadow: 9984px 0 0 -5px #eb0028;
                     }
-                    100% {
-                        transform: translate(-50%, -50%) rotate(-360deg);
+                    30% {
+                        box-shadow: 9984px 0 0 3px #eb0028;
+                    }
+                    60%, 100% {
+                        box-shadow: 9984px 0 0 -5px #eb0028;
                     }
                 }
 
-                @keyframes loader-circle-2-animation-2 {
+                @keyframes dot-pulse {
                     0% {
-                        transform: rotate(0deg);
+                        box-shadow: 9999px 0 0 -5px #eb0028;
                     }
-                    100% {
-                        transform: rotate(360deg);
+                    30% {
+                        box-shadow: 9999px 0 0 3px #eb0028;
+                    }
+                    60%, 100% {
+                        box-shadow: 9999px 0 0 -5px #eb0028;
                     }
                 }
 
-                /* Subtle pulse effect on container */
-                .loader-circle-container {
-                    animation: pulse-glow 2s ease-in-out infinite;
+                @keyframes dot-pulse-after {
+                    0% {
+                        box-shadow: 10014px 0 0 -5px #eb0028;
+                    }
+                    30% {
+                        box-shadow: 10014px 0 0 3px #eb0028;
+                    }
+                    60%, 100% {
+                        box-shadow: 10014px 0 0 -5px #eb0028;
+                    }
                 }
 
-                @keyframes pulse-glow {
-                    0%, 100% {
-                        filter: brightness(1);
-                    }
-                    50% {
-                        filter: brightness(1.2);
-                    }
+                /* Subtle glow effect */
+                .dot-pulse-container {
+                    filter: drop-shadow(0 0 8px rgba(235, 0, 40, 0.4));
                 }
             `}</style>
         </div>
@@ -116,3 +116,4 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ fullScreen = true }) => {
 }
 
 export default LoadingScreen
+
