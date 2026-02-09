@@ -24,44 +24,101 @@ export default function SponsorsPage() {
             {/* Hero Spacer for fixed header */}
             <div className="h-24" />
 
-            {/* Coming Soon Section */}
-            <section className="py-20 md:py-32 flex items-center justify-center min-h-[70vh]">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    {/* Heading */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-                    >
-                        <span className="text-tedx-red">SPONSORS</span>
-                    </motion.h1>
+            {/* Sponsors Section */}
+            <section className="py-20 md:py-32 relative">
+                {/* Background decorations */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute top-1/4 left-10 w-64 h-64 bg-tedx-red/10 rounded-full blur-3xl" />
+                    <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-tedx-red/10 rounded-full blur-3xl" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-tedx-red/5 rounded-full blur-3xl" />
+                </div>
 
-                    {/* Coming Soon Text */}
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    {/* Heading */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-16"
                     >
-                        <h2 className="text-2xl md:text-4xl font-bold text-white mb-6">
-                            Coming Soon
-                        </h2>
-                        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
-                            We're working on bringing amazing partners onboard. Our sponsors will be announced very soon. Stay tuned!
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
+                            Our <span className="text-tedx-red">Sponsors</span>
+                        </h1>
+                        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+                            Proudly supported by amazing partners who believe in spreading ideas worth sharing.
                         </p>
+                    </motion.div>
+
+                    {/* Sponsors Grid */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
+                    >
+                        {/* Sponsor Card - Cafitea */}
+                        <motion.div
+                            whileHover={{ scale: 1.05, y: -10 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                            className="group relative"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-br from-tedx-red/20 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-tedx-red/50 transition-all duration-500 h-full flex flex-col items-center justify-center shadow-lg">
+                                <img
+                                    src="/sponsers/cafitea.webp"
+                                    alt="Caffitea"
+                                    className="max-h-32 w-auto object-contain filter brightness-100 group-hover:brightness-110 transition-all duration-300"
+                                />
+                            </div>
+                            <h3 className="text-center mt-4 text-lg font-semibold text-white group-hover:text-tedx-red transition-colors duration-300">Caffitea</h3>
+                        </motion.div>
+
+                        {/* Sponsor Card - Mango */}
+                        <motion.div
+                            whileHover={{ scale: 1.05, y: -10 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                            className="group relative"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-br from-tedx-red/20 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-tedx-red/50 transition-all duration-500 h-full flex flex-col items-center justify-center shadow-lg">
+                                <img
+                                    src="/sponsers/mango.webp"
+                                    alt="Mango Herbs"
+                                    className="max-h-32 w-auto object-contain filter brightness-100 group-hover:brightness-110 transition-all duration-300"
+                                />
+                            </div>
+                            <h3 className="text-center mt-4 text-lg font-semibold text-white group-hover:text-tedx-red transition-colors duration-300">Mango Herbs</h3>
+                        </motion.div>
+
+                        {/* Sponsor Card - Rhino */}
+                        <motion.div
+                            whileHover={{ scale: 1.05, y: -10 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                            className="group relative"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-br from-tedx-red/20 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-tedx-red/50 transition-all duration-500 h-full flex flex-col items-center justify-center shadow-lg">
+                                <img
+                                    src="/sponsers/rhino.webp"
+                                    alt="The Red Rhino"
+                                    className="max-h-32 w-auto object-contain filter brightness-100 group-hover:brightness-110 transition-all duration-300"
+                                />
+                            </div>
+                            <h3 className="text-center mt-4 text-lg font-semibold text-white group-hover:text-tedx-red transition-colors duration-300">The Red Rhino</h3>
+                        </motion.div>
                     </motion.div>
 
                     {/* CTA Section */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        className="bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 rounded-2xl p-8 md:p-12 border border-zinc-700/50"
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="bg-gradient-to-r from-zinc-900/80 via-zinc-800/80 to-zinc-900/80 backdrop-blur-xl rounded-2xl p-8 md:p-12 border border-zinc-700/50 text-center"
                     >
                         <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
                             Interested in Sponsoring?
                         </h3>
-                        <p className="text-gray-400 mb-6">
+                        <p className="text-gray-400 mb-6 max-w-xl mx-auto">
                             Partner with TEDxNIT Hamirpur and be part of something extraordinary. Reach out to us for sponsorship opportunities.
                         </p>
                         <a
@@ -74,12 +131,6 @@ export default function SponsorsPage() {
                             Contact Us
                         </a>
                     </motion.div>
-
-                    {/* Background decorations */}
-                    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-                        <div className="absolute top-1/4 left-10 w-64 h-64 bg-tedx-red/5 rounded-full blur-3xl" />
-                        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-tedx-red/5 rounded-full blur-3xl" />
-                    </div>
                 </div>
             </section>
 

@@ -35,8 +35,8 @@ export default function MerchandisePage() {
                     }}
                 />
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 w-full">
+                    <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
                         {/* Left Column: Text Content */}
                         <motion.div
                             initial={{ opacity: 0, x: -60 }}
@@ -65,7 +65,7 @@ export default function MerchandisePage() {
                             className="flex items-center justify-center relative"
                         >
                             {/* Hoodie Container */}
-                            <div className="relative w-full max-w-md">
+                            <div className="relative w-full max-w-2xl">
                                 {/* Blurred Hoodie Image */}
                                 <motion.div
                                     initial={{ scale: 0.9, opacity: 0 }}
@@ -76,39 +76,8 @@ export default function MerchandisePage() {
                                     <img
                                         src="/hoodie.webp"
                                         alt="TEDx Merchandise Hoodie"
-                                        className="w-full h-auto blur-md opacity-50"
+                                        className="w-full h-auto"
                                     />
-
-                                    {/* Coming Soon Overlay */}
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                        <motion.div
-                                            initial={{ scale: 0.8, opacity: 0 }}
-                                            animate={{ scale: 1, opacity: 1 }}
-                                            transition={{ delay: 0.7, duration: 0.5 }}
-                                            className="text-center flex flex-col items-center"
-                                        >
-                                            <FuzzyText
-                                                fontSize="clamp(3rem, 8vw, 6rem)"
-                                                fontWeight={900}
-                                                color="#EB0028"
-                                                enableHover={true}
-                                                baseIntensity={0.18}
-                                                hoverIntensity={0.5}
-                                            >
-                                                COMING
-                                            </FuzzyText>
-                                            <FuzzyText
-                                                fontSize="clamp(3rem, 8vw, 6rem)"
-                                                fontWeight={900}
-                                                color="#ffffff"
-                                                enableHover={true}
-                                                baseIntensity={0.18}
-                                                hoverIntensity={0.5}
-                                            >
-                                                SOON
-                                            </FuzzyText>
-                                        </motion.div>
-                                    </div>
                                 </motion.div>
                             </div>
                         </motion.div>
